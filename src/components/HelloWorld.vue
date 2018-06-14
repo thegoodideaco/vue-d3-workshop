@@ -1,7 +1,9 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h3>r</h3>
+    <h1 v-html="msg"></h1>
+    <h3>r
+      <span class="fa fa-"></span>
+    </h3>
     <div class="inputs">
       <input type="range"
              min="2"
@@ -54,8 +56,16 @@
               <circle :cx="centroid[0] + 'px'"
                       :cy="centroid[1] + 'px'"
                       r="7"></circle>
+              <text :x="centroid[0]"
+                    :y="centroid[1]"
+                    fill="black">testing</text>
             </template>
           </d3-arc>
+        </g>
+
+        <g>
+          <d3-arc v-for="item in fruit"
+                  :key="item.name"></d3-arc>
         </g>
 
       </svg>
@@ -64,14 +74,15 @@
 </template>
 
 <script>
+import * as d3 from 'd3'
 import D3Arc from './d3/D3Arc'
 import chroma from 'chroma-js'
 export default {
   name: 'HelloWorld',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      colors: ["url(http://bgrepeat.com/bg_128-191)", 'url(#gradient)'],
+      msg: 'Welcome to Your <span>Vue.js</span> App',
+      colors: ['green', 'url(#gradient)'],
       p:
         'M13.868967095383844,-19.088995565695946A64.407,64.407,0,0,1,127.92439722315856,36.39160061183816A133,133,0,0,1,-35.70259295952093,128.11840170704116A64.407,64.407,0,0,1,23.520979209107004,1.8712394407864963L0,0Z',
       test: {
@@ -87,9 +98,18 @@ export default {
         cornerRadius: 50,
         fill: chroma.rgb(255, 0, 255),
         stroke: chroma.rgb(255, 255, 255),
-        'stroke-width': 5
+        'stroke-width': 0,
+        color: 'green'
       },
-      ti: null
+      ti: null,
+      pieData: null,
+      fruit: [
+        { name: 'Apples', quantity: 20 },
+        { name: 'Bananas', quantity: 40 },
+        { name: 'Cherries', quantity: 50 },
+        { name: 'Damsons', quantity: 10 },
+        { name: 'Elderberries', quantity: 30 }
+      ]
     }
   },
   computed: {
@@ -112,6 +132,9 @@ export default {
       this.arcOptions.startAngle = r
       // console.log('yep', t, r)
     }, 1000)
+
+    this.pieData = d3.pie().value(d => d.quantity)
+    this.pieData(this.fruit)
   },
   beforeDestroy() {
     clearInterval(this.ti)
@@ -121,10 +144,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h1,
-h2 {
-  font-weight: normal;
-}
 ul {
   list-style-type: none;
   padding: 0;

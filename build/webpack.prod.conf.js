@@ -143,7 +143,9 @@ if (config.build.bundleAnalyzerReport) {
     statsOptions: {
       assetsSort: true,
       reasons: true,
-      usedExports: true
+      usedExports: true,
+      source: false,
+      timings: true
     },
     generateStatsFile: true
   }))

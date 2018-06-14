@@ -1,11 +1,93 @@
+@import './fontawesome/font-awesome';
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700');
+html,
+body {
+  font-family: 'Lato', Arial, sans-serif;
+  font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 0;
+  >span {
+    font-weight: 500;
+    color: saturate(#41b883, 50);
+  }
+  &.small {
+    font-size: 0.8rem;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #41b883;
+  font-weight: 400;
+  &:hover,
+  &:active,
+  &:focus,
+  &.router-link-exact-active {
+    color: darken(#fff, 1);
+  }
+}
+
+.router-link-active {
+  color: saturate(green, 10);
+}
+
+.router-link-exact-active {
+  pointer-events: none;
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #203243;
-  text-align: center;
   color: #41b883;
-  //   margin-top: 60px;
-  height: 100vh;
+  min-height: 100vh;
+}
+
+$page-transition-speed: 200ms;
+.page-fade-leave-active {
+  animation-duration: $page-transition-speed;
+  animation-fill-mode: both;
+  animation-name: fadeOut;
+  animation-timing-function: cubic-bezier(0.78, 0.03, 1, 1.02);
+}
+
+.page-fade-enter-active {
+  animation-duration: $page-transition-speed;
+  animation-fill-mode: both;
+  animation-name: fadeIn;
+  animation-timing-function: cubic-bezier(0, 0.71, 0.58, 1);
+}
+
+div.page-container {
+  article {
+    flex: 0 0 auto;
+    min-width: 40%;
+  }
+  section {
+    font-size: 1.5em;
+    margin-top: 30px;
+//         display: inline-block;
+    
+    h2 {
+      font-size: 36px;
+      font-weight: 400;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    p, li {
+      margin-top: 5px;
+      color: rgba(#fff, .9);
+    }
+  }
 }

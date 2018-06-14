@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import * as d3 from 'd3'
+import * as d3 from 'd3-shape'
 export default {
   props: {
     innerRadius: {
@@ -43,12 +43,6 @@ export default {
   },
   computed: {
     arc() {
-      // Ultamitely this returns a string.
-      // if path is specified, just return the path
-      // if (this.path) {
-      //   this.arc()
-      //   return () => this.arc
-      // }
 
       return d3
         .arc()
