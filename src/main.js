@@ -8,14 +8,16 @@ import App from './App'
 import router from './router'
 
 import chroma from 'chroma-js'
-
-Vue.config.productionTip = false
+const debug = process.env.NODE_ENV !== 'production'
+Vue.config.productionTip = debug
+Vue.config.performance = debug
 
 // These are globally added to ALL components, beware
 Vue.mixin({
   data() {
     return {
-      colors: chroma.brewer.Set1
+      colors: chroma.brewer.Set1,
+      debug
     }
   }
 })

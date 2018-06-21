@@ -1,32 +1,35 @@
 <template>
-    <svg class="svg"
-         x="0px"
-         y="0px"
-         width="100%"
-         height="100%"
-         _viewBox="0 0 auto auto"
-         _style="enable-background:new 0 0 100 100;"
-         xml:space="preserve"
-         preserveAspectRatio="xMaxYMax meet">
+  <svg class="svg"
+       x="0px"
+       y="0px"
+       width="100%"
+       height="100%"
+       _viewBox="0 0 auto auto"
+       _style="enable-background:new 0 0 100 100;"
+       xml:space="preserve"
+       preserveAspectRatio="xMaxYMax meet">
 
-        <text v-for="(item, index) in dataset"
-              :key="index"
-              :width="item.width"
-              :height="item.height"
-              :style="item.style">
-            {{item.text}}
-        </text>
-    </svg>
+    <text v-for="(item, index) in dataset"
+          :key="index"
+          :width="item.width"
+          :height="item.height"
+          :style="item.style">
+      {{item.text}}
+    </text>
+  </svg>
 </template>
 
 <script>
 import _ from 'lodash'
-import * as d3 from 'd3'
+import * as d3 from 'd3-scale'
 import chroma from 'chroma-js'
 import cloud from 'd3-cloud'
 
-const co = chroma.scale(chroma.brewer.Spectral)
+const co = chroma.scale(chroma.brewer.Greens)
 
+/**
+ * https://github.com/jasondavies/d3-cloud
+ */
 export default {
   data() {
     return {
@@ -47,7 +50,7 @@ export default {
     size: {
       type: Array,
       default() {
-        return [500, 500]
+        return [800, 800]
       }
     },
     rotate: {
@@ -59,6 +62,9 @@ export default {
     padding: {
       type: Number,
       default: 20
+    },
+    immediate: {
+      type: Boolean
     }
   },
   watch: {
@@ -85,7 +91,7 @@ export default {
                 stats[word] = 1
               }
               return stats
-            }, {})
+            }, [])
           )
             // convert it to a dataset that the cloud will write to
             .map(v => {
@@ -111,32 +117,34 @@ export default {
                         transform: `translateX(${n.x}px) translateY(${
                           n.y
                         }px) rotate(${n.rotate}rad)`,
-                        fontSize: `${(n.value * 5)}px`,
+                        fontSize: `${n.value * 15}px`,
                         textAlign: 'center'
                       }
                     }
                   })
                   .sort((a, b) => {
-                    return b.value - a.value
+                    return a.value - b.value
                   })
               })
               .start()
           }
         })
       },
-      immediate: true
+      immediate: this.immediate ? true : false
     }
   },
   computed: {
     cloudLayout() {
-      return cloud()
-        .words(this.dataset)
-        .size(this.size)
-        .rotate(this.rotate)
-        .padding(this.padding)
-        .spiral('rectangular')
-        .fontSize(w => w.value * 5)
-        .font('Impact')
+      return (
+        cloud()
+          .size(this.size)
+          .words(this.dataset)
+          .rotate(this.rotate)
+          .padding(this.padding)
+          // .spiral('rectangular')
+          .fontSize(w => w.value * 5)
+          .font('Lato')
+      )
     }
   }
 }
@@ -146,13 +154,13 @@ export default {
 text {
   transition: all 800ms ease;
   user-select: none;
-  text-shadow: 1px 1px 4px rgba(#000, .5);
+  text-shadow: 1px 1px 4px rgba(#000, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
 
   &:hover {
-      fill: #fff;
+    fill: #fff;
   }
 }
 </style>
