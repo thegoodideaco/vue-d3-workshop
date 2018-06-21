@@ -7,12 +7,25 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import chroma from 'chroma-js'
+
 Vue.config.productionTip = false
+
+// These are globally added to ALL components, beware
+Vue.mixin({
+  data() {
+    return {
+      colors: chroma.brewer.Set1
+    }
+  }
+})
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 })

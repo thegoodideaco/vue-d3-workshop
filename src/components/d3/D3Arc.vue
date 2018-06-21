@@ -5,7 +5,7 @@
           @click="$emit('click', $event)"
           @mouseout="$emit('mouseout', $event)"
           @mouseover="$emit('mouseover', $event)">
-      
+
     </path>
     <slot v-bind="{centroid}"></slot>
   </g>
@@ -43,14 +43,13 @@ export default {
   },
   computed: {
     arc() {
-
       return d3
         .arc()
         .innerRadius(this.innerRadius)
         .outerRadius(this.outerRadius)
-        .startAngle(this.startAngle)
-        .endAngle(this.endAngle)
         .cornerRadius(this.cornerRadius)
+        .startAngle(this.startAngle * Math.PI / 180)
+        .endAngle(this.endAngle * Math.PI / 180)
     },
     d() {
       return this.arc()

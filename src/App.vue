@@ -8,7 +8,7 @@
 
       <transition name="page-fade"
                   mode="out-in">
-        <keep-alive>
+        <keep-alive exclude="/">
           <!-- Give router a unique key for force render -->
           <router-view :key="$route.fullPath"></router-view>
         </keep-alive>
@@ -42,13 +42,15 @@ export default {
 }
 
 .content-container {
+  overflow: hidden;
   flex: 1 1 auto;
+  height: 100vh;
   padding: 20px;
   display: flex;
   flex-flow: column nowrap;
 
   .page-container {
-    flex: 1 0 auto;
+    flex: 1 1 auto;
     overflow: hidden;
     display: flex;
   }

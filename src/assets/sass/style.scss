@@ -69,14 +69,13 @@ $page-transition-speed: 200ms;
 
 div.page-container {
   article {
-    flex: 0 0 auto;
-    min-width: 40%;
+    flex: 0 1 auto;
+    width: 40%;
   }
   section {
     font-size: 1.5em;
     margin-top: 30px;
-//         display: inline-block;
-    
+    //         display: inline-block;
     h2 {
       font-size: 36px;
       font-weight: 400;
@@ -85,9 +84,35 @@ div.page-container {
       list-style-type: none;
       padding-left: 0;
     }
-    p, li {
+    p,
+    li {
       margin-top: 5px;
       color: rgba(#fff, .9);
     }
+  }
+}
+
+.example-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  margin-left: auto;
+  .well {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#fff, 0.1);
+  }
+  svg {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    display: block;
+    overflow: visible;
+  }
+  .centered {
+    transform: translateX(50%) translateY(50%);
   }
 }
