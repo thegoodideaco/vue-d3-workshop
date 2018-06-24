@@ -35,17 +35,38 @@ export default {
     return {
       dataset: [],
       ch: chroma,
+      scaleRange: [10, 120],
+      scaleDomain: [1, 100],
       color: d3
         .scaleLinear()
         .domain([0, 9])
-        .range(co.colors(3))
+        .range(co.colors(3)),
+      onEnd: v => {
+        this.dataset = v
+          .map(n => {
+            return {
+              ...n,
+              style: {
+                fill: this.color(n.value),
+                transform: `translateX(calc(${n.x}px - 50%)) translateY(calc(${
+                  n.y
+                }px - 50%))S rotate(${n.rotate}rad)`,
+                fontSize: `${n.size}px`,
+                textAlign: 'center'
+              }
+            }
+          })
+          .sort((a, b) => {
+            return a.value - b.value
+          })
+      }
     }
   },
   props: {
     value: {
       type: String,
       default:
-        'Design creates stories, and stories create memorable experiences, and great experiences have this innate ability to change the way in which we view our world.'
+        'Design creates stories, and stories create memorable experiences, and great experiences change the way in which we view our world.'
     },
     size: {
       type: Array,
@@ -106,27 +127,7 @@ export default {
             })
 
           if (this.cloudLayout) {
-            this.cloudLayout
-              .on('end', v => {
-                this.dataset = v
-                  .map(n => {
-                    return {
-                      ...n,
-                      style: {
-                        fill: this.color(n.value),
-                        transform: `translateX(${n.x}px) translateY(${
-                          n.y
-                        }px) rotate(${n.rotate}rad)`,
-                        fontSize: `${n.value * 15}px`,
-                        textAlign: 'center'
-                      }
-                    }
-                  })
-                  .sort((a, b) => {
-                    return a.value - b.value
-                  })
-              })
-              .start()
+            this.cloudLayout.start()
           }
         })
       },
@@ -135,16 +136,21 @@ export default {
   },
   computed: {
     cloudLayout() {
-      return (
-        cloud()
-          .size(this.size)
-          .words(this.dataset)
-          .rotate(this.rotate)
-          .padding(this.padding)
-          // .spiral('rectangular')
-          .fontSize(w => w.value * 5)
-          .font('Lato')
-      )
+      return cloud()
+        .size(this.size)
+        .words(this.dataset)
+        .rotate(this.rotate)
+        .padding(this.padding)
+        .spiral('rectangular')
+        .fontSize(w => w.value * 15)
+        .font('Lato')
+        .on('end', this.onEnd)
+    },
+    ls() {
+      return d3
+        .scaleLinear()
+        .range(this.scaleRange)
+        .domain(this.scaleDomain)
     }
   }
 }

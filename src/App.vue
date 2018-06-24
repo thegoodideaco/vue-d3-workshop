@@ -4,7 +4,7 @@
     <div class="content-container">
 
       <h2 v-if="routePath.length > 0">{{routePath}}</h2>
-      <h2 v-else>Intro</h2>
+      <h2 v-else>Introduction</h2>
 
       <transition name="page-fade"
                   mode="out-in">
@@ -57,7 +57,7 @@ export default {
 
   > h2 {
     font-size: 2.9rem;
-    font-weight: 100;
+    font-weight: 400;
     margin-bottom: 20px;
   }
 }

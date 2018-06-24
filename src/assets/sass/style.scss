@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700');
 html,
 body {
+  font-size: 22px;
   font-family: 'Lato', Arial, sans-serif;
   font-weight: 300;
 }
@@ -73,7 +74,7 @@ div.page-container {
     width: 40%;
   }
   section {
-    font-size: 1.5em;
+    font-size: 1em;
     margin-top: 30px;
     //         display: inline-block;
     h2 {

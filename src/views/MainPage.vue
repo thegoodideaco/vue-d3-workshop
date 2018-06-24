@@ -7,6 +7,7 @@
         <div class="section-content"
              v-pre>
           <div class="section-inner sectionLayout--insetColumn">
+            <h1>Sean Sean Sean Jaa Jirapinya Snyder Jaa Jaa Jaa</h1>
             <p name="7aa1"
                id="7aa1"
                class="graf graf--p graf--leading">If you’ve ever gotten frustrated trying to figure out why your code doesn’t work, or how someone else’s code works, you are not alone. This is for you.</p>
@@ -40,9 +41,11 @@
       </section>
 
     </article>
-    <div class="example-content">
+    <div class="example-content"
+         ref="sectionContent">
       <word-cloud :value="cloudText"
-                  :size="[1000,1000]"
+                  :size="svgSize"
+                  :rotate="seansRadius"
                   :immediate="true" />
     </div>
   </div>
@@ -59,7 +62,12 @@ export default {
         {
           title: 'What is Vue.js??'
         }
-      ]
+      ],
+      svgSize: [1000, 1000],
+      rotations: [0, 360],
+      seansRadius: () => {
+        return Math.random() > 0.5 ? 0 : Math.PI * 0.5
+      }
     }
   },
   components: {
@@ -98,9 +106,11 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
+      const rect = this.$refs.sectionContent.getBoundingClientRect()
+      this.svgSize = [rect.width, rect.height]
+      //   this.$data._words = _.words(this.$el.innerText)
       console.log(this.$el.innerText)
       this.cloudText = this.$refs.cloudContent.innerText
-      //   this.$data._words = _.words(this.$el.innerText)
     })
   }
 }

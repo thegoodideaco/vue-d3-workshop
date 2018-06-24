@@ -52,6 +52,7 @@ export default {
 nav.side-bar {
   text-align: left;
   //   min-width: 400px;
+  flex: 0 0 auto;
   height: 100vh;
   position: relative;
   top: 0;
