@@ -24,6 +24,8 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      '@data': resolve('static/demo_data'),
+      '@md': resolve('static/markdown')
     }
   },
   module: {
@@ -60,6 +62,19 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.md$/,
+        use: [{
+            loader: "text-loader"
+          },
+          // {
+          //   loader: "markdown-loader",
+          //   options: {
+          //     /* your options here */
+          //   }
+          // }
+        ]
       }
     ]
   },

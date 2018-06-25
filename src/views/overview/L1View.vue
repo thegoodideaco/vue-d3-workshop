@@ -17,7 +17,7 @@
 
     <div class="example-content">
       <div class="well">
-        <svg class="svg"
+        <!-- <svg class="svg"
              x="0px"
              y="0px"
              _width="100%"
@@ -33,7 +33,29 @@
                 :y="item.y"
                 :rotate="item.rotate">{{item.text}}</text>
 
-        </svg>
+        </svg> -->
+
+        <fieldset>
+          <legend>Audio settings</legend>
+
+          <label for="volume">Volume: {{volume}}</label>
+          <input type="range"
+                 id="start"
+                 name="volume"
+                 v-model.number="volume"
+                 min="0"
+                 max="11" />
+
+          <label for="cowbell">Cowbell</label>
+          <input type="range"
+                 id="cowbell"
+                 name="cowbell"
+                 min="0"
+                 max="100"
+                 value="90"
+                 step="2" />
+
+        </fieldset>
       </div>
     </div>
   </div>
@@ -47,6 +69,7 @@ import _ from 'lodash'
 export default {
   data() {
     return {
+      volume: 0,
       words: [],
       arcSettings: {
         cornerRadius: 10,
@@ -106,6 +129,4 @@ export default {
   flex: 1 0 auto;
   min-height: 0;
 }
-
-
 </style>

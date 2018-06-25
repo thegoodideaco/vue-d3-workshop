@@ -8,10 +8,10 @@
 
       <transition name="page-fade"
                   mode="out-in">
-        <keep-alive exclude="/">
+        <!-- <keep-alive exclude="/**"> -->
           <!-- Give router a unique key for force render -->
           <router-view :key="$route.fullPath"></router-view>
-        </keep-alive>
+        <!-- </keep-alive> -->
       </transition>
     </div>
   </div>
@@ -19,6 +19,7 @@
 
 <script>
 import SideBar from './components/navigation/SideBar'
+
 export default {
   name: 'App',
   components: {

@@ -9,19 +9,25 @@
        xml:space="preserve"
        preserveAspectRatio="xMaxYMax meet">
 
-    <text v-for="(item, index) in dataset"
-          :key="index"
-          :width="item.width"
-          :height="item.height"
-          :style="item.style">
-      {{item.text}}
-    </text>
+    <g v-for="(item, index) in dataset"
+       :key="index"
+       :style="item.groupStyle">
+      <text :width="item.width"
+            :height="item.height"
+            :style="item.style"
+            _x="item.x"
+            _y="item.y"
+            _angle="n.rotate"
+            _transform="`rotate(${item.rotate})`">
+        {{item.text}}
+      </text>
+    </g>
   </svg>
 </template>
 
 <script>
 import _ from 'lodash'
-import * as d3 from 'd3-scale'
+import * as d3 from 'd3'
 import chroma from 'chroma-js'
 import cloud from 'd3-cloud'
 
@@ -48,11 +54,17 @@ export default {
               ...n,
               style: {
                 fill: this.color(n.value),
-                transform: `translateX(calc(${n.x}px - 50%)) translateY(calc(${
-                  n.y
-                }px - 50%))S rotate(${n.rotate}rad)`,
+                // transform: `translate3d(${n.x}px, ${n.y}px, 0) rotateZ(${
+                //   n.rotate
+                // }rad)`,
+                // rotate: n.rotate + 'deg',
                 fontSize: `${n.size}px`,
                 textAlign: 'center'
+              },
+              groupStyle: {
+                transform: `translate3d(${n.x}px, ${n.y}px, 0) rotateZ(${
+                  n.rotate
+                }rad)`
               }
             }
           })
@@ -77,6 +89,7 @@ export default {
     rotate: {
       type: [Number, Function],
       default() {
+        // return 0
         return v => (Math.random() > 0.5 ? 0 : 90 * Math.PI / 180)
       }
     },

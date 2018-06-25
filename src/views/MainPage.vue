@@ -7,7 +7,8 @@
         <div class="section-content"
              v-pre>
           <div class="section-inner sectionLayout--insetColumn">
-            <h1>Sean Sean Sean Jaa Jirapinya Snyder Jaa Jaa Jaa</h1>
+            <h1>Hey Everyone!</h1>
+            <h2>My name is Jon Snyder</h2>
             <p name="7aa1"
                id="7aa1"
                class="graf graf--p graf--leading">If you’ve ever gotten frustrated trying to figure out why your code doesn’t work, or how someone else’s code works, you are not alone. This is for you.</p>
@@ -65,9 +66,7 @@ export default {
       ],
       svgSize: [1000, 1000],
       rotations: [0, 360],
-      seansRadius: () => {
-        return Math.random() > 0.5 ? 0 : Math.PI * 0.5
-      }
+      seansRadius: v => (Math.random() > 0.5 ? 0 : 90 * Math.PI / 180)
     }
   },
   components: {

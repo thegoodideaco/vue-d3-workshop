@@ -40,6 +40,41 @@ export default new Router({
             import ('@/views/overview/D3View')
         }
       ]
+    },
+    {
+      path: '/exercises',
+      name: 'Exercises',
+      alias: ['/'],
+      component: () =>
+        import ('@/views/exercises/Shapes')
+    },
+    {
+      path: '/resources',
+      name: 'Resources',
+      component: () =>
+        import ('@/views/PageView'),
+      redirect: {
+        name: 'Brewer Colors'
+      },
+      children: [{
+          name: 'Brewer Colors',
+          path: 'brewer',
+          component: () =>
+            import ('@/views/resources/BrewerColors')
+        },
+        {
+          name: 'Semiology of Graphics',
+          path: 'semiology-of-graphics',
+          component: () =>
+            import ('@/views/resources/SemiologyOfGraphics')
+        },
+        {
+          name: 'Brewer Colors',
+          path: 'brewer',
+          component: () =>
+            import ('@/views/resources/BrewerColors')
+        },
+      ]
     }
   ]
 })
