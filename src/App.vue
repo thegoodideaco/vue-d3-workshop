@@ -28,7 +28,6 @@ export default {
   computed: {
     routePath() {
       return this.$route.fullPath
-        .slice(1)
         .split('/')
         .join(' / ')
     }

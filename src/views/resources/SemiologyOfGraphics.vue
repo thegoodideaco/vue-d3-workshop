@@ -17,6 +17,8 @@
         <p>
             A systematic classification of the use of visual elements to display data and relationships, primarily in static graphics. Bertin's system consisted of seven visual variables: position, form (shape), orientation, color (hue), texture, value (lightness or darkness of color), and size, combined with a visual semantics for linking data attributes to visual elements.
         </p>
+
+        <img src="/static/images/semology-of-graphics.png">
     </div>
 </template>
 

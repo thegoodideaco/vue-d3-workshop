@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import MainPage from '@/views/MainPage'
 
+import sections from './sections'
+
 Vue.use(Router)
 
 export default new Router({
@@ -41,13 +43,7 @@ export default new Router({
         }
       ]
     },
-    {
-      path: '/exercises',
-      name: 'Exercises',
-      alias: ['/'],
-      component: () =>
-        import ('@/views/exercises/Shapes')
-    },
+    ...sections,
     {
       path: '/resources',
       name: 'Resources',
@@ -69,10 +65,10 @@ export default new Router({
             import ('@/views/resources/SemiologyOfGraphics')
         },
         {
-          name: 'Brewer Colors',
-          path: 'brewer',
+          name: 'UX Principles as Algorithms',
+          path: 'ux-principles',
           component: () =>
-            import ('@/views/resources/BrewerColors')
+            import ('@/views/resources/UxPrinciples')
         },
       ]
     }
