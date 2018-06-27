@@ -21,8 +21,6 @@ what chapters to focus on, and where to look for clues?
 In a neverending cycle of trying to interpret data, we need a way in which to
 _try_ and see the data from different perspectives.
 
-## Interfaces
-
 > "_The greatest value of a picture is when it forces us to notice what we never
 > expected to see._"
 >

@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700');
 @import './_ui-controls';
 @import './_vue-slider';
+@import './_markdown';
+
 html,
 body {
   font-size: 20px;
@@ -17,7 +19,7 @@ h5 {
   font-weight: 300;
   margin-top: 0;
   margin-bottom: 10px;
-  color: darken(#fff, 2);
+  color: #08ec86;
   >span {
     font-weight: 500;
     color: saturate(#41b883, 50);
@@ -94,7 +96,6 @@ div.page-container {
       list-style-type: none;
       padding-left: 0;
     }
-    p,
     li {
       margin-top: 5px;
       color: rgba(#fff, .9);
@@ -110,7 +111,11 @@ div.page-container {
   padding-right: 50px;
 
   blockquote {
-        background-color: rgb(23, 37, 51);
+    background-color: rgb(23, 37, 51);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: #fcfcfc;
     margin: 0;
     padding: 5px 15px;
     border: 1px dashed rgb(28, 221, 135);

@@ -9,39 +9,14 @@ Vue.use(Router)
 export default new Router({
   routes: [{
       path: '/',
-
       name: 'Introduction',
-      component: MainPage
+      component: () => import('@/views/introduction')
     },
     {
       path: '/overview',
       name: 'Overview',
-      alias: ['/'],
       component: () =>
-        import ('@/views/PageView'),
-      redirect: {
-        name: 'Vue'
-      },
-      children: [{
-          path: 'vue',
-          name: 'Vue',
-          component: () =>
-            import ('@/views/overview/L1View'),
-
-          children: [{
-            path: 'example',
-            name: 'Vue Example',
-            component: () =>
-              import ('@/views/PieChartView')
-          }]
-        },
-        {
-          path: 'd3',
-          name: 'D3',
-          component: () =>
-            import ('@/views/overview/D3View')
-        }
-      ]
+        import ('@/views/overview')
     },
     ...sections,
     {
@@ -57,6 +32,12 @@ export default new Router({
           path: 'brewer',
           component: () =>
             import ('@/views/resources/BrewerColors')
+        },
+        {
+          name: 'Xenographics',
+          path: 'xenographics',
+          component: () =>
+            import ('@/views/resources/xenographics')
         },
         {
           name: 'Semiology of Graphics',

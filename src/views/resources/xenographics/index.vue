@@ -1,22 +1,22 @@
 <template>
-    <base-page>
-        <div slot="readme"
-             ref="readme"
-             v-html="readme"></div>
-        <div slot="example"
-             ref="example">
-            <word-cloud :value="cloudText"
-                        :size="svgSize"
-                        :rotate="seansRadius"
-                        :immediate="true" />
-        </div>
-    </base-page>
+  <base-page>
+    <div slot="readme"
+         ref="readme"
+         v-html="readme"></div>
+    <div slot="example"
+         ref="example">
+      <word-cloud :value="cloudText"
+                  :size="svgSize"
+                  :rotate="seansRadius"
+                  :immediate="true" />
+    </div>
+  </base-page>
 
 </template>
 
 <script>
 import readme from './readme'
-import BasePage from '../BasePage'
+import BasePage from '@/views/BasePage'
 import WordCloud from '@/components/d3/finished/WordCloud'
 export default {
   data() {
