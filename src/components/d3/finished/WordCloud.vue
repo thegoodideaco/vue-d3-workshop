@@ -1,5 +1,6 @@
 <template>
   <svg class="svg"
+       @click="cloudLayout.start()"
        x="0px"
        y="0px"
        width="100%"
@@ -58,7 +59,7 @@ export default {
                 //   n.rotate
                 // }rad)`,
                 // rotate: n.rotate + 'deg',
-                fontSize: `${n.size * 1.5}px`,
+                fontSize: `${n.size}px`,
                 textAlign: 'center'
               },
               groupStyle: {
@@ -117,7 +118,7 @@ export default {
           console.log(this.$el.clientHeight)
 
           // Get the unique words, and their frequency
-          this.dataset = Object.entries(
+          let ds = Object.entries(
             _.words(val).reduce((stats, word) => {
               if (stats.hasOwnProperty(word)) {
                 stats[word] += 1
@@ -127,17 +128,27 @@ export default {
               return stats
             }, [])
           )
-            // convert it to a dataset that the cloud will write to
-            .map(v => {
-              return {
-                text: v[0],
-                value: v[1]
-              }
-            })
-            // Sort it by frequency
-            .sort((a, b) => {
-              return b.value - a.value
-            })
+          // convert it to a dataset that the cloud will write to
+          ds = ds.map(v => {
+            return {
+              text: v[0],
+              value: v[1]
+            }
+          })
+
+          // Sort it by frequency
+          ds.sort((a, b) => {
+            return b.value - a.value
+          })
+
+          let max = 70
+
+          // if it's more than 50, sample it
+          if (ds.length > max) {
+            ds = _.sampleSize(ds, max)
+          }
+
+          this.dataset = ds
 
           if (this.cloudLayout) {
             this.cloudLayout.start()
@@ -155,7 +166,7 @@ export default {
         .rotate(this.rotate)
         .padding(this.padding)
         .spiral('rectangular')
-        .fontSize(w => _.clamp(w.value * 5, 10, 50))
+        .fontSize(w => _.clamp(w.value * 20, 3, 80))
         .font('Lato')
         .on('end', this.onEnd)
     },
@@ -170,8 +181,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-text {
+g {
   transition: all 800ms ease;
+}
+text {
   user-select: none;
   text-shadow: 1px 1px 4px rgba(#000, 0.5);
   display: flex;

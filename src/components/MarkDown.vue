@@ -1,9 +1,7 @@
 <template>
-  <vue-markdown :source="source">
-    <slot>
-      #hello
-    </slot>
-  </vue-markdown>
+  <div>
+    <vue-markdown :source="source" />
+  </div>
 </template>
 
 <script>
@@ -12,7 +10,7 @@ export default {
   props: {
     source: {
       type: String,
-      default: '#hello there'
+      required: true
     }
   },
   components: {

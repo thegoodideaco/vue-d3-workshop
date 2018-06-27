@@ -2,15 +2,11 @@
   <div id="app">
     <side-bar/>
     <div class="content-container">
-
-      <h2 v-if="routePath.length > 0">{{routePath}}</h2>
-      <h2 v-else>Introduction</h2>
-
       <transition name="page-fade"
                   mode="out-in">
         <!-- <keep-alive exclude="/**"> -->
-          <!-- Give router a unique key for force render -->
-          <router-view :key="$route.fullPath"></router-view>
+        <!-- Give router a unique key for force render -->
+        <router-view :key="$route.fullPath"></router-view>
         <!-- </keep-alive> -->
       </transition>
     </div>
@@ -27,9 +23,7 @@ export default {
   },
   computed: {
     routePath() {
-      return this.$route.fullPath
-        .split('/')
-        .join(' / ')
+      return this.$route.fullPath.split('/').join(' / ')
     }
   }
 }

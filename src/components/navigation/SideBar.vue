@@ -1,29 +1,25 @@
 <template>
-    <nav class="side-bar">
-        <div class="logo">
-            <img src="@/assets/logos-sm.png">
-            <p class="small">Composing D3 Visuals with Vue.js</p>
-        </div>
+  <nav class="side-bar">
+    <div class="logo">
+      <img src="@/assets/logos-sm.png">
+      <p class="small">Composing D3 Visuals with Vue.js</p>
+    </div>
 
-        <button class="close-btn">
-            <span class="fa fa-remove"></span>
-        </button>
+    <h2>Table of Contents</h2>
 
-        <h2>Table of Contents</h2>
+    <ul is="SideBarListItems"
+        class="sidebar-list"
+        :items="routes">
 
-        <ul is="SideBarListItems"
-            class="sidebar-list"
-            :items="routes">
+      <template slot-scope="item">
+        <router-link :to="item">
+          <span>{{item.name}}</span>
+        </router-link>
+      </template>
 
-            <template slot-scope="item">
-                <router-link :to="item">
-                    <span>{{item.name}}</span>
-                </router-link>
-            </template>
+    </ul>
 
-        </ul>
-
-    </nav>
+  </nav>
 </template>
 
 <script>
@@ -50,6 +46,8 @@ export default {
   box-sizing: border-box;
 }
 nav.side-bar {
+  display: flex;
+  flex-flow: column nowrap;
   text-align: left;
   //   min-width: 400px;
   flex: 0 0 auto;
@@ -60,22 +58,6 @@ nav.side-bar {
   padding: 20px;
   padding-right: 50px;
   background: rgba(#000, 0.25);
-}
-.close-btn {
-  background: none;
-  border: 0;
-  color: rgba(#fff, 0.5);
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 10px;
-  outline: 0;
-  cursor: pointer;
-
-  &:hover,
-  &:active {
-    color: #fff;
-  }
 }
 
 .sidebar-list {
