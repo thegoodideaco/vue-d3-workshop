@@ -6,6 +6,7 @@ import 'animate.css'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Vuebar from 'vuebar';
 
 import chroma from 'chroma-js'
 const debug = process.env.NODE_ENV !== 'production'
@@ -21,6 +22,9 @@ Vue.mixin({
     }
   }
 })
+
+// Add custom scrollbar so it doesn't make things look ewwie
+Vue.use(Vuebar);
 
 /* eslint-disable no-new */
 new Vue({

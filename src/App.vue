@@ -51,6 +51,7 @@ export default {
 
   .page-container {
     flex: 1 1 auto;
+    align-items: stretch;
     overflow: hidden;
     display: flex;
   }

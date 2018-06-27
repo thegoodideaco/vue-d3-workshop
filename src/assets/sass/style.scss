@@ -1,6 +1,7 @@
 @import './fontawesome/font-awesome';
 @import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700');
 @import './_ui-controls';
+@import './_vue-slider';
 html,
 body {
   font-size: 20px;
@@ -74,13 +75,12 @@ div.page-container {
     flex: 0 1 auto;
     width: 40%;
 
-//     add scrollbar, it's ugly and i dont care
-    overflow: auto;
-    padding-right: 50px;
+//   height: 100%;
+    // padding-right: 50px;
   }
   section {
     font-size: 1em;
-    margin-top: 30px;
+//     margin-top: 30px;
     //         display: inline-block;
     h2 {
       font-size: 36px;
@@ -100,6 +100,10 @@ div.page-container {
       margin-bottom: 20px;
     }
   }
+}
+
+.section-content {
+  padding-right: 50px;
 }
 
 .example-content {

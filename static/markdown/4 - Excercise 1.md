@@ -3,7 +3,7 @@
 ## `Using D3 within Vue`
 
 For this Excecise, we will be using `D3-Scale` and Vue's `Reactivity System` to
-construct a `dynamic range slider`.
+construct a `Dynamic Range Slider`.
 
 Let's make a range slider that we can use, to dynamically change some properties.
 These properties will tie directly into components that we will make in the next

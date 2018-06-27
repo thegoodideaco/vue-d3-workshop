@@ -58,7 +58,7 @@ export default {
                 //   n.rotate
                 // }rad)`,
                 // rotate: n.rotate + 'deg',
-                fontSize: `${n.size}px`,
+                fontSize: `${n.size * 1.5}px`,
                 textAlign: 'center'
               },
               groupStyle: {
@@ -155,7 +155,7 @@ export default {
         .rotate(this.rotate)
         .padding(this.padding)
         .spiral('rectangular')
-        .fontSize(w => w.value * 15)
+        .fontSize(w => _.clamp(w.value * 5, 10, 50))
         .font('Lato')
         .on('end', this.onEnd)
     },
