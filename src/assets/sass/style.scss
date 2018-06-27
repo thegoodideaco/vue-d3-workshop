@@ -73,6 +73,10 @@ div.page-container {
   article {
     flex: 0 1 auto;
     width: 40%;
+
+//     add scrollbar, it's ugly and i dont care
+    overflow: auto;
+    padding-right: 50px;
   }
   section {
     font-size: 1em;

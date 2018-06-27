@@ -1,10 +1,17 @@
 # Vue and D3 Workshop
 
-> Leveraging Design with Reactivity
+`Leveraging Design with Reactivity`
+
+## Prerequisites
+
+- [Node](https://nodejs.org/en/)
+- [Vue Devtools](https://github.com/vuejs/vue-devtools)
+- [VS Code](https://code.visualstudio.com/)
+- [Vue Extension Pack](https://marketplace.visualstudio.com/items?itemName=mubaidr.vuejs-extension-pack)
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
@@ -18,10 +25,11 @@ npm run build
 npm run build --report
 ```
 
-for more information, until i update this readme, check out some of these great resources:
-
+for more information, until i update this readme, check out some of these great
+resources:
 
 > ### Related to Data Analysis and Visualization
+
 https://d3js.org/
 
 http://d3indepth.com
@@ -32,10 +40,10 @@ https://bost.ocks.org/mike/
 
 https://homes.cs.washington.edu/~jheer
 
-
-[** Also check out his video!](https://www.youtube.com/watch?v=vc1bq0qIKoA)
+[\*\* Also check out his video!](https://www.youtube.com/watch?v=vc1bq0qIKoA)
 
 > ### Vue.js and other information based on SVG's
+
 [Vue.js](https://vuejs.org)
 
 [Vue.js Guide](https://vuejs.org/v2/guide)

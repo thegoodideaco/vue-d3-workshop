@@ -7,28 +7,37 @@
         <div class="section-content"
              v-pre>
           <div class="section-inner sectionLayout--insetColumn">
-            <h1>Hey Everyone!</h1>
-            <h2>My name is Jon Snyder</h2>
-            <p name="7aa1"
-               id="7aa1"
-               class="graf graf--p graf--leading">If you’ve ever gotten frustrated trying to figure out why your code doesn’t work, or how someone else’s code works, you are not alone. This is for you.</p>
-            <p name="3102"
-               id="3102"
-               class="graf graf--p graf-after--p">For the last eight years or so, I have been building tools for visualizing information. The most successful outcome of this effort has been
-              <a href="https://d3js.org"
-                 data-href="https://d3js.org"
-                 class="markup--anchor markup--p-anchor"
-                 rel="nofollow noopener"
-                 target="_blank">D3</a>, a JavaScript library. Yet a danger of spending so long designing a tool is that you may forget
-              <em class="markup--em markup--p-em">what the tool is for</em>: the tool itself becomes the goal, rather than the value derived from its application.</p>
-            <p name="cb07"
-               id="b5da"
-               class="graf graf--p graf-after--figure">To give a comically dense example, here is a Bash command I wrote recently to generate a
-              <a href="https://bl.ocks.org/mbostock/5562380"
-                 data-href="https://bl.ocks.org/mbostock/5562380"
-                 class="markup--anchor markup--p-anchor"
-                 rel="nofollow noopener"
-                 target="_blank">choropleth of population density</a> of California. Actually, this just generates the simplified geometry; a few more commands are needed to produce the SVG.</p>
+            <h1 id="vueandd3workshop">Vue and D3 Workshop</h1>
+
+            <h2 id="introduction">Introduction</h2>
+
+            <h3 id="hellomynameisjonsnyder">Hello! My name is Jon Snyder</h3>
+
+            <p>I am the on the Front End UX Team over at
+              <a href="http://www.onediscovery.com">One Discovery</a>. We create eDiscovery Software for law firms. The main focus is to provide insight into their data, as well as managing it.</p>
+
+            <p>It can get complex. Each case is different, making data exploration an important aspect of this job.</p>
+
+            <h2 id="datavisualization">Data Visualization</h2>
+
+            <p>Data is
+              <em>the</em> basic building block of analytical exploration. It tells a story, in an infinite amount of ways. But how do we read the story? How do we choose what chapters to focus on, and where to look for clues?</p>
+
+            <p>In a neverending cycle of trying to interpret data, we need a way in which to
+              <em>try</em> and see the data from different perspectives.</p>
+
+            <h2 id="interfaces">Interfaces</h2>
+
+            <blockquote>
+              <p>"
+                <em>The greatest value of a picture is when it forces us to notice what we never expected to see.</em>"</p>
+
+              <p>-John Tukey</p>
+            </blockquote>
+
+            <p>We have this amazing thing called vision. and out of all our senses, it's the most abundant in collecting data, giving us a better view of the world around us. However it opens doors for entirely new ways of understanding, which in return can open even more doors when combining parts of this spectrum.</p>
+
+            <p>Having an interface that leverages these particular dimensions not only gives us insight from a viewing perspective, but also allows for navigation into the data that is being shown.</p>
           </div>
         </div>
 
