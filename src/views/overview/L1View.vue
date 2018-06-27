@@ -1,63 +1,36 @@
 <template>
   <div class="main-container__inner">
     <article>
-      <section id="who">
+      <section>
         <h2>What is
           <span>Vue.js?</span>
         </h2>
-        <ul>
-          <li>This is a paragraph</li>
-          <li>This is a paragraph</li>
-          <li>This is a paragraph</li>
-          <li>This is a paragraph!</li>
-        </ul>
+        <rendering-with-vue />
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean porttitor, massa at porta sodales, tortor mi tincidunt lectus, vitae egestas libero ipsum at dui. Nunc quis lorem urna. Mauris et neque eu purus accumsan vestibulum. Curabitur hendrerit lorem laoreet vulputate tempor. Curabitur lobortis felis massa, quis suscipit nisi auctor eu. Mauris vitae ligula ut dui malesuada vehicula at sed elit. Sed accumsan pharetra lacinia. Maecenas imperdiet nibh in lacus cursus finibus.</p>
       </section>
     </article>
 
-    <div class="example-content">
-      <div class="well">
-        <!-- <svg class="svg"
-             x="0px"
-             y="0px"
-             _width="100%"
-             _height="100%"
-             _viewBox="0 0 auto auto"
-             _style="enable-background:new 0 0 100 100;"
-             xml:space="preserve"
-             preserveAspectRatio="xMaxYMax meet">
+    <fieldset>
+      <legend>Audio settings</legend>
 
-          <text v-for="(item, index) in words"
-                :key="index"
-                :x="item.x"
-                :y="item.y"
-                :rotate="item.rotate">{{item.text}}</text>
+      <label for="volume">Volume: {{volume}}</label>
+      <input type="range"
+             id="start"
+             name="volume"
+             v-model.number="volume"
+             min="0"
+             max="11" />
 
-        </svg> -->
+      <label for="cowbell">Cowbell</label>
+      <input type="range"
+             id="cowbell"
+             name="cowbell"
+             min="0"
+             max="100"
+             value="90"
+             step="2" />
 
-        <fieldset>
-          <legend>Audio settings</legend>
-
-          <label for="volume">Volume: {{volume}}</label>
-          <input type="range"
-                 id="start"
-                 name="volume"
-                 v-model.number="volume"
-                 min="0"
-                 max="11" />
-
-          <label for="cowbell">Cowbell</label>
-          <input type="range"
-                 id="cowbell"
-                 name="cowbell"
-                 min="0"
-                 max="100"
-                 value="90"
-                 step="2" />
-
-        </fieldset>
-      </div>
-    </div>
+    </fieldset>
   </div>
 </template>
 
@@ -87,7 +60,9 @@ export default {
       }
     }
   },
-  components: {},
+  components: {
+    RenderingWithVue: () => import('./RenderingWithVue')
+  },
   methods: {
     getStyle(item) {
       return {

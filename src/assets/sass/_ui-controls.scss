@@ -1,15 +1,23 @@
 legend {
-    background-color: #000;
-    color: #fff;
-    padding: 3px 6px;
+  background-color: #000;
+  color: #fff;
+  padding: 3px 6px;
 }
 
 .output {
-    font: 1rem 'Fira Sans', sans-serif;
+  font: 1rem 'Fira Sans', sans-serif;
 }
 
-label {
-    margin-top: 1rem;
+.value-slider {
+  border: 1px dashed rgba(#fff, 0.5);
+  padding: 5px;
+  border-radius: 3px;
+  margin-top: 10px;
+  label {
+    margin-bottom: 5px;
     display: block;
-    font-size: .8rem;
+    font-size: .7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
 }

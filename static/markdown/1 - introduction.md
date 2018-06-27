@@ -23,10 +23,10 @@ _try_ and see the data from different perspectives.
 
 ## Interfaces
 
-> _The greatest value of a picture is when it forces us to notice what we never
-> expected to see._
+> "_The greatest value of a picture is when it forces us to notice what we never
+> expected to see._"
 >
-> John Tukey
+> -John Tukey
 
 We have this amazing thing called vision. and out of all our senses, it's the
 most abundant in collecting data, giving us a better view of the world around
