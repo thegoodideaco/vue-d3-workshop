@@ -2,14 +2,16 @@
     <fieldset class="value-slider">
         <label :for="name">{{name}}: {{value}}</label>
         <input type="range"
-               v-bind="$props"
+               :name="name"
+               :min="min"
+               :max="max"
+               :step="step"
+               :value="value"
                @input="$emit('input', $event.target.value)">
     </fieldset>
 </template>
 
 <script>
-import * as d3 from 'd3'
-
 export default {
   model: {
     prop: 'value',
@@ -35,25 +37,6 @@ export default {
     value: {
       type: Number,
       default: 50
-    },
-    domain: {
-      type: Array,
-      default() {
-        return [0, 500]
-      }
-    }
-  },
-
-  computed: {
-    scale() {
-      return d3
-        .scaleLinear()
-        .domain([this.min, this.max])
-        .range(this.domain)
-    },
-
-    scaledValue() {
-      return this.scale(this.value)
     }
   }
 }

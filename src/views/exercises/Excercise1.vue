@@ -1,9 +1,11 @@
 <template>
     <div>
-        <h2>Cool Dude</h2>
         <value-slider name="xVal"
                       v-model.number="xVal"
+                      :scaled-value.sync="scaledValue"
                       :domain="[-1000, 1000]" />
+
+        <p>Scaled Value: {{scaledValue}}</p>
     </div>
 </template>
 
@@ -11,7 +13,8 @@
 export default {
   data() {
     return {
-      xVal: 20
+      xVal: 20,
+      scaledValue: null
     }
   },
   components: {
