@@ -13,7 +13,7 @@
 
 <script>
 import readme from '@md/4 - Excercise 1.md'
-import BasePage from '../BasePage'
+import BasePage from '@/views/BasePage'
 export default {
   data() {
     return {

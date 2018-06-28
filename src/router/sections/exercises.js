@@ -1,32 +1,22 @@
-export default {
-  name: 'Exercises',
-  path: '/exercises',
-  component: () =>
-    import ('@/views/PageView'),
-  children: [{
-      name: 'Using D3 with Vue',
-      path: 'using-d3-and-vue',
-      component: () =>
-        import ('@/views/exercises/Excercise1'),
-      children: [{
-        name: 'Exercise Summary',
-        path: 'summary',
-        component: () =>
-          import ('@/views/exercises/Shapes')
-      }]
-    },
-
-    {
-      name: 'Using D3 with Vue',
-      path: 'using-d3-and-vue',
-      component: () =>
-        import ('@/views/exercises/Shapes')
-    },
-    {
-      name: 'Using D3 with Vue',
-      path: 'using-d3-and-vue',
-      component: () =>
-        import ('@/views/exercises/Shapes')
-    },
-  ]
-}
+export default [
+  {
+    path: '/making-dots',
+    name: 'Making Dots',
+    component: () => import('@/views/exercises/creating-dots')
+  },
+  {
+    path: '/connecting-dots',
+    name: 'Connecting the Dots',
+    component: () => import('@/views/exercises/connecting-dots')
+  },
+  {
+    path: '/arc',
+    name: 'Creating an Arc',
+    component: () => import('@/views/exercises/arc')
+  },
+  {
+    path: '/pie',
+    name: 'Composing a Pie',
+    component: () => import('@/views/exercises/pie-chart')
+  },
+]

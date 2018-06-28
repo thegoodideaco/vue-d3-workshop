@@ -16,7 +16,7 @@
 
 <script>
 import readme from './readme'
-import BasePage from '../BasePage'
+import BasePage from '@/views/BasePage'
 import WordCloud from '@/components/d3/finished/WordCloud'
 export default {
   data() {

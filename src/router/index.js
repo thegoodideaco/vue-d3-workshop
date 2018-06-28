@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import MainPage from '@/views/MainPage'
 
-import sections from './sections'
+import sections from './sections/exercises'
 
 Vue.use(Router)
 
@@ -18,7 +18,7 @@ export default new Router({
       component: () =>
         import ('@/views/overview')
     },
-    // ...sections,
+    ...sections,
     {
       path: '/resources',
       name: 'Resources',
