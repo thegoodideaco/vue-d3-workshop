@@ -1,71 +1,85 @@
 # Connecting the Dots
 
-## So, what is a SVG
+## Enter D3-Shape
 
-SVG's are basically HTML DOM Elements, that behave like HTML DOM elements, but
-have some extra functionality. They are mainly used to draw vector images, which
-is a fancy way of saying shapes created with math functions.
-
-Let's setup our component to have a `SVG` as it's template. We will then use the
-`circle` element tag to visualize some data
+D3-Shape is one of the data visualization sections of D3. And what it does is
+pretty amazing. But first, let's look at a special element called the `<path>`
+element.
 
 ```html
-<!-- Empty component with SVG template -->
+<svg>
+    <path fill="none" stroke="red"
+    d="M 10,30
+       A 20,20 0,0,1 50,30
+       A 20,20 0,0,1 90,30
+       Q 90,60 50,90
+       Q 10,60 10,30 z" />
+</svg>
 ```
 
-### Let's draw some dots
+In this example, the path element has three attributes. `fill` `stroke` and `d`
 
-For this exercise, we will use a simple dataset, containing a collection of x
-and y coordinates. These have been created already, so let's go ahead and import
-them
+`fill` and `stroke` both deal with misc styling, but `d` is pretty unique.
+
+`d` stands for _definition_ meaning the path definition. It is a list of
+[path commands](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#Path_commands)
+where each command is made of a letter and some numbers representing the
+parameter of the command.
+
+In short, the `d` attribute is what _draws_ the shape you want to display
+
+### D3-Shape Transforms The Definition!
+
+What this means, is that D3 can actually generate a path based on the values you
+give it. Let's do this with our current dataset we are displaying, and turn this
+area of dots into a more uniform line graph, using `D3.line`
 
 ```html
-<!-- show import of dataset -->
-<!-- Include v-for to show how to render the data visual -->
+<template>
+  <svg>
+    <path stroke="#fff"
+          fill="none"
+          stroke-width="5"
+          :d="d" />
+    <circle r="20"
+            v-for="(item, index) in dataset"
+            :cx="item[0]"
+            :cy="item[1]"
+            :key="index"
+            fill="#fff"
+            @click="onClick(item)" />
+  </svg>
+</template>
+
+<script>
+import * as d3 from 'd3'
+import dataset from './dataset'
+export default {
+  data() {
+    return {
+      dataset
+    }
+  },
+  methods: {
+    onClick(item) {
+      console.log('this is the item!', item)
+    }
+  },
+  computed: {
+    lineGenerator() {
+      return d3
+        .line()
+        .x(v => v[0])
+        .y(v => v[1])
+    },
+    d() {
+      return this.lineGenerator(this.dataset)
+    }
+  }
+}
+</script>
 ```
 
-## Data Visualization
+### Summary
 
-Data is _the_ basic building block of analytical exploration. It tells a story,
-in an infinite amount of ways. But how do we read the story? How do we choose
-what chapters to focus on, and where to look for clues?
-
-In a neverending cycle of trying to interpret data, we need a way in which to
-_try_ and see the data from different perspectives.
-
-> "_The greatest value of a picture is when it forces us to notice what we never
-> expected to see._"
->
-> -[John Tukey](https://en.wikipedia.org/wiki/John_Tukey)
-
-_We have this amazing thing called vision. and out of all our senses, it's the
-most abundant in collecting data, giving us a better view of the world around
-us. However it opens doors for entirely new ways of understanding, which in
-return can open even more doors when combining parts of this spectrum._
-
-Having an interface that leverages these particular dimensions not only gives us
-insight from a viewing perspective, but also allows for navigation into the data
-that is being shown.
-
-### Successful Data Visuals are hard
-
-There are alot of factors that go into data visualizations. However, the
-ultimate goal is to be able to _gain insight_.
-
-Data can come in many forms. Most of the time we work with data that is
-quantitive, ordinal, or categorical. And alot of the time, datasets can include
-more than one type in some way shape or form.
-
-So what do we want data visual to be able to do?
-
-- Reveal Insights
-- Cause Change
-- Reveal More Charts
-
-In order to have this, we need to determine how the user can interact with it,
-in order to _navigate the data_
-
-Maps, Scatterplots, Bar charts, etc... Ultimately gives us a holistic view at
-first glance. We can see EVERYTHING. But the ability to dive in deeper, to
-select groups of data items, and relational dimensions, allows us to focus on
-particular sections of the data at any given moment.
+With a couple of additions, we were able to introduce some core D3-Shape functionality using the `line` shape. We were also able to leverage Vue's template to render the D3 data to a path element, and we still have our reactive system managing all of the new functionality

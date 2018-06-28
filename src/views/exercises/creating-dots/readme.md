@@ -53,6 +53,41 @@ export default {
 </script>
 ```
 
+### Adding Interactivity
+
+Now that we have the dots plotted, let's introduce some functionality when they
+are interacted with. For a simple use case, let's `log` the item being clicked
+
+```html
+<template>
+  <svg>
+    <circle r="20"
+            v-for="(item, index) in dataset"
+            :cx="item[0]"
+            :cy="item[1]"
+            :key="index"
+            fill="#fff"
+            @click="onClick(item)" />
+  </svg>
+</template>
+
+<script>
+import dataset from './dataset'
+export default {
+  data() {
+    return {
+      dataset
+    }
+  },
+  methods: {
+    onClick(item) {
+      console.log('this is the item!', item)
+    }
+  }
+}
+</script>
+```
+
 ### Summary
 
 So what we've done above, is we've created a reactive environment for ourselves,

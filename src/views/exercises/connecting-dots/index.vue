@@ -5,10 +5,11 @@
          v-html="readme"></div>
     <div slot="example"
          ref="example">
-      <word-cloud :value="cloudText"
+      <!-- <word-cloud :value="cloudText"
                   :size="svgSize"
                   :rotate="seansRadius"
-                  :immediate="true" />
+                  :immediate="true" /> -->
+      <demo-component/>
     </div>
   </base-page>
 
@@ -30,6 +31,7 @@ export default {
   },
   components: {
     WordCloud,
+    DemoComponent: () => import('./component'),
     BasePage
   },
   mounted() {
