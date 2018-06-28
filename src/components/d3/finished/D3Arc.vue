@@ -1,6 +1,5 @@
 <template>
-  <path v-if="d"
-        fill="#fff"
+  <path fill="#fff"
         :d="d" />
 </template>
 

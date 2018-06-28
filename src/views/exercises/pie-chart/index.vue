@@ -5,10 +5,9 @@
          v-html="readme"></div>
     <div slot="example"
          ref="example">
-      <word-cloud :value="cloudText"
-                  :size="svgSize"
-                  :rotate="seansRadius"
-                  :immediate="true" />
+      <svg>
+        <d3-pie />
+      </svg>
     </div>
   </base-page>
 
@@ -17,7 +16,8 @@
 <script>
 import readme from './readme'
 import BasePage from '@/views/BasePage'
-import WordCloud from '@/components/d3/finished/WordCloud'
+import D3Pie from '@/components/d3/D3Pie'
+// import WordCloud from '@/components/d3/finished/WordCloud'
 export default {
   data() {
     return {
@@ -29,16 +29,8 @@ export default {
     }
   },
   components: {
-    WordCloud,
-    BasePage
-  },
-  mounted() {
-    this.$nextTick(() => {
-      const rect = this.$refs.example.getBoundingClientRect()
-      this.svgSize = [rect.width, rect.height]
-      //   this.$data._words = _.words(this.$el.innerText)
-      this.cloudText = this.$refs.readme.innerText
-    })
+    BasePage,
+    D3Pie
   }
 }
 </script>

@@ -139,7 +139,7 @@ export default {
             return b.value - a.value
           })
 
-          let max = 70
+          let max = 50
 
           // if it's more than 50, sample it
           if (ds.length > max) {
