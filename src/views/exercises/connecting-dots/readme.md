@@ -86,8 +86,8 @@ You can extend the line shape even further by applying
 ### Animation Magic
 
 There are many ways to animate these shapes. Most functionality will come from
-javascript implementations. However, modern browsers can actually _transition_
-the path definition! Let's try it out
+javascript implementations. However, modern browsers (_chrome only it seems_) can actually _transition_
+the path definition. Let's try it out
 
 ```html
 <template>
