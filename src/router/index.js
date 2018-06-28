@@ -56,7 +56,7 @@ export default new Router({
           name: 'UX Principles as Algorithms',
           path: 'ux-principles',
           component: () =>
-            import ('@/views/resources/UxPrinciples')
+            import ('@/views/resources/uxprinciples')
         },
       ]
     }

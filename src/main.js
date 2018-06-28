@@ -17,7 +17,7 @@ Vue.config.performance = debug
 Vue.mixin({
   data() {
     return {
-      colors: chroma.brewer.Set1,
+      colors: chroma.scale(chroma.brewer.Set3).colors(20),
       debug
     }
   }

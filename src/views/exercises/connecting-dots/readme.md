@@ -2,7 +2,7 @@
 
 ## Enter D3-Shape
 
-D3-Shape is one of the data visualization sections of D3. And what it does is
+[D3-Shape](https://github.com/d3/d3-shape) is one of the data visualization sections of D3. And what it does is
 pretty amazing. But first, let's look at a special element called the `<path>`
 element.
 

@@ -9,7 +9,7 @@ export default {
   props: {
     innerRadius: {
       type: Number,
-      default: 0
+      default: 200
     },
     outerRadius: {
       type: Number,
