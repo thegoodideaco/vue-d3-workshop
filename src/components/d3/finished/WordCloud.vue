@@ -115,8 +115,6 @@ export default {
             this.cloudLayout.stop()
           }
 
-          console.log(this.$el.clientHeight)
-
           // Get the unique words, and their frequency
           let ds = Object.entries(
             _.words(val).reduce((stats, word) => {

@@ -37,7 +37,6 @@ export default {
       const rect = this.$refs.example.getBoundingClientRect()
       this.svgSize = [rect.width, rect.height]
       //   this.$data._words = _.words(this.$el.innerText)
-      console.log(this.$el.innerText)
       this.cloudText = this.$refs.readme.innerText
     })
   }

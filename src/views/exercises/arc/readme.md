@@ -8,6 +8,8 @@ One thing to note, is that both `line` and `arc` are both considered pieces of a
 `shape layout`, such as `Pie` and `Area`, which combine arcs and lines together
 into one shape. The next exercise will cover the composition of these shapes.
 
+## Basic Setup
+
 Since we are going to reuse this arc inside of of another shape, let's name it
 accordingly.
 
@@ -23,6 +25,8 @@ accordingly.
 export default {}
 </script>
 ```
+
+## Defining the properties
 
 There are **5** properties of the arc that can be reactive:
 
@@ -66,6 +70,8 @@ export default {
 }
 </script>
 ```
+
+## Adding D3
 
 Now that we have these props setup, let's implement the arc generator from D3.
 
@@ -117,13 +123,14 @@ export default {
 </script>
 ```
 
+## Rendering the Path
+
 Just like `line`, what we will end up getting is another generated path. So now
 we just need to include it in our template
 
 ```html
 <template>
-  <path v-if="d"
-        fill="#fff"
+  <path fill="#fff"
         :d="d" />
 </template>
 
@@ -169,3 +176,13 @@ export default {
 }
 </script>
 ```
+
+## Summary
+
+Arc is just one of many different types of shapes that D3 offers, such as
+`Links`. With these different shapes, you can generate out the path in a
+reactive envronment, matching it very nicely with Vue's Reactivity, and Template
+Rendering. This also opens up doors for creating graphics in an external
+program, such as Adobe Illustrator, and then simply modifying it within the
+template, to produce dots, lines, and anything else that makes up what the core
+functionality of what vector rendering is, shapes!

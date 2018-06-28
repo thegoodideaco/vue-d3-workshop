@@ -1,58 +1,16 @@
 <template>
   <svg>
-    <path stroke="#fff"
-          fill="none"
+    <path fill="none"
+          stroke="white"
           stroke-width="5"
-          :d="d" />
-    <circle r="20"
-            v-for="(item, index) in dataset"
-            :cx="item[0]"
-            :cy="item[1]"
-            :key="index"
-            fill="#fff"
-            @click="onClick(item)" />
+          d="M 10,30
+       A 20,20 0,0,1 50,30
+       A 20,20 0,0,1 90,30
+       Q 90,60 50,90
+       Q 10,60 10,30 z" />
   </svg>
 </template>
 
 <script>
-import * as d3 from 'd3'
-import _ from 'lodash'
-import dataset from './dataset'
-export default {
-  data() {
-    return {
-      dataset,
-      curve: 'curveStepAfter'
-    }
-  },
-  methods: {
-    onClick(item) {
-      console.log('this is the item!', item)
-      this.curve =
-        this.curve === 'curveStepAfter' ? 'curveStepBefore' : 'curveStepAfter'
-
-      // Let's flip the data just cause!
-      this.dataset = _.shuffle(this.dataset)
-    }
-  },
-  computed: {
-    lineGenerator() {
-      return d3
-        .line()
-        .curve(d3[this.curve])
-        .x(v => v[0])
-        .y(v => v[1])
-    },
-    d() {
-      return this.lineGenerator(this.dataset)
-    }
-  }
-}
+export default {}
 </script>
-
-<style scoped lang="scss">
-path,
-circle {
-  transition: all 500ms ease;
-}
-</style>

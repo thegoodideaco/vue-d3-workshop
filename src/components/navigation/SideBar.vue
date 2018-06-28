@@ -46,6 +46,7 @@ export default {
   box-sizing: border-box;
 }
 nav.side-bar {
+  font-size: 0.7em;
   display: flex;
   flex-flow: column nowrap;
   text-align: left;
@@ -56,7 +57,7 @@ nav.side-bar {
   top: 0;
   left: 0;
   padding: 20px;
-  padding-right: 50px;
+  // padding-right: 50px;
   background: rgba(#000, 0.25);
 }
 
