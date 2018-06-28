@@ -5,10 +5,9 @@
          v-html="readme"></div>
     <div slot="example"
          ref="example">
-      <word-cloud :value="cloudText"
-                  :size="svgSize"
-                  :rotate="seansRadius"
-                  :immediate="true" />
+      <svg>
+        <d3-arc/>
+      </svg>
     </div>
   </base-page>
 
@@ -18,6 +17,7 @@
 import readme from './readme'
 import BasePage from '@/views/BasePage'
 import WordCloud from '@/components/d3/finished/WordCloud'
+import D3Arc from '@/components/d3/D3Arc'
 export default {
   data() {
     return {
@@ -30,6 +30,8 @@ export default {
   },
   components: {
     WordCloud,
+    DemoComponent: () => import('./component'),
+    D3Arc,
     BasePage
   },
   mounted() {

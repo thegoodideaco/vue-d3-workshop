@@ -1,18 +1,11 @@
 <template>
-  <g>
-    <path :d="d"
-          v-bind="$attrs"
-          @click="$emit('click', $event)"
-          @mouseout="$emit('mouseout', $event)"
-          @mouseover="$emit('mouseover', $event)">
-
-    </path>
-    <slot v-bind="{centroid}"></slot>
-  </g>
+  <path v-if="d"
+        fill="#fff"
+        :d="d" />
 </template>
 
 <script>
-import * as d3 from 'd3-shape'
+import * as d3 from 'd3'
 export default {
   props: {
     innerRadius: {
@@ -21,11 +14,11 @@ export default {
     },
     outerRadius: {
       type: Number,
-      default: 100
+      default: 300
     },
     cornerRadius: {
       type: Number,
-      default: 10
+      default: 0
     },
     startAngle: {
       type: Number,
@@ -33,33 +26,22 @@ export default {
     },
     endAngle: {
       type: Number,
-      default: Math.PI * 2
-    },
-
-    // Optional, if specified, override all above
-    path: {
-      type: String
+      default: 2
     }
   },
   computed: {
-    arc() {
+    arcGenerator() {
       return d3
         .arc()
         .innerRadius(this.innerRadius)
         .outerRadius(this.outerRadius)
         .cornerRadius(this.cornerRadius)
-        .startAngle(this.startAngle * Math.PI / 180)
-        .endAngle(this.endAngle * Math.PI / 180)
+        .startAngle(this.startAngle)
+        .endAngle(this.endAngle)
     },
     d() {
-      return this.arc()
-    },
-    centroid() {
-      return this.arc.centroid()
+      return this.arcGenerator()
     }
   }
 }
 </script>
-
-<style>
-</style>

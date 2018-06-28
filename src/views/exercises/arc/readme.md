@@ -1,7 +1,7 @@
 # Creating an Arc
 
-So, just like `line`, Arc is another shape that D3 offers. The same pattern
-applys, but with different properties. Some of this deals with trigonometry, but
+So, just like `line`, Arc is another shape that D3 offers. The same patterns
+apply, but with different properties. Some of this deals with trigonometry, but
 for the most part, D3 will take care of the hard parts.
 
 One thing to note, is that both `line` and `arc` are both considered pieces of a
@@ -31,3 +31,141 @@ There are **5** properties of the arc that can be reactive:
 - innerRadius
 - outerRadius
 - borderRadius
+
+Let's set these up as actual properties of the Vue component itself
+
+```html
+<template>
+  <path/>
+</template>
+
+<script>
+export default {
+  props: {
+    innerRadius: {
+      type: Number,
+      default: 0
+    },
+    outerRadius: {
+      type: Number,
+      default: 100
+    },
+    cornerRadius: {
+      type: Number,
+      default: 10
+    },
+    startAngle: {
+      type: Number,
+      default: 0
+    },
+    endAngle: {
+      type: Number,
+      default: 2
+    }
+  }
+}
+</script>
+```
+
+Now that we have these props setup, let's implement the arc generator from D3.
+
+```html
+<template>
+  <path />
+</template>
+
+<script>
+import * as d3 from 'd3'
+export default {
+  props: {
+    innerRadius: {
+      type: Number,
+      default: 0
+    },
+    outerRadius: {
+      type: Number,
+      default: 300
+    },
+    cornerRadius: {
+      type: Number,
+      default: 0
+    },
+    startAngle: {
+      type: Number,
+      default: 0
+    },
+    endAngle: {
+      type: Number,
+      default: 2
+    }
+  },
+  computed: {
+    arcGenerator() {
+      return d3
+        .arc()
+        .innerRadius(this.innerRadius)
+        .outerRadius(this.outerRadius)
+        .cornerRadius(this.cornerRadius)
+        .startAngle(this.startAngle)
+        .endAngle(this.endAngle)
+    },
+    d() {
+      return this.arcGenerator()
+    }
+  }
+}
+</script>
+```
+
+Just like `line`, what we will end up getting is another generated path. So now
+we just need to include it in our template
+
+```html
+<template>
+  <path v-if="d"
+        fill="#fff"
+        :d="d" />
+</template>
+
+<script>
+import * as d3 from 'd3'
+export default {
+  props: {
+    innerRadius: {
+      type: Number,
+      default: 0
+    },
+    outerRadius: {
+      type: Number,
+      default: 300
+    },
+    cornerRadius: {
+      type: Number,
+      default: 0
+    },
+    startAngle: {
+      type: Number,
+      default: 0
+    },
+    endAngle: {
+      type: Number,
+      default: 2
+    }
+  },
+  computed: {
+    arcGenerator() {
+      return d3
+        .arc()
+        .innerRadius(this.innerRadius)
+        .outerRadius(this.outerRadius)
+        .cornerRadius(this.cornerRadius)
+        .startAngle(this.startAngle)
+        .endAngle(this.endAngle)
+    },
+    d() {
+      return this.arcGenerator()
+    }
+  }
+}
+</script>
+```

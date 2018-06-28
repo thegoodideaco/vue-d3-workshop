@@ -166,7 +166,7 @@ export default {
         .rotate(this.rotate)
         .padding(this.padding)
         .spiral('rectangular')
-        .fontSize(w => _.clamp(w.value * 20, 3, 80))
+        .fontSize(w => _.clamp(w.value * 20, 3, 40))
         .font('Lato')
         .on('end', this.onEnd)
     },
