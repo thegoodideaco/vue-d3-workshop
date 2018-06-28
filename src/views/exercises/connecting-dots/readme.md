@@ -1,16 +1,28 @@
 # Connecting the Dots
 
-## Introduction
+## So, what is a SVG
 
-### Hello! My name is Jon Snyder
+SVG's are basically HTML DOM Elements, that behave like HTML DOM elements, but
+have some extra functionality. They are mainly used to draw vector images, which
+is a fancy way of saying shapes created with math functions.
 
-I am the on the Front End UX Team over at
-[One Discovery](http://www.onediscovery.com). We create eDiscovery Software for
-law firms. The main focus is to provide insight into their data, as well as
-managing it.
+Let's setup our component to have a `SVG` as it's template. We will then use the
+`circle` element tag to visualize some data
 
-It can get complex. Each case is different, making data exploration an important
-aspect of this job.
+```html
+<!-- Empty component with SVG template -->
+```
+
+### Let's draw some dots
+
+For this exercise, we will use a simple dataset, containing a collection of x
+and y coordinates. These have been created already, so let's go ahead and import
+them
+
+```html
+<!-- show import of dataset -->
+<!-- Include v-for to show how to render the data visual -->
+```
 
 ## Data Visualization
 

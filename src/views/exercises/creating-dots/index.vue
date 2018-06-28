@@ -5,10 +5,11 @@
          v-html="readme"></div>
     <div slot="example"
          ref="example">
-      <word-cloud :value="cloudText"
+      <!-- <word-cloud :value="cloudText"
                   :size="svgSize"
                   :rotate="seansRadius"
-                  :immediate="true" />
+                  :immediate="true" /> -->
+      <demo-component />
     </div>
   </base-page>
 
@@ -25,11 +26,13 @@ export default {
       cloudText: null,
       svgSize: [1000, 1000],
       rotations: [0, 360],
-      seansRadius: v => (Math.random() > 0.5 ? 0 : 90 * Math.PI / 180)
+      seansRadius: v => (Math.random() > 0.5 ? 0 : 90 * Math.PI / 180),
+      dataPoints: []
     }
   },
   components: {
     WordCloud,
+    DemoComponent: () => import('./component'),
     BasePage
   },
   mounted() {
