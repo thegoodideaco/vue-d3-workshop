@@ -35,6 +35,12 @@ it does not. Bummer...
 But when things are _reactive_, this evaluation can be done for you
 automagically.
 
+Let's setup a Vue component to show this idea:
+
+```html
+<!-- show simple a b c component -->
+```
+
 ### SVG Template Rendering
 
 Vue has a pretty cool way of rendering templated content. Instead of only
@@ -42,12 +48,20 @@ allowing render functions that are placed within code, Vue offers template
 syntax that's almost indistinguishable from regular dom elements. In fact, a
 template can consist of just html, and Vue will handle it without a problem.
 
+```html
+<!-- Show component showing the c value in a svg -->
+```
+
 ### Interactivity
 
 Because of the nature in which Vue handles event listeners, we can utilize it's
 templating system to give us a clearer image of what is looking for user
 interaction. And because D3 has many utoilities surrounding SVG elements, Vue
 gives us a way to instantly manage the interactions.
+
+```html
+<!-- Add click event to circle to change the value of a -->
+```
 
 ### Ease of Use
 
@@ -74,4 +88,11 @@ charts, or xenographics, or really cool interactive stuff.
 
 ### What Vue Replaces
 
-We are not required to use all of these libraries together. If Lodash is more your style, feel free. I personally like chroma.js for color transformation for example. However, Vue can completely take over everything that D3's DOM manipulation can do. And when you combine that with reactivity, your data comes to life.
+We are not required to use all of these libraries together. If Lodash is more
+your style, feel free. I personally like chroma.js for color transformation for
+example. However, Vue can completely take over everything that D3's DOM
+manipulation can do. And when you combine that with reactivity, your data comes
+to life.
+
+Vue does have the ability to track animations, but a seperate animation library
+can also be used instead of D3's collection of animation utilities.

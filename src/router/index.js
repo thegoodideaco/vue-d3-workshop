@@ -43,7 +43,7 @@ export default new Router({
           name: 'Semiology of Graphics',
           path: 'semiology-of-graphics',
           component: () =>
-            import ('@/views/resources/SemiologyOfGraphics')
+            import ('@/views/resources/semiology')
         },
         {
           name: 'UX Principles as Algorithms',

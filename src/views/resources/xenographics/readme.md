@@ -1,4 +1,4 @@
-## About
+## Xenographics
 
 Xeno.graphics is a collection of unusual charts and maps, managed by
 [Maarten Lambrechts](http://www.maartenlambrechts.com/). Its objective is to
