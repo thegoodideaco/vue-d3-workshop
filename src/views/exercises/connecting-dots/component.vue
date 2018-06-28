@@ -16,23 +16,30 @@
 
 <script>
 import * as d3 from 'd3'
+import _ from 'lodash'
 import dataset from './dataset'
 export default {
   data() {
     return {
-      dataset
+      dataset,
+      curve: 'curveStepAfter'
     }
   },
   methods: {
     onClick(item) {
       console.log('this is the item!', item)
+      this.curve =
+        this.curve === 'curveStepAfter' ? 'curveStepBefore' : 'curveStepAfter'
+
+      // Let's flip the data just cause!
+      this.dataset = _.shuffle(this.dataset)
     }
   },
   computed: {
     lineGenerator() {
       return d3
         .line()
-        .curve(d3.curveStepAfter)
+        .curve(d3[this.curve])
         .x(v => v[0])
         .y(v => v[1])
     },
@@ -42,3 +49,10 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+path,
+circle {
+  transition: all 500ms ease;
+}
+</style>

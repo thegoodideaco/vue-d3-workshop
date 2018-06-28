@@ -80,6 +80,79 @@ export default {
 </script>
 ```
 
+You can extend the line shape even further by applying
+[curves to it!](http://bl.ocks.org/d3indepth/raw/b6d4845973089bc1012dec1674d3aff8/)
+
+### Animation Magic
+
+There are many ways to animate these shapes. Most functionality will come from
+javascript implementations. However, modern browsers can actually _transition_
+the path definition! Let's try it out
+
+```html
+<template>
+  <svg>
+    <path stroke="#fff"
+          fill="none"
+          stroke-width="5"
+          :d="d" />
+    <circle r="20"
+            v-for="(item, index) in dataset"
+            :cx="item[0]"
+            :cy="item[1]"
+            :key="index"
+            fill="#fff"
+            @click="onClick(item)" />
+  </svg>
+</template>
+
+<script>
+import * as d3 from 'd3'
+import _ from 'lodash'
+import dataset from './dataset'
+export default {
+  data() {
+    return {
+      dataset,
+      curve: 'curveStepAfter'
+    }
+  },
+  methods: {
+    onClick(item) {
+      console.log('this is the item!', item)
+      this.curve =
+        this.curve === 'curveStepAfter' ? 'curveStepBefore' : 'curveStepAfter'
+
+      // Let's flip the data just cause!
+      this.dataset = _.shuffle(this.dataset)
+    }
+  },
+  computed: {
+    lineGenerator() {
+      return d3
+        .line()
+        .curve(d3[this.curve])
+        .x(v => v[0])
+        .y(v => v[1])
+    },
+    d() {
+      return this.lineGenerator(this.dataset)
+    }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+path,
+circle {
+  transition: all 500ms ease;
+}
+</style>
+```
+
 ### Summary
 
-With a couple of additions, we were able to introduce some core D3-Shape functionality using the `line` shape. We were also able to leverage Vue's template to render the D3 data to a path element, and we still have our reactive system managing all of the new functionality
+With a couple of additions, we were able to introduce some core D3-Shape
+functionality using the `line` shape. We were also able to leverage Vue's
+template to render the D3 data to a path element, and we still have our reactive
+system managing all of the new functionality
