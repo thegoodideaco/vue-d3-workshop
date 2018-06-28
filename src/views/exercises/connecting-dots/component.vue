@@ -32,6 +32,7 @@ export default {
     lineGenerator() {
       return d3
         .line()
+        .curve(d3.curveStepAfter)
         .x(v => v[0])
         .y(v => v[1])
     },
