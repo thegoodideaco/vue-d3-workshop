@@ -37,20 +37,34 @@ that is being shown.
 
 ### Successful Data Visuals are hard
 
-There are alot of factors that go into data visualizations. However, the ultimate goal is to be able to _gain insight_.
+There are alot of factors that go into data visualizations. However, the
+ultimate goal is to be able to _gain insight_.
 
-Data can come in many forms. Most of the time we work with data that is quantitive, ordinal, or categorical. And alot of the time, datasets can include more than one type in some way shape or form.
+Data can come in many forms. Most of the time we work with data that is
+quantitive, ordinal, or categorical. And alot of the time, datasets can include
+more than one type in some way shape or form.
 
 So what do we want data visual to be able to do?
 
- - Reveal Insights
- - Cause Change
- - Reveal More Charts
+- Reveal Insights
+- Cause Change
+- Reveal More Charts
 
- In order to have this, we need to determine how the user can interact with it, in order to _navigate the data_
+In order to have this, we need to determine how the user can interact with it,
+in order to _navigate the data_
 
- Maps, Scatterplots, Bar charts, etc... Ultimately gives us a holistic view at first glance. We can see EVERYTHING. But the ability to dive in deeper, to select groups of data items, and cognitave dimensions, allows us to focus on particular sections of the data at any given moment.
+Maps, Scatterplots, Bar charts, etc... Ultimately gives us a holistic view at
+first glance. We can see EVERYTHING. But the ability to dive in deeper, to
+select groups of data items, and cognitave dimensions, allows us to focus on
+particular sections of the data at any given moment.
 
-> Within the plane a mark can be at the top or the bottom, to the right or the left. The eye perceives two independent dimensions along X and Y, which are distinguished orthogonally. A variation in light energy  produces a third dimension in Z, which is independent of X and Y…
+> Within the plane a mark can be at the top or the bottom, to the right or the
+> left. The eye perceives two independent dimensions along X and Y, which are
+> distinguished orthogonally. A variation in light energy produces a third
+> dimension in Z, which is independent of X and Y…
 
-> The eye is sensitive, along the Z dimension, to 6 independent visual variables, which can be superimposed on the planar figures: the size of the marks, their value, texture, color, orientation, and shape. They can represent differences (≠), similarities (≡), a quantified order (Q), or a nonquantified order (O), and can express groups, hierarchies, or vertical movements.
+> The eye is sensitive, along the Z dimension, to 6 independent visual
+> variables, which can be superimposed on the planar figures: the size of the
+> marks, their value, texture, color, orientation, and shape. They can represent
+> differences (≠), similarities (≡), a quantified order (Q), or a nonquantified
+> order (O), and can express groups, hierarchies, or vertical movements.

@@ -18,7 +18,7 @@ export default new Router({
       component: () =>
         import ('@/views/overview')
     },
-    ...sections,
+    // ...sections,
     {
       path: '/resources',
       name: 'Resources',
