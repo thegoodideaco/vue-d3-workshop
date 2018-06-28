@@ -10,7 +10,8 @@ export default new Router({
   routes: [{
       path: '/',
       name: 'Introduction',
-      component: () => import('@/views/introduction')
+      component: () =>
+        import ('@/views/introduction')
     },
     {
       path: '/overview',
@@ -19,6 +20,12 @@ export default new Router({
         import ('@/views/overview')
     },
     ...sections,
+    {
+      path: '/conclusion',
+      name: 'Conclusion',
+      component: () =>
+        import ('@/views/conclusion')
+    },
     {
       path: '/resources',
       name: 'Resources',

@@ -1,14 +1,15 @@
 <template>
-    <path fill="none"
-          stroke="white"
-          stroke-width="5"
-          d="M 10,30
-       A 20,20 0,0,1 50,30
-       A 20,20 0,0,1 90,30
-       Q 90,60 50,90
-       Q 10,60 10,30 z" />
+  <g>
+    <d3-arc/>
+  </g>
 </template>
 
 <script>
-export default {}
+import * as d3 from 'd3'
+import D3Arc from './D3Arc'
+export default {
+  components: {
+    D3Arc
+  }
+}
 </script>
