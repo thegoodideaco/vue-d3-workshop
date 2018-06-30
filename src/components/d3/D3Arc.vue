@@ -1,14 +1,46 @@
 <template>
-    <path fill="none"
-          stroke="white"
-          stroke-width="5"
-          d="M 10,30
-       A 20,20 0,0,1 50,30
-       A 20,20 0,0,1 90,30
-       Q 90,60 50,90
-       Q 10,60 10,30 z" />
+  <path fill="yellow"
+  :d="d"/>
 </template>
 
 <script>
-export default {}
+import * as d3 from 'd3'
+export default {
+  props: {
+    innerRadius: {
+      type: Number,
+      default: 0
+    },
+    outerRadius: {
+      type: Number,
+      default: 100
+    },
+    cornerRadius: {
+      type: Number,
+      default: 10
+    },
+    startAngle: {
+      type: Number,
+      default: 0
+    },
+    endAngle: {
+      type: Number,
+      default: 2
+    }
+  },
+  computed: {
+    arcGenerator() {
+      return d3
+        .arc()
+        .innerRadius(this.innerRadius)
+        .outerRadius(this.outerRadius)
+        .cornerRadius(this.cornerRadius)
+        .startAngle(this.startAngle)
+        .endAngle(this.endAngle)
+    },
+    d() {
+      return this.arcGenerator()
+    }
+  }
+}
 </script>

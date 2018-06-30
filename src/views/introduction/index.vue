@@ -5,10 +5,7 @@
          v-html="readme"></div>
     <div slot="example"
          ref="example">
-      <word-cloud :value="cloudText"
-                  :size="svgSize"
-                  :rotate="seansRadius"
-                  :immediate="true" />
+      <word-cloud v-bind="cloudOptions" />
     </div>
   </base-page>
 
@@ -18,14 +15,17 @@
 import readme from './readme'
 import BasePage from '@/views/BasePage'
 import WordCloud from '@/components/d3/finished/WordCloud'
+// import VersorDrag from '@/components/d3/finished/VersorDrag'
 export default {
   data() {
     return {
       readme,
-      cloudText: null,
-      svgSize: [1000, 1000],
-      rotations: [0, 360],
-      seansRadius: v => (Math.random() > 0.5 ? 0 : 90 * Math.PI / 180)
+      cloudOptions: {
+        value: null,
+        size: [1000, 1000],
+        rotate: v => (Math.random() > 0.5 ? 0 : 90 * Math.PI / 180),
+        immediate: true
+      }
     }
   },
   components: {
@@ -35,9 +35,8 @@ export default {
   mounted() {
     this.$nextTick(() => {
       const rect = this.$refs.example.getBoundingClientRect()
-      this.svgSize = [rect.width, rect.height]
-      //   this.$data._words = _.words(this.$el.innerText)
-      this.cloudText = this.$refs.readme.innerText
+      this.cloudOptions.size = [rect.width, rect.height]
+      this.cloudOptions.value = this.$refs.readme.innerText
     })
   }
 }

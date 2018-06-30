@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import MainPage from '@/views/MainPage'
 
 import sections from './sections/exercises'
+import demos from './sections/demos'
 
 Vue.use(Router)
 
@@ -59,6 +60,7 @@ export default new Router({
             import ('@/views/resources/uxprinciples')
         },
       ]
-    }
+    },
+    demos
   ]
 })

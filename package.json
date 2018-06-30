@@ -16,6 +16,8 @@
     "d3-cloud": "^1.2.5",
     "lodash": "^4.17.10",
     "normalize.css": "^8.0.0",
+    "topojson-client": "^3.0.0",
+    "versor": "0.0.3",
     "vue": "^2.5.2",
     "vue-markdown": "^2.2.4",
     "vue-router": "^3.0.1",
