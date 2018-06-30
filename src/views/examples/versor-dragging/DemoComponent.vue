@@ -26,7 +26,7 @@ export default {
     projection() {
       return d3
         .geoMercator()
-        .translate([0, 0])
+        .translate([this.width / 2, this.height / 2])
         .precision(0.1)
     },
     path() {
