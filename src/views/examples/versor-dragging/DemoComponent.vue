@@ -118,6 +118,11 @@ export default {
     onDragFinish(e) {
       window.removeEventListener('mousemove', this.onDrag)
       window.removeEventListener('mouseup', this.onDragFinish)
+    },
+
+    createMouseData(x, y) {
+      const v = versor.cartesian()
+      return {}
     }
   }
 }
