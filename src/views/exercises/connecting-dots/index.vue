@@ -9,7 +9,7 @@
                   :size="svgSize"
                   :rotate="seansRadius"
                   :immediate="true" /> -->
-      <demo-component/>
+      <demo-component ref="demothing"/>
     </div>
   </base-page>
 
@@ -40,6 +40,7 @@ export default {
       this.svgSize = [rect.width, rect.height]
       //   this.$data._words = _.words(this.$el.innerText)
       this.cloudText = this.$refs.readme.innerText
+      this.$refs.demothing.someMethod
     })
   }
 }
