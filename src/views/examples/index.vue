@@ -9,4 +9,8 @@ export default {}
 </script>
 
 <style>
+.demos {
+    height: 100%;
+    display: flex;
+}
 </style>

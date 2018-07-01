@@ -1,13 +1,13 @@
 <template>
+  <!-- <div class="fill no-select"> -->
+  <!-- <p>{{r1}}</p> -->
   <svg @mousedown="startDrag"
-       :width="width"
-       :height="height">
-    <path fill="green"
+       fill="white">
+    <path fill="#1cdd87"
           :d="d" />
-
-    <circle></circle>
     <rec></rec>
   </svg>
+  <!-- </div> -->
 
 </template>
 
@@ -16,121 +16,101 @@ import * as d3 from 'd3'
 import * as topojson from 'topojson-client'
 import versor from 'versor'
 import dataset from '@data/geo/110m.json'
+
+const land = topojson.feature(dataset, dataset.objects.land)
+
 export default {
   data() {
     return {
+      // Mousedata represents the mouse vector, rotation, and quaternion to use within versor
+      mouseData: {
+        v: null,
+        r: null,
+        q: null
+      },
+      mousePosition: {
+        x: null,
+        y: null
+      },
+      origin: {
+        x: null,
+        y: null
+      },
+      offset: {
+        x: null,
+        y: null
+      },
       projection: d3
         .geoMercator()
         .translate([0, 0])
         .precision(0.1),
-      drag: d3.drag(),
-      canvas: null,
-      width: 100,
-      height: 100,
-      context: null,
-      land: null,
-      topojson,
-      versor,
-      dataset,
-      mouseVec: null,
-      beginPositions: {
-        v: null,
-        r: null,
-        q: null
-      },
-      endPositions: {
-        v: null,
-        r: null,
-        q: null
-      },
-      newD: null
+      path: null,
+      v0: null, // Mouse position in Cartesian coordinates at start of drag gesture.
+      r0: null, // Projection rotation as Euler angles at start.
+      q0: null, // Projection rotation as versor at start.,
+      v1: null, // Mouse position in Cartesian coordinates at start of drag gesture.
+      r1: null, // Projection rotation as Euler angles at start.
+      q1: null, // Projection rotation as versor at start.,
+      d: null
     }
   },
-  computed: {
-    path() {
-      if (this.land) {
-        return d3.geoPath(this.land).projection(this.projection)
-        // .context(this.context)
-      }
-      // .context()
-    },
-    d() {
-      if (this.path) {
-        return this.path(this.land)
-      }
-    }
-  },
-  mounted() {
-    // Set land
-    this.land = topojson.feature(dataset, dataset.objects.land)
-    this.drag.on('start', () => {
-      this.beginPositions.v = versor.cartesian(
-        this.projection.invert(d3.mouse(this.$el))
-      )
-      this.beginPositions.r = this.projection.rotate()
-      this.beginPositions.q = versor(this.beginPositions.r)
-    })
+  beforeMount() {
+    this.path = d3.geoPath().projection(this.projection)
 
-    this.drag.on('drag', () => {})
-
-    this.$nextTick(() => {
-      const rect = this.$el.getBoundingClientRect()
-      this.width = rect.width
-      this.height = rect.height
-    })
+    this.d = this.path(land)
   },
   methods: {
     startDrag(event) {
-      const v = versor.cartesian(
-        this.projection.invert([event.clientX, event.clientY])
-      )
-      const r = this.projection.rotate()
-      const q = versor(r)
+      // Set the mouse position from start
+      this.offset = this.$el.getBoundingClientRect()
 
-      this.beginPositions = {
-        v,
-        r,
-        q
+      this.mousePosition = {
+        x: event.clientX - this.offset.x,
+        y: event.clientY - this.offset.y
       }
 
+      // Set the mouse data
+      this.v0 = versor.cartesian(
+        this.projection.invert([this.mousePosition.x, this.mousePosition.y])
+      )
+      this.r0 = this.projection.rotate()
+      this.q0 = versor(this.r0)
+
+      // Add the window event listeners
       window.addEventListener('mousemove', this.onDrag)
-      window.addEventListener('mouseup', this.onDragFinish)
+      window.addEventListener('mouseup', this.onDragEnd)
     },
-
     onDrag(event) {
-      const _x = event.clientX
-      const _y = event.clientY
+      this.mousePosition.x = event.clientX - this.offset.x
+      this.mousePosition.y = event.clientY - this.offset.y
 
-      const v = versor.cartesian(
-        this.projection.rotate(this.beginPositions.r).invert([[_x, _y]])
+      this.v1 = versor.cartesian(
+        this.projection
+          .rotate(this.r0)
+          .invert([this.mousePosition.x, this.mousePosition.y])
       )
-      const q = versor.multiply(
-        this.beginPositions.q,
-        versor.delta(this.beginPositions.v, v)
-      )
-      const r = versor.rotation(q)
-      this.projection.rotate(r)
+      this.q1 = versor.multiply(this.q0, versor.delta(this.v0, this.v1))
+      this.r1 = versor.rotation(this.q1)
 
-      // console.log(this.path(this.land))
-      this.newD = this.path(this.land)
+      this.projection.rotate(this.r1)
+
+      this.d = this.path(land)
     },
-
-    onDragFinish(e) {
+    onDragEnd(event) {
       window.removeEventListener('mousemove', this.onDrag)
-      window.removeEventListener('mouseup', this.onDragFinish)
-    },
-
-    createMouseData(x, y) {
-      const v = versor.cartesian()
-      return {}
+      window.removeEventListener('mouseup', this.onDragEnd)
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.my-svg-container {
-  // width: 100%;
-  // height: 100vh;
+.fill {
+  width: 100%;
+  height: 100%;
+}
+
+.no-select {
+  user-select: none;
 }
 </style>
