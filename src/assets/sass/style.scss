@@ -75,8 +75,10 @@ $page-transition-speed: 200ms;
 
 div.page-container {
   article {
+    display: flex;
+    flex-flow: column nowrap;
     flex: 0 1 auto;
-       width: 36%;
+       width: 450px;
     min-width: 450px;
 
 

@@ -1,13 +1,18 @@
 <template>
-  <!-- <div class="fill no-select"> -->
-  <!-- <p>{{r1}}</p> -->
+  <div class="fill no-select">
+  <p>{{r1}}</p>
   <svg @mousedown="startDrag"
        fill="white">
+    <rect width="100%"
+          height="100%"
+          x="-50%"
+          y="-50%"
+          fill="#2c4863" />
     <path fill="#1cdd87"
           :d="d" />
     <rec></rec>
   </svg>
-  <!-- </div> -->
+  </div>
 
 </template>
 
@@ -22,6 +27,19 @@ const land = topojson.feature(dataset, dataset.objects.land)
 export default {
   data() {
     return {
+      options: [
+        'geoAzimuthalEquidistant',
+        'geoAzimuthalEqualArea',
+        'geoGnomonic',
+        'geoOrthographic',
+        'geoStereographic',
+        'geoConicConformal',
+        'geoConicEqualArea',
+        'geoConicEquidistant',
+        'geoEquirectangular',
+        'geoMercator',
+        'geoTransverseMercator'
+      ],
       // Mousedata represents the mouse vector, rotation, and quaternion to use within versor
       mouseData: {
         v: null,
@@ -41,7 +59,18 @@ export default {
         y: null
       },
       projection: d3
-        .geoMercator()
+        // .geoAzimuthalEquidistant()
+        // .geoAzimuthalEqualArea()
+        // .geoGnomonic()
+        // .geoOrthographic()
+        // .geoStereographic()
+        // .geoConicConformal()
+        // .geoConicEqualArea()
+        // .geoConicEquidistant()
+        // .geoEquirectangular()
+        // .geoMercator()
+        // .geoTransverseMercator()
+        [this.projectorType]()
         .translate([0, 0])
         .precision(0.1),
       path: null,
@@ -54,6 +83,12 @@ export default {
       d: null
     }
   },
+  props: {
+    projectorType: {
+      type: String,
+      default: 'geoTransverseMercator'
+    }
+  },
   beforeMount() {
     this.path = d3.geoPath().projection(this.projection)
 
@@ -62,7 +97,7 @@ export default {
   methods: {
     startDrag(event) {
       // Set the mouse position from start
-      this.offset = this.$el.getBoundingClientRect()
+      this.offset = this.$el.querySelector('svg').getBoundingClientRect()
 
       this.mousePosition = {
         x: event.clientX - this.offset.x,
@@ -100,6 +135,25 @@ export default {
       window.removeEventListener('mousemove', this.onDrag)
       window.removeEventListener('mouseup', this.onDragEnd)
     }
+  },
+  computed: {
+    realProjection() {
+      return d3
+        // .geoAzimuthalEquidistant()
+        // .geoAzimuthalEqualArea()
+        // .geoGnomonic()
+        // .geoOrthographic()
+        // .geoStereographic()
+        // .geoConicConformal()
+        // .geoConicEqualArea()
+        // .geoConicEquidistant()
+        // .geoEquirectangular()
+        // .geoMercator()
+        // .geoTransverseMercator()
+        [this.projectorType]()
+        .translate([0, 0])
+        .precision(0.1)
+    }
   }
 }
 </script>
@@ -112,5 +166,6 @@ export default {
 
 .no-select {
   user-select: none;
+  overflow: hidden;
 }
 </style>

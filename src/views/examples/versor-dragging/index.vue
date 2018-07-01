@@ -5,7 +5,7 @@
          v-html="readme"></div>
     <div slot="example"
          ref="example">
-      <demo-component />
+      <demo-component :projector-type="geoType" />
     </div>
   </base-page>
 
@@ -19,7 +19,8 @@ import DemoComponent from './DemoComponent'
 export default {
   data() {
     return {
-      readme
+      readme,
+      geoType: 'geoStereographic'
     }
   },
   components: {
