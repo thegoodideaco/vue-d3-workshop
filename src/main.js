@@ -13,6 +13,9 @@ const debug = process.env.NODE_ENV !== 'production'
 Vue.config.productionTip = debug
 Vue.config.performance = debug
 
+// Add custom scrollbar so it doesn't make things look ewwie
+Vue.use(Vuebar);
+
 // These are globally added to ALL components, beware
 Vue.mixin({
   data() {
@@ -23,8 +26,6 @@ Vue.mixin({
   }
 })
 
-// Add custom scrollbar so it doesn't make things look ewwie
-Vue.use(Vuebar);
 
 /* eslint-disable no-new */
 new Vue({
@@ -35,26 +36,3 @@ new Vue({
   },
   template: '<App/>'
 })
-
-(function (window) {
-  try {
-    new MouseEvent('test');
-    return false; // No need to polyfill
-  } catch (e) {
-    // Need to polyfill - fall through
-  }
-
-  // Polyfills DOM4 MouseEvent
-
-  var MouseEvent = function (eventType, params) {
-    params = params || { bubbles: false, cancelable: false };
-    var mouseEvent = document.createEvent('MouseEvent');
-    mouseEvent.initMouseEvent(eventType, params.bubbles, params.cancelable, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-
-    return mouseEvent;
-  }
-
-  MouseEvent.prototype = Event.prototype;
-
-  window.MouseEvent = MouseEvent;
-})(window);

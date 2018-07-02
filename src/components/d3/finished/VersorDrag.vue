@@ -1,6 +1,7 @@
 <template>
   <!-- SVG Display -->
   <svg @mousedown.prevent.left="startDrag"
+       class="no-select"
        fill="white">
     <rect width="100%"
           height="100%"
@@ -186,6 +187,6 @@ export default {
 
 .no-select {
   user-select: none;
-  overflow: hidden;
+  // overflow: hidden;
 }
 </style>
