@@ -3,7 +3,6 @@
 @import './_ui-controls';
 @import './_vue-slider';
 @import './_markdown';
-
 html,
 body {
   font-size: 20px;
@@ -74,28 +73,27 @@ $page-transition-speed: 200ms;
 }
 
 div.page-container {
+  // padding-right: 40px;
   article {
-    display: flex;
-    flex-flow: column nowrap;
-    flex: 0 1 auto;
-       width: 450px;
-    min-width: 450px;
-
-
-//   height: 100%;
-    // padding-right: 50px;
-
+    //     display: flex;
+    //     flex-flow: column nowrap;
+    flex: 0 1 auto; //        width: 450px;
+    max-width: 550px; //   height: 100%;
+    //     padding-right: 50px;
     img {
       max-width: 100%;
       height: auto;
     }
+    section {
+      >div {
+        margin-right: 50px;
+      }
+    }
   }
-  
 }
 
 .section-content {
-//   padding-right: 50px;
-
+  //   padding-right: 50px;
   blockquote {
     background-color: rgb(23, 37, 51);
     font-style: italic;
@@ -116,18 +114,13 @@ div.page-container {
   justify-content: center;
   flex: 1 1 auto;
   margin-left: auto;
-
   circle {
     cursor: pointer;
   }
-
-
-
-  > div {
+  >div {
     width: 100%;
     height: 100%;
   }
-
   .well {
     flex: 1;
     width: 100%;
@@ -138,7 +131,7 @@ div.page-container {
     position: relative;
     top: 50%;
     left: 50%;
-        height: inherit;
+    height: inherit;
     width: inherit;
     display: block;
     overflow: visible;

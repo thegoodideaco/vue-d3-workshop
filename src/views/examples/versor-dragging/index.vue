@@ -5,6 +5,13 @@
          v-html="readme"></div>
     <div slot="example"
          ref="example">
+      <!-- Options -->
+      <select name="projections"
+              v-model="geoType">
+        <option v-for="(item, index) in options"
+                :key="index">{{item}}</option>
+      </select>
+
       <demo-component :projector-type="geoType" />
     </div>
   </base-page>
@@ -20,6 +27,19 @@ export default {
   data() {
     return {
       readme,
+      options: [
+        'geoAzimuthalEquidistant',
+        'geoAzimuthalEqualArea',
+        'geoGnomonic',
+        'geoOrthographic',
+        'geoStereographic',
+        'geoConicConformal',
+        'geoConicEqualArea',
+        'geoConicEquidistant',
+        'geoEquirectangular',
+        'geoMercator',
+        'geoTransverseMercator'
+      ],
       geoType: 'geoStereographic'
     }
   },

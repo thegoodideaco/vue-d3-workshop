@@ -1,18 +1,16 @@
 <template>
-  <div class="fill no-select">
-  <p>{{r1}}</p>
+  <!-- SVG Display -->
   <svg @mousedown="startDrag"
        fill="white">
     <rect width="100%"
           height="100%"
           x="-50%"
           y="-50%"
-          fill="#2c4863" />
+          fill="#203243" />
     <path fill="#1cdd87"
           :d="d" />
     <rec></rec>
   </svg>
-  </div>
 
 </template>
 
@@ -70,7 +68,7 @@ export default {
         // .geoEquirectangular()
         // .geoMercator()
         // .geoTransverseMercator()
-        [this.projectorType]()
+        .geoNaturalEarth1()
         .translate([0, 0])
         .precision(0.1),
       path: null,
@@ -94,15 +92,26 @@ export default {
 
     this.d = this.path(land)
   },
+  watch: {
+    projectorType: {
+      handler(val) {
+        this.projection = this.realProjection
+        this.path = d3.geoPath().projection(this.projection)
+        this.d = this.path(land)
+      }
+    }
+  },
   methods: {
     startDrag(event) {
       // Set the mouse position from start
-      this.offset = this.$el.querySelector('svg').getBoundingClientRect()
+      this.offset = this.$el.getBoundingClientRect()
 
       this.mousePosition = {
         x: event.clientX - this.offset.x,
         y: event.clientY - this.offset.y
       }
+
+      // d3.geoProjection().
 
       // Set the mouse data
       this.v0 = versor.cartesian(
@@ -138,7 +147,7 @@ export default {
   },
   computed: {
     realProjection() {
-      return d3
+      return d3[
         // .geoAzimuthalEquidistant()
         // .geoAzimuthalEqualArea()
         // .geoGnomonic()
@@ -150,9 +159,16 @@ export default {
         // .geoEquirectangular()
         // .geoMercator()
         // .geoTransverseMercator()
-        [this.projectorType]()
+        this.projectorType
+      ]()
         .translate([0, 0])
         .precision(0.1)
+    },
+    realPath() {
+      return d3.geoPath().projection(this.realProjection)
+    },
+    realD() {
+      return this.realPath(land)
     }
   }
 }
