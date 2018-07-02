@@ -5,7 +5,8 @@
          v-html="readme"></div>
     <div slot="example"
          ref="example">
-      <word-cloud v-bind="cloudOptions" />
+      <!-- <word-cloud v-bind="cloudOptions" /> -->
+      <geo-map />
     </div>
   </base-page>
 
@@ -14,6 +15,7 @@
 <script>
 import readme from './readme'
 import BasePage from '@/views/BasePage'
+import GeoMap from '@/components/d3/finished/VersorDrag'
 import WordCloud from '@/components/d3/finished/WordCloud'
 export default {
   data() {
@@ -29,7 +31,8 @@ export default {
   },
   components: {
     WordCloud,
-    BasePage
+    BasePage,
+    GeoMap
   },
   mounted() {
     this.$nextTick(() => {

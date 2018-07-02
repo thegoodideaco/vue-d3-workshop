@@ -21,7 +21,7 @@
 <script>
 import readme from './readme'
 import BasePage from '@/views/BasePage'
-import DemoComponent from './DemoComponent'
+import DemoComponent from '@/components/d3/finished/VersorDrag'
 // import VersorDrag from '@/components/d3/finished/VersorDrag'
 export default {
   data() {
@@ -40,7 +40,7 @@ export default {
         'geoMercator',
         'geoTransverseMercator'
       ],
-      geoType: 'geoStereographic'
+      geoType: 'geoMercator'
     }
   },
   components: {
