@@ -1,20 +1,19 @@
 <template>
-    <div>
-        Hey
-    </div>
+  <div>
+    Hey
+  </div>
 </template>
 
 <script>
-import * as d3 from 'd3'
+import { axisTop } from 'd3-axis'
 export default {
-    data() {
-        return {
-            a: d3.axisTop()
-        }
+  data() {
+    return {
+      a: axisTop()
     }
+  }
 }
 </script>
 
 <style>
-
 </style>

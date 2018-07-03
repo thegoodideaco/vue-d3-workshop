@@ -28,7 +28,7 @@
 
 <script>
 import _ from 'lodash'
-import * as d3 from 'd3'
+import * as d3 from 'd3-scale'
 import chroma from 'chroma-js'
 import cloud from 'd3-cloud'
 

@@ -108,7 +108,7 @@ the path definition. Let's try it out
 
 <script>
 import * as d3 from 'd3'
-import _ from 'lodash'
+import _ from 'lodash/shuffle'
 import dataset from './dataset'
 export default {
   data() {

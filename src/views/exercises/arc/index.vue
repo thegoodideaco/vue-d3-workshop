@@ -16,7 +16,7 @@
 <script>
 import readme from './readme'
 import BasePage from '@/views/BasePage'
-import D3Arc from '@/components/d3/D3Arc'
+// import D3Arc from '@/components/d3/D3Arc'
 export default {
   data() {
     return {
@@ -31,7 +31,7 @@ export default {
     }
   },
   components: {
-    D3Arc,
+    D3Arc: () => import('@/components/d3/D3Arc'),
     BasePage
   }
 }

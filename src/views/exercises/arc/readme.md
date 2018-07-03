@@ -81,7 +81,7 @@ Now that we have these props setup, let's implement the arc generator from D3.
 </template>
 
 <script>
-import * as d3 from 'd3'
+import * as d3 from 'd3-shape'
 export default {
   props: {
     innerRadius: {
@@ -135,7 +135,7 @@ we just need to include it in our template
 </template>
 
 <script>
-import * as d3 from 'd3'
+import * as d3 from 'd3-shape'
 export default {
   props: {
     innerRadius: {

@@ -25,8 +25,6 @@
 <script>
 import readme from './readme'
 import BasePage from '@/views/BasePage'
-import DemoComponent from '@/components/d3/finished/VersorDrag'
-// import VersorDrag from '@/components/d3/finished/VersorDrag'
 export default {
   data() {
     return {
@@ -48,7 +46,7 @@ export default {
     }
   },
   components: {
-    DemoComponent,
+    DemoComponent: () => import('@/components/d3/finished/VersorDrag'),
     BasePage
   },
   mounted() {

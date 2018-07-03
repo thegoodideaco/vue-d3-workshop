@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import * as d3 from 'd3'
+import * as d3 from 'd3-shape'
 import D3Arc from './finished/D3Arc'
 export default {
   components: {

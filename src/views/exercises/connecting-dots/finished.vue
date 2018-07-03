@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import * as d3 from 'd3'
-import _ from 'lodash'
+import * as d3 from 'd3-shape'
+import _ from 'lodash/shuffle'
 import dataset from './dataset'
 export default {
   data() {

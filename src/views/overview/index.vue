@@ -15,8 +15,6 @@
 <script>
 import readme from './readme'
 import BasePage from '@/views/BasePage'
-import GeoMap from '@/components/d3/finished/VersorDrag'
-import WordCloud from '@/components/d3/finished/WordCloud'
 export default {
   data() {
     return {
@@ -30,9 +28,8 @@ export default {
     }
   },
   components: {
-    WordCloud,
     BasePage,
-    GeoMap
+    GeoMap: () => import('@/components/d3/finished/VersorDrag')
   },
   mounted() {
     this.$nextTick(() => {

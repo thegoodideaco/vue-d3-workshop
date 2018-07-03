@@ -15,7 +15,6 @@
 import readme from './readme'
 import BasePage from '@/views/BasePage'
 import WordCloud from '@/components/d3/finished/WordCloud'
-// import VersorDrag from '@/components/d3/finished/VersorDrag'
 export default {
   data() {
     return {

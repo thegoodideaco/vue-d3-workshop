@@ -23,8 +23,9 @@
 
 <script>
 import chroma from 'chroma-js'
-import _ from 'lodash'
-const brewerColors = _.mapValues(chroma.brewer)
+import {mapValues} from 'lodash'
+
+const brewerColors = mapValues(chroma.brewer)
 export default {
   data() {
     return {

@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import _ from 'lodash'
-import { line, curveCardinal } from 'd3'
+// import _ from 'lodash'
+import * as d3 from 'd3-shape'
 
 export default {
   data() {
@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     d() {
-      return line({})
+      return d3({})
         .curve(curveCardinal)
         .x(v => v[0])
         .y(v => v[1])(this.dataset)
