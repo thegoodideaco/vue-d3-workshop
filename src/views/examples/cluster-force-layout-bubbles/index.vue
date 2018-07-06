@@ -41,11 +41,6 @@ export default {
   components: {
     DemoComponent: () => import('./DemoComponent'),
     BasePage
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.$refs.dropdown.focus()
-    })
   }
 }
 </script>
