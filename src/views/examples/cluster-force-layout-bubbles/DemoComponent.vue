@@ -1,13 +1,16 @@
 <template>
-  <svg>
-    <circle v-for="(node, index) in nodes"
-            :key="index"
-            :cx="node.x"
-            :cy="node.y"
-            :fill="fillColor(node.group)"
-            :r="node.radius"
-            @click="showYears = !showYears"></circle>
-  </svg>
+  <div class="fill">
+    <input v-model.number="forceStrength">
+    <svg>
+      <circle v-for="(node, index) in nodes"
+              :key="index"
+              :cx="node.x"
+              :cy="node.y"
+              :fill="fillColor(node.group)"
+              :r="node.radius"
+              @click="showYears = !showYears"></circle>
+    </svg>
+  </div>
 </template>
 
 <script>
@@ -40,9 +43,22 @@ export default {
         2010: {
           x: 200,
           y: 0
+        },
+        low: {
+          x: -500,
+          y: 333
+        },
+        medium: {
+          x: 0,
+          y: 0
+        },
+        high: {
+          x: 300,
+          y: -500
         }
       },
-      showYears: false
+      showYears: false,
+      orgNames: []
     }
   },
   computed: {
@@ -58,14 +74,18 @@ export default {
       // @v4: new flattened scale names.
       var radiusScale = d3
         .scalePow()
-        .exponent(0.5)
+        .exponent(0.6)
         .range([2, 85])
         .domain([0, maxAmount])
 
       // Use map() to convert raw data into node data.
       // Checkout http://learnjsdata.com/ for more on
       // working with data.
-      var myNodes = this.rawData.map(function(d) {
+      this.orgNames = []
+      var myNodes = this.rawData.map(d => {
+        if (!this.orgNames.includes(d.group)) {
+          this.orgNames.push(d.group)
+        }
         return {
           id: d.id,
           radius: radiusScale(+d.total_amount),
@@ -99,7 +119,6 @@ export default {
   },
   mounted() {
     d3.csv('/static/demo_data/gates.csv').then(res => {
-      console.log(res)
       this.rawData = res
     })
   },
@@ -127,6 +146,7 @@ export default {
     },
     showYears(val) {
       console.log('change it wtf')
+      const r = Math.random() > 0.5
       if (this.simulation) {
         this.simulation.force(
           'x',
@@ -134,7 +154,21 @@ export default {
             .forceX()
             .strength(this.forceStrength)
             .x(d => {
-              return val ? this.yearCenters[d.year].x : this.center.x
+              return val
+                ? this.yearCenters[r ? d.group : d.year].x
+                : this.center.x
+            })
+        )
+
+        this.simulation.force(
+          'y',
+          d3
+            .forceY()
+            .strength(this.forceStrength)
+            .y(d => {
+              return val
+                ? this.yearCenters[r ? d.group : d.year].y
+                : this.center.y
             })
         )
 
@@ -145,5 +179,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.fill {
+  height: 100%;
+}
 </style>
