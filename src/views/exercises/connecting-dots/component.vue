@@ -1,6 +1,6 @@
 <template>
   <svg>
-    <circle r="20"
+    <circle r="10"
             v-for="(item, index) in dataset"
             :cx="item[0]"
             :cy="item[1]"

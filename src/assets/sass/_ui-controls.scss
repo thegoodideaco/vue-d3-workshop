@@ -13,11 +13,18 @@ legend {
   padding: 5px;
   border-radius: 3px;
   margin-top: 10px;
+
+  
+  
   label {
     margin-bottom: 5px;
     display: block;
     font-size: .7rem;
     font-weight: bold;
     text-transform: uppercase;
+  }
+
+  input {
+    width: 100%;
   }
 }

@@ -40,7 +40,6 @@ export default {
       this.svgSize = [rect.width, rect.height]
       //   this.$data._words = _.words(this.$el.innerText)
       this.cloudText = this.$refs.readme.innerText
-      this.$refs.demothing.someMethod
     })
   }
 }
