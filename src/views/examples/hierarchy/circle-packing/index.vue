@@ -1,39 +1,24 @@
 <template>
-  <div class="flex">
+  <base-page>
 
-    <transition name="page-fade"
-                mode="out-in">
+    <div slot="readme"
+         ref="readme"
+         v-html="readme"></div>
+    <div slot="example"
+         ref="example"
+         class="demo-inner">
 
-      <keep-alive>
-
-        <router-view v-if="hasChild"
-                     :key="$route.path" />
-        <base-page v-else
-                   key="$route.fullPath">
-
-          <div slot="readme"
-               ref="readme"
-               v-html="readme"></div>
-          <div slot="example"
-               ref="example"
-               class="demo-inner">
-
-            <div class="svg-inner">
-              <demo-component :tileStyle="style">
-                <div class="fill"
-                     slot-scope="{item, size}"
-                     @click="randomizeStyle(item)">
-                  {{item.data.name}} - size: {{Math.floor(item.value / size * 100)}}%
-                </div>
-              </demo-component>
-            </div>
+      <div class="svg-inner">
+        <demo-component :tileStyle="style">
+          <div class="fill"
+               slot-scope="{item, size}"
+               @click="randomizeStyle(item)">
+            {{item.data.name}}
           </div>
-        </base-page>
-
-      </keep-alive>
-
-    </transition>
-  </div>
+        </demo-component>
+      </div>
+    </div>
+  </base-page>
 
 </template>
 
@@ -72,11 +57,6 @@ export default {
       console.log(item)
       this.style = Math.floor(Math.random() * 3)
     }
-  },
-  computed: {
-    hasChild() {
-      return this.$route.matched.length > 2
-    }
   }
 }
 </script>
@@ -95,10 +75,5 @@ export default {
     border-color: #1cdd87;
     border-style: dashed;
   }
-}
-
-.flex {
-  display: flex;
-  width: 100%;
 }
 </style>

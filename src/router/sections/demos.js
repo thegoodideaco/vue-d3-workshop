@@ -19,7 +19,13 @@ export default {
       path: 'hierarchy',
       name: 'Visualizing Hierarchies',
       component: () =>
-        import ('@/views/examples/hierarchy')
+        import ('@/views/examples/hierarchy'),
+      children: [{
+        path: 'circle-packing',
+        name: 'Circle Packing',
+        component: () =>
+          import ('@/views/examples/hierarchy/circle-packing')
+      }]
     }
   ]
 }

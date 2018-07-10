@@ -19,7 +19,7 @@
 import * as d3 from 'd3-geo'
 import * as topojson from 'topojson-client'
 import versor from 'versor'
-import dataset from '@data/geo/110m.json'
+import dataset from '@/assets/geo/110m.json'
 
 const land = topojson.feature(dataset, dataset.objects.land)
 
