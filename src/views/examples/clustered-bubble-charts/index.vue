@@ -18,7 +18,9 @@
 <script>
 import readme from './readme'
 import BasePage from '@/views/BasePage'
+import MarkdownUtils from '@/utils/mixins/MarkdownUtils'
 export default {
+  mixins: [MarkdownUtils],
   data() {
     return {
       readme,

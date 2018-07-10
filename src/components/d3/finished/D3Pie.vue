@@ -2,7 +2,7 @@
   <g>
     <d3-arc v-for="(item, index) in paths"
             :key="index"
-            :fill="colors[index]"
+            :fill="colors(paths.length)[index]"
             :start-angle="item.startAngle"
             :end-angle="item.endAngle" />
   </g>

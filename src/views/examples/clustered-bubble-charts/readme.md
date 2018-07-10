@@ -1,4 +1,4 @@
-# Clustered Force Layouts
+# Clustered Bubble Charts
 
 This clustered [force layout](https://bl.ocks.org/mbostock/4062045) is
 implemented using two custom forces. The first, `cluster`, pushes nodes towards

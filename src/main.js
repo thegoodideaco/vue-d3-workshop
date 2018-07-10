@@ -8,9 +8,14 @@ import Vuebar from 'vuebar'
 import App from './App'
 import router from './router'
 
+import Axios from 'axios'
+import VueAxios from 'vue-axios'
+
 const debug = process.env.NODE_ENV !== 'production'
 Vue.config.productionTip = debug
 Vue.config.performance = debug
+
+Vue.use(VueAxios, Axios)
 
 // Add custom scrollbar so it doesn't make things look ewwie
 Vue.use(Vuebar)
@@ -19,7 +24,7 @@ Vue.use(Vuebar)
 Vue.mixin({
   data() {
     return {
-      colors: chroma.scale(chroma.brewer.Set3).colors(20),
+      colors: chroma.scale(chroma.brewer.Spectral).colors,
       debug
     }
   }

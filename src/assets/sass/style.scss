@@ -140,3 +140,9 @@ div.page-container {
     transform: translateX(50%) translateY(50%);
   }
 }
+
+
+.gpu, .vb-content {
+  transform: translateZ(0);
+  position: relative;
+}

@@ -6,7 +6,7 @@
               :key="index"
               :cx="node.x"
               :cy="node.y"
-              :fill="fillColor(node.group)"
+              :fill="fillColor(node.value)"
               :r="node.radius"
               @click="showYears = !showYears"></circle>
     </svg>
@@ -15,13 +15,14 @@
 
 <script>
 import * as d3 from 'd3'
+import chroma from 'chroma-js'
 var t = 0
 // Nice looking colors - no reason to buck the trend
 // @v4 scales now have a flattened naming scheme
-var fillColor = d3
-  .scaleOrdinal()
+const fillColor = d3
+  .scaleSqrt()
   .domain(['low', 'medium', 'high'])
-  .range(['#d84b2a', '#beccae', '#7aa25c'])
+  .range(chroma.scale(chroma.brewer.Set2).colors(8))
 
 export default {
   data() {
@@ -70,12 +71,14 @@ export default {
         return +d.total_amount
       })
 
+      fillColor.domain([0, maxAmount])
+
       // Sizes bubbles based on area.
       // @v4: new flattened scale names.
       var radiusScale = d3
         .scalePow()
         .exponent(0.6)
-        .range([2, 85])
+        .range([5, 85])
         .domain([0, maxAmount])
 
       // Use map() to convert raw data into node data.
@@ -109,15 +112,15 @@ export default {
   },
   methods: {
     charge(d) {
-      return -this.forceStrength * Math.pow(d.radius, 2.0)
+      return -this.forceStrength * Math.pow(d.radius + 1, 2)
     },
     ticked() {
-      t++
       this.$forceUpdate()
       // this.nodes = this.nodes
     }
   },
   mounted() {
+    // d3.json('/static/demo_data/quantifiable/populations.json').then(res => {
     d3.csv('/static/demo_data/gates.csv').then(res => {
       this.rawData = res
     })
@@ -172,7 +175,7 @@ export default {
             })
         )
 
-        this.simulation.alpha(1).restart()
+        this.simulation.alpha(1.5).restart()
       }
     }
   }
@@ -182,5 +185,10 @@ export default {
 <style scoped>
 .fill {
   height: 100%;
+}
+
+circle {
+  stroke: #000;
+  stroke-width: 2px;
 }
 </style>

@@ -10,10 +10,16 @@ export default {
         import ('@/views/examples/versor-dragging')
     },
     {
-      path: 'force-bubble',
-      name: 'Clustered Force Bubble Layout',
+      path: 'cluster-bubble',
+      name: 'Clustered Bubble Charts',
       component: () =>
-        import ('@/views/examples/cluster-force-layout-bubbles')
+        import ('@/views/examples/clustered-bubble-charts')
+    },
+    {
+      path: 'hierarchy',
+      name: 'Visualizing Hierarchies',
+      component: () =>
+        import ('@/views/examples/hierarchy')
     }
   ]
 }
