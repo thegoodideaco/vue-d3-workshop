@@ -7,17 +7,19 @@
 
     <h2>Table of Contents</h2>
 
-    <ul is="SideBarListItems"
-        class="sidebar-list"
-        :items="routes">
+    <div v-bar>
+      <ul is="SideBarListItems"
+          class="sidebar-list"
+          :items="routes">
 
-      <template slot-scope="item">
-        <router-link :to="item">
-          <span>{{item.name}}</span>
-        </router-link>
-      </template>
+        <template slot-scope="item">
+          <router-link :to="item">
+            <span>{{item.name}}</span>
+          </router-link>
+        </template>
 
-    </ul>
+      </ul>
+    </div>
 
   </nav>
 </template>
@@ -44,6 +46,7 @@ export default {
 * {
   box-sizing: border-box;
 }
+
 nav.side-bar {
   font-size: 0.7em;
   display: flex;
@@ -58,6 +61,20 @@ nav.side-bar {
   padding: 20px;
   // padding-right: 50px;
   background: rgba(#000, 0.25);
+
+  > * {
+    flex: 0;
+
+    &:last-child {
+      flex: 1 1 auto;
+      overflow: auto;
+      height: fit-content;
+    }
+  }
+}
+
+.logo {
+  margin-bottom: 50px;
 }
 
 .sidebar-list {
@@ -77,9 +94,5 @@ nav.side-bar {
   > li {
     padding-top: 10px;
   }
-}
-
-.logo {
-  margin-bottom: 50px;
 }
 </style>

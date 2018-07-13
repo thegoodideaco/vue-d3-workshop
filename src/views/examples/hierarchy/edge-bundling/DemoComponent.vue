@@ -5,7 +5,7 @@
          :key="index"
          :style="generateNodeStyle(item)">
 
-      <slot v-bind="{item, size: hierarchy.value}">
+      <slot v-bind="{index, item, size: hierarchy.value}">
         <small>{{item.data.name}}</small>
         <small>{{item.data.size}}</small>
       </slot>

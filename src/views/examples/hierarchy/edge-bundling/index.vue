@@ -10,11 +10,16 @@
 
       <div class="svg-inner">
         <demo-component ref="layout">
-          <div class="fill"
-               slot-scope="{item, size}"
-               @click="randomizeStyle($event, item)">
 
-          </div>
+          <template slot-scope="{item,index, size}">
+            <div is="TreemapSection"
+                 class="fill"
+                 v-bind="{item, index, size}"
+                 @click="randomizeStyle($event, item)">
+
+            </div>
+
+          </template>
         </demo-component>
       </div>
     </div>
@@ -26,6 +31,7 @@
 import readme from './readme'
 import BasePage from '@/views/BasePage'
 import MarkdownUtils from '@/utils/mixins/MarkdownUtils'
+import TreemapSection from './TreemapSection'
 export default {
   mixins: [MarkdownUtils],
   data() {
@@ -35,7 +41,8 @@ export default {
   },
   components: {
     DemoComponent: () => import('./DemoComponent'),
-    BasePage
+    BasePage,
+    TreemapSection
   },
   methods: {
     randomizeStyle(ev, item) {

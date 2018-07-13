@@ -1,0 +1,1053 @@
+{
+  "i": [{
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "01-31-2018 09:03:41 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "01-31-2018 09:03:43 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "01-31-2018 09:03:43 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "01-31-2018 09:03:50 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "01-31-2018 10:07:30 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "01-31-2018 10:07:32 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "01-31-2018 10:07:33 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "01-31-2018 10:07:34 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "01-31-2018 11:09:58 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "01-31-2018 04:06:20 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "01-31-2018 11:34:37 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-01-2018 10:44:56 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-02-2018 12:51:04 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-02-2018 01:00:50 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-02-2018 01:33:36 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-02-2018 11:02:52 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-02-2018 11:56:05 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-03-2018 02:22:55 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-03-2018 07:19:07 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-03-2018 08:24:31 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-03-2018 10:40:24 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-03-2018 10:51:45 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-04-2018 12:16:51 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-04-2018 01:37:08 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-04-2018 02:04:19 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-04-2018 02:38:20 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-04-2018 04:16:19 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-05-2018 02:47:55 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-05-2018 03:24:04 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-05-2018 09:11:32 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-05-2018 01:54:52 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-05-2018 01:54:53 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-05-2018 01:54:55 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-05-2018 01:54:56 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-05-2018 01:59:37 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-05-2018 10:58:01 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-08-2018 01:19:53 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-08-2018 01:20:29 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-09-2018 09:40:34 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "02-11-2018 10:04:51 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-12-2018 09:17:11 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "02-13-2018 01:33:57 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "02-13-2018 01:34:46 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-16-2018 02:34:24 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-16-2018 04:36:25 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-17-2018 01:59:06 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-17-2018 03:35:06 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-17-2018 05:48:24 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-17-2018 06:49:45 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-17-2018 07:38:26 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-17-2018 08:39:50 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-17-2018 11:19:10 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-17-2018 11:30:19 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-18-2018 03:14:24 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-18-2018 04:16:22 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-18-2018 04:24:56 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-18-2018 05:26:23 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-18-2018 07:02:04 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-18-2018 08:03:39 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-18-2018 08:21:41 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-18-2018 09:23:46 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-18-2018 09:33:23 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-19-2018 12:00:52 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-20-2018 12:05:28 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-20-2018 12:10:17 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-20-2018 02:20:01 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-20-2018 08:51:40 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-21-2018 12:16:47 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-21-2018 05:37:09 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-21-2018 06:39:14 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-21-2018 07:00:46 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-21-2018 08:02:10 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-22-2018 01:36:41 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-25-2018 02:11:23 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogout",
+      "date": "02-25-2018 09:57:26 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "02-26-2018 09:45:59 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "03-02-2018 08:31:23 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "03-06-2018 08:59:07 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "03-14-2018 04:26:13 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "03-17-2018 04:30:33 AM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "03-22-2018 01:12:57 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "03-22-2018 01:12:57 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "03-22-2018 01:13:01 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "03-22-2018 01:13:01 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:28:32 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:28:34 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:28:34 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:33:53 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:33:54 PM"
+    },
+    {
+      "user": "Administrator, System",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:33:55 PM"
+    },
+    {
+      "user": "Processing, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:44:49 PM"
+    },
+    {
+      "user": "Processing, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:44:49 PM"
+    },
+    {
+      "user": "Processing, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:44:49 PM"
+    },
+    {
+      "user": "Processing, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:45:26 PM"
+    },
+    {
+      "user": "Processing, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:45:26 PM"
+    },
+    {
+      "user": "Sysadmin, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:53:00 PM"
+    },
+    {
+      "user": "Sysadmin, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:57:07 PM"
+    },
+    {
+      "user": "Sysadmin, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:58:10 PM"
+    },
+    {
+      "user": "Sysadmin, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:58:11 PM"
+    },
+    {
+      "user": "Sysadmin, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:58:12 PM"
+    },
+    {
+      "user": "Sysadmin, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 02:58:12 PM"
+    },
+    {
+      "user": "Sysadmin, Sergei",
+      "action": "UserLogout",
+      "date": "03-22-2018 02:59:01 PM"
+    },
+    {
+      "user": "Reviewer, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 03:01:43 PM"
+    },
+    {
+      "user": "Reviewer, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 03:01:47 PM"
+    },
+    {
+      "user": "Reviewer, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 03:01:47 PM"
+    },
+    {
+      "user": "Sysadmin, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 03:03:14 PM"
+    },
+    {
+      "user": "Sysadmin, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 03:03:16 PM"
+    },
+    {
+      "user": "Sysadmin, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 03:03:16 PM"
+    },
+    {
+      "user": "Processing, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 03:20:30 PM"
+    },
+    {
+      "user": "Sysadmin, Sergei",
+      "action": "UserLogin",
+      "date": "03-22-2018 03:49:05 PM"
+    },
+    {
+      "user": "Sysadmin, Sergei",
+      "action": "UserLogout",
+      "date": "03-22-2018 05:12:33 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "03-23-2018 03:19:39 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "03-23-2018 03:28:55 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "03-23-2018 04:59:00 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "03-23-2018 07:23:49 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "03-23-2018 11:16:19 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "03-24-2018 12:12:12 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "03-29-2018 11:35:43 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "03-29-2018 12:10:18 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "03-29-2018 01:47:33 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "03-29-2018 03:24:29 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "03-29-2018 10:49:29 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "04-06-2018 11:11:55 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "04-06-2018 12:23:36 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "04-09-2018 12:41:13 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "04-09-2018 02:51:01 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "04-09-2018 03:10:34 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "04-09-2018 03:15:12 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "04-09-2018 03:37:19 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "04-09-2018 04:17:01 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "04-09-2018 04:48:55 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "04-09-2018 08:41:04 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "04-09-2018 02:25:38 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "04-09-2018 04:30:13 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "04-15-2018 11:20:12 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "04-16-2018 03:57:39 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "04-25-2018 04:18:54 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "04-26-2018 02:19:37 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "04-26-2018 04:00:24 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-03-2018 03:38:25 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-03-2018 03:58:08 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-04-2018 03:43:58 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-09-2018 11:45:20 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "05-09-2018 12:57:52 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-10-2018 03:13:06 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "05-10-2018 06:25:50 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-12-2018 10:10:30 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-13-2018 02:34:01 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-13-2018 04:06:01 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "05-13-2018 05:13:42 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-13-2018 05:25:56 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-14-2018 02:23:23 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-14-2018 02:23:23 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-14-2018 02:23:23 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-14-2018 05:06:09 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-14-2018 06:09:39 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-14-2018 06:26:16 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-14-2018 01:27:26 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-16-2018 01:44:11 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-16-2018 02:44:04 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "05-16-2018 03:01:38 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-23-2018 12:55:24 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "05-23-2018 01:48:17 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-24-2018 06:15:40 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-24-2018 09:03:14 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "05-24-2018 10:04:26 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-24-2018 11:36:02 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "05-25-2018 01:30:46 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-25-2018 11:41:37 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-25-2018 11:44:04 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "05-25-2018 12:45:31 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-25-2018 11:16:32 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "05-26-2018 01:58:29 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-26-2018 02:12:42 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-29-2018 02:45:59 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-29-2018 04:39:01 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "05-29-2018 05:41:09 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "05-29-2018 09:41:27 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-01-2018 01:54:56 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-01-2018 02:38:47 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-01-2018 02:40:09 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-01-2018 02:48:31 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-01-2018 05:33:17 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-04-2018 04:59:28 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-05-2018 03:10:14 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-14-2018 01:28:11 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-14-2018 01:39:18 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "06-14-2018 02:20:22 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-15-2018 08:58:35 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-21-2018 04:24:46 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-22-2018 10:51:13 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "06-22-2018 11:21:08 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-25-2018 10:51:11 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-25-2018 11:49:03 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "06-27-2018 12:38:56 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "07-02-2018 05:35:29 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "07-02-2018 06:54:35 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "07-02-2018 08:10:17 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "07-02-2018 09:29:42 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "07-02-2018 10:26:03 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "07-03-2018 04:37:21 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "07-08-2018 04:01:53 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "07-09-2018 02:33:32 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "07-09-2018 03:38:30 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "07-09-2018 04:09:47 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "07-09-2018 04:11:43 AM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "07-09-2018 01:40:58 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "07-09-2018 02:56:44 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogout",
+      "date": "07-09-2018 04:00:37 PM"
+    },
+    {
+      "user": "snyder, jon",
+      "action": "UserLogin",
+      "date": "07-10-2018 01:32:58 PM"
+    }
+  ]
+}
