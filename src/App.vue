@@ -4,10 +4,10 @@
     <div class="content-container">
       <transition name="page-fade"
                   mode="out-in">
-        <keep-alive>
+        <!-- <keep-alive> -->
           <!-- Give router a unique key for force render -->
           <router-view :key="$route.fullPath"></router-view>
-        </keep-alive>
+        <!-- </keep-alive> -->
       </transition>
     </div>
   </div>
