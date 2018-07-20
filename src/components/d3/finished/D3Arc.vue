@@ -1,5 +1,6 @@
 <template>
-  <path fill="#fff"
+  <path class="arc-path"
+        fill="#fff"
         :d="d" />
 </template>
 
@@ -44,3 +45,12 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.arc-path {
+  &:hover {
+    stroke: #fff;
+    stroke-width: 5;
+  }
+}
+</style>
