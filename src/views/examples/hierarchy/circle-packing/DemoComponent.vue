@@ -148,8 +148,13 @@ export default {
     })
   },
   watch: {
-    asCircle(val) {
-      if (val) this.circlePack(this.hierarchy)
+    asCircle: {
+      handler(val) {
+        if (val) {
+          this.circlePack(this.hierarchy)
+        }
+      },
+      immediate: true
     }
   }
 }

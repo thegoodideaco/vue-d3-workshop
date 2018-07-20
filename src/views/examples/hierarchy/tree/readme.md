@@ -1,4 +1,4 @@
-# Circle Packing
+# Tree Layout
 
-Circle Packing is similar to tree maps, but create a circular pattern. They are
-clustered by parent, and sized according to their value to one another.
+Tree Layouts show the hierarchy similar to the cluster layout, however the axis
+is matched based on the depth of the nodes.

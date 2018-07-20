@@ -71,12 +71,12 @@ export default {
     },
     treeMapGenerator() {
       return d3
-        .treemap()
+        .partition()
         .size(this.size)
         .round(true)
-        .padding(5)
-        .paddingTop(this.paddingTop)
-        .tile(this.curStyle || this.tileStyles[0])
+        .padding(2)
+        // .paddingTop(this.paddingTop)
+        // .tile(this.curStyle || this.tileStyles[0])
       // .paddingOuter(3)
       // .paddingInner(5)
     },
