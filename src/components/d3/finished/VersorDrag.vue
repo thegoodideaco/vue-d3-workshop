@@ -174,6 +174,16 @@ export default {
     },
     realD() {
       return this.realPath(land)
+    },
+    rotation: {
+      get() {
+        return this.r1
+      },
+      set(val) {
+        this.r1 = val
+        this.projection.rotate(val)
+        this.d = this.path(land)
+      }
     }
   }
 }
