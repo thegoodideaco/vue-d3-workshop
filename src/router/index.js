@@ -21,12 +21,12 @@ export default new Router({
         import ('@/views/overview')
     },
     ...sections,
-    {
-      path: '/conclusion',
-      name: 'Conclusion',
-      component: () =>
-        import ('@/views/conclusion')
-    },
+    // {
+    //   path: '/conclusion',
+    //   name: 'Conclusion',
+    //   component: () =>
+    //     import ('@/views/conclusion')
+    // },
     {
       path: '/resources',
       name: 'Resources',
@@ -61,6 +61,10 @@ export default new Router({
         },
       ]
     },
-    demos
+    demos,
+    {
+      path: '*',
+      redirect: '/'
+    }
   ]
 })

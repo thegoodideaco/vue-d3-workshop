@@ -1,5 +1,7 @@
 # Visualizing Hierarchies
 
+## 2D layout algorithms for visualizing hierarchical data
+
 This example shows a couple of ways that we can visualize a nested tree-like
 structure.
 

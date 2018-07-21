@@ -26,7 +26,6 @@ export default {
       dataset: null,
       size: [500, 500],
       theme: 'Spectral',
-      t: null,
       tileStyles: [d3.treemapBinary, d3.treemapSquarify]
     }
   },

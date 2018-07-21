@@ -18,7 +18,7 @@ h5 {
   font-weight: 300;
   margin-top: 0;
   margin-bottom: 10px;
-  color: #08ec86;
+  color: #03f68a;
   >span {
     font-weight: 500;
     color: saturate(#41b883, 50);
@@ -26,6 +26,10 @@ h5 {
   &.small {
     font-size: 0.8rem;
   }
+}
+
+h2 {
+  color: #f89d41;
 }
 
 a {
