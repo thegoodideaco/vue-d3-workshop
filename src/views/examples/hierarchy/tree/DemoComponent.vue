@@ -13,14 +13,17 @@
               :stroke-width="item.target.height + 1"></line>
       </g>
       <g class="nodes">
+        <d3-hierarchy-node v-for="(item, index) in descendants" :key="index + 'g'" :node-data="item" >
+          
+        </d3-hierarchy-node>
         <circle v-for="(item, index) in descendants"
                 :key="index"
                 :cx="item.y"
                 :cy="item.x"
                 r="5"
-                stroke="#fff"
+                :stroke="getNodeColor(item)"
                 stroke-width="2"
-                fill="green">
+                :fill="getNodeColor(item)">
           <title>{{item.data.name}}</title>
         </circle>
       </g>
@@ -37,7 +40,12 @@ import * as scale from 'd3-scale'
 import * as collection from 'd3-array'
 import chroma from 'chroma-js'
 
+import D3HierarchyNode from '@/components/d3/finished/D3HierarchyNode'
+
 export default {
+  components: {
+    D3HierarchyNode
+  },
   data() {
     return {
       dataset: null,
@@ -102,6 +110,16 @@ export default {
         }
       },
       immediate: true
+    }
+  },
+  methods: {
+    getNodeColor(item) {
+      // return a color depending if this is a leaf or not
+      if(item.data.leaf){
+        return 'green'
+      }else{
+        return '#fff'
+      }
     }
   }
 }

@@ -1,16 +1,35 @@
 <template>
-  <div class="fill">
-    <div class="box"
-         v-for="(item, index) in descendants"
-         :key="index"
-         :style="generateNodeStyle(item)">
+  <div class="fill"
+       @click="layoutType = layoutType !== 'partition' ? 'partition' : 'treemap'">
+    <d3-hierarchy-layout :dataset="dataset"
+                         :layout-size="size"
+                         class="reset-position"
+                         :layout-type="layoutType">
+      <template slot-scope="node">
+        <rect v-if="layoutType === 'partition' || layoutType == 'treemap'"
+              :width="node.x1 - node.x0"
+              :height="node.y1 - node.y0"
+              :x="node.x0"
+              :y="node.y0"
+              :class="{leaf: !node.data.children}"
+              :style="{transitionDelay: `${node.depth * 90}ms`}">
 
-      <slot v-bind="{item, size: hierarchy.value}">
-        <small>{{item.data.name}}</small>
-        <small>{{item.data.size}}</small>
-      </slot>
+          <title>{{node.data.name}}</title>
+        </rect>
 
-    </div>
+        <circle v-else-if="layoutType === 'pack'"
+                :r="node.r"
+                :cx="node.x"
+                :cy="node.y"
+                :class="{leaf: !node.data.children}"
+                :style="{transitionDelay: `${node.depth * 90}ms`}" />
+        <!-- <text>.
+          <title>{{data.name}}</title>
+        </text> -->
+        <!-- <text :tx="x">{{data.name}} - {{x}}</text> -->
+      </template>
+    </d3-hierarchy-layout>
+
   </div>
 </template>
 
@@ -20,13 +39,16 @@ import * as scale from 'd3-scale'
 import * as collection from 'd3-array'
 import chroma from 'chroma-js'
 
+import D3HierarchyLayout from '@/components/d3/finished/D3HierarchyLayout'
+
 export default {
   data() {
     return {
       dataset: null,
       size: [500, 500],
       theme: 'Spectral',
-      tileStyles: [d3.treemapBinary, d3.treemapSquarify]
+      tileStyles: [d3.treemapBinary, d3.treemapSquarify],
+      layoutType: 'treemap'
     }
   },
   props: {
@@ -38,6 +60,9 @@ export default {
       type: Number,
       default: 45
     }
+  },
+  components: {
+    D3HierarchyLayout
   },
   computed: {
     hierarchy() {
@@ -121,14 +146,22 @@ export default {
     },
     getAncestors(leaf) {
       return leaf.ancestors()
+    },
+    translation(x0 = 0, y0 = 0) {
+      const str = `translate(${x0}px ${y0}px)`
+      console.log(str)
+      return str
     }
   },
   mounted() {
-    this.$http.get('/static/demo_data/hierarchy/flare.json').then(res => {
+    this.$http.get('/static/demo_data/hierarchy/edisco.json').then(res => {
       this.$nextTick(() => {
         const bounds = this.$el.getBoundingClientRect()
         this.size = [bounds.width, bounds.height]
-        this.dataset = res.data
+        this.dataset = {
+          name: 'root',
+          children: res.data
+        }
       })
     })
   }
@@ -146,8 +179,27 @@ export default {
   overflow: hidden;
 }
 
+svg rect,
+svg circle {
+  transition: all 800ms ease;
+  fill: desaturate(blue, 50);
+
+  &.leaf {
+    fill: #fff;
+  }
+}
+
 .fill {
   height: 100%;
   position: relative;
+}
+
+svg.reset-position {
+  top: auto;
+  left: auto;
+}
+
+small {
+  color: #fff;
 }
 </style>

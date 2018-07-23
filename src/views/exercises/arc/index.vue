@@ -15,11 +15,6 @@
       <div class="controls">
         <div v-for="(item, index) in arcProps"
              :key="index">
-          <!-- <input type="range"
-                 :min="arcRanges[index][0]"
-                 :max="arcRanges[index][1]"
-                 v-model="arcProps[index]"
-                 step="0.1"> -->
 
           <value-slider :name="index"
                         :min="arcRanges[index][0]"
