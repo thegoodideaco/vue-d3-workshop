@@ -122,6 +122,13 @@ const webpackConfig = merge(baseWebpackConfig, {
       from: path.resolve(__dirname, '../static'),
       to: config.build.assetsSubDirectory,
       ignore: ['.*']
+    }]),
+
+    // copy custom static assets
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, '../favicon.ico'),
+      to: '',
+      ignore: ['.*']
     }])
   ]
 })

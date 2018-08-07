@@ -63,6 +63,10 @@ export default new Router({
     },
     demos,
     {
+path: '/chart',
+component: () => import('@/views/ChartView')
+    },
+    {
       path: '*',
       redirect: '/'
     }

@@ -10,7 +10,11 @@ import router from './router'
 
 import Axios from 'axios'
 import VueAxios from 'vue-axios'
-import _ from 'lodash/find'
+
+import _ from 'lodash'
+
+window._ = _
+
 
 const debug = process.env.NODE_ENV !== 'production'
 Vue.config.productionTip = debug
@@ -25,7 +29,7 @@ Vue.use(Vuebar)
 Vue.mixin({
   data() {
     return {
-      colors: chroma.scale(chroma.brewer.Spectral).colors,
+      colors: chroma.scale(chroma.brewer.Set3).colors,
       debug
     }
   }

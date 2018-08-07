@@ -13,7 +13,7 @@
               :stroke-width="item.target.height + 1"></line>
       </g>
       <g class="nodes">
-        <d3-hierarchy-node v-for="(item, index) in descendants" :key="index + 'g'" :node-data="item" >
+        <d3-hierarchy-node v-for="(item, index) in descendants" :key="index + 'g'" :node-data="item" layout-type="cluster" >
           
         </d3-hierarchy-node>
         <circle v-for="(item, index) in descendants"

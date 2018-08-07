@@ -168,7 +168,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .box {
   position: absolute;
   background-color: rgba(#fff, 0.5);

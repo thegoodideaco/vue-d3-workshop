@@ -48,6 +48,7 @@ export default {
 }
 
 nav.side-bar {
+  user-select: none;
   font-size: 0.7em;
   display: flex;
   flex-flow: column nowrap;

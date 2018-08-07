@@ -19,7 +19,10 @@ export default {
     },
     layoutType: {
       type: String,
-      required: true
+      default: 'treemap',
+      validator: v => {
+        return v === 'treemap' || v === 'partition'
+      }
     },
     autoPosition: {
       type: Object

@@ -1,33 +1,35 @@
 <template>
   <div>
-    Hello
+    Coolio
   </div>
 </template>
 
 <script>
-import * as scale from 'd3-scale'
-import * as scaleColor from 'd3-scale-chromatic'
-
-const interpolator = t => console.log(t)
+import {
+  scalePoint,
+  scaleSequential,
+  scaleQuantize,
+  scaleQuantile,
+  scaleTime,
+  scaleThreshold,
+  scaleOrdinal
+} from 'd3-scale'
 export default {
   data() {
     return {
       scales: {
-        linear: scale.scaleLinear(),
-        pow: scale.scalePow(),
-        point: scale.scalePoint(),
-        threshold: scale.scaleThreshold(),
-        ordinal: scale.scaleOrdinal(),
-        band: scale.scaleBand(),
-        point: scale.scalePoint(),
-        sqrt: scale.scaleSqrt(),
-        quantize: scale.scaleQuantize(),
-        quantile: scale.scaleQuantile(),
-        sequential: scale.scaleSequential(interpolator),
-        log: scale.scaleLog(),
-        time: scale.scaleTime()
+        scalePoint,
+        scaleSequential,
+        scaleQuantize,
+        scaleQuantile,
+        scaleTime,
+        scaleThreshold,
+        scaleOrdinal
       }
     }
   }
 }
 </script>
+
+<style>
+</style>
