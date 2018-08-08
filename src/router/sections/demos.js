@@ -61,6 +61,11 @@ export default {
           name: 'Edge Bundling',
           component: () =>
             import ('@/views/examples/hierarchy/edge-bundling')
+        },
+        {
+          path: 'email-threading',
+          name: 'Email Threading',
+          component: () => import('@/views/examples/hierarchy/threads')
         }
       ]
     }

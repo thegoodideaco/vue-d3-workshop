@@ -1,6 +1,15 @@
 <template>
   <div class="fill">
 
+    <div id="curveOptions">
+      <select v-model="selectedCurve">
+        <option v-for="item in curveOptions"
+                :key="item">
+          {{item}}
+        </option>
+      </select>
+    </div>
+
     <svg>
       <g class="edges">
         <!-- <line v-for="(item, index) in links"
@@ -51,6 +60,7 @@ import * as scale from 'd3-scale'
 import * as collection from 'd3-array'
 import { path } from 'd3-path'
 import chroma from 'chroma-js'
+import _ from 'lodash'
 
 import D3HierarchyNode from '@/components/d3/finished/D3HierarchyNode'
 
@@ -66,7 +76,9 @@ export default {
       size: [500, 500],
       theme: 'Spectral',
       root: null,
-      myPath: new path()
+      myPath: new path(),
+      curveOptions: Object.keys(shapes).filter(v => v.startsWith('curve')),
+      selectedCurve: 'curveStep'
     }
   },
   props: {
@@ -92,7 +104,7 @@ export default {
         return leafPaths.map(v => {
           const l = shapes
             .line()
-            .curve(shapes.curveStep)
+            .curve(shapes[this.selectedCurve])
             .x(v => v.y << 0)
             .y(v => v.x << 0)
 
