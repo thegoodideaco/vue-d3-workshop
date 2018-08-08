@@ -1,17 +1,32 @@
 <template>
-  <g>
-    <d3-arc v-for="(item, index) in paths"
-            :key="index"
-            :fill="colors(paths.length)[index]"
+  <svg v-if="paths">
+    <d3-arc v-for="(item, key) in paths"
+            :key="key"
+            :fill-color="colors(paths.length)[key]"
             :start-angle="item.startAngle"
-            :end-angle="item.endAngle" />
-  </g>
+            :end-angle="item.endAngle"
+            :pad-angle="item.padAngle"
+            :inner-radius="innerRadius"
+            :outer-radius="outerRadius"
+            :corner-radius="cornerRadius">
+
+      <template slot-scope="{centroid}">
+        <slot v-bind="{item, key, centroid, color: colors(paths.length)[key]}">
+        </slot>
+      </template>
+
+    </d3-arc>
+  </svg>
 </template>
 
 <script>
+import Vue from 'vue'
+import D3Arc from './D3Arc.vue'
 import * as d3 from 'd3-shape'
-import D3Arc from './finished/D3Arc'
-export default {
+import { Pie } from 'd3-shape'
+import * as chroma from 'chroma-js'
+
+export default Vue.extend({
   components: {
     D3Arc
   },
@@ -37,9 +52,28 @@ export default {
     padAngle: {
       type: Number,
       default: 0
+    },
+    innerRadius: {
+      type: Number,
+      default: 200
+    },
+    outerRadius: {
+      type: Number,
+      default: 300
+    },
+    cornerRadius: {
+      type: Number,
+      default: 0
     }
   },
   computed: {
+    // colors() {
+    //   if (this.inputDatum) {
+    //     return chroma.scale(chroma.brewer.Set2).colors(this.inputDatum.length)
+    //   } else {
+    //     return null
+    //   }
+    // },
     pieGenerator() {
       return d3
         .pie()
@@ -48,8 +82,12 @@ export default {
         .padAngle(this.padAngle)
     },
     paths() {
-      return this.pieGenerator(this.inputDatum)
+      if (this.inputDatum) {
+        return this.pieGenerator(this.inputDatum)
+      } else {
+        return []
+      }
     }
   }
-}
+})
 </script>

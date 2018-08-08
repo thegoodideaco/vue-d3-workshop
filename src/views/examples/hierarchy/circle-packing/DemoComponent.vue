@@ -53,8 +53,8 @@ export default {
     colorScale() {
       if (this.hierarchy) {
         const colors = chroma
-          .scale(chroma.brewer.BuGn)
-          .correctLightness(true)
+          .scale(chroma.brewer.Spectral)
+          // .correctLightness(true)
           .colors(100, 'hex')
         return scale
           .scaleLinear()
@@ -160,7 +160,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .box {
   position: absolute;
   background-color: rgba(#fff, 0.5);

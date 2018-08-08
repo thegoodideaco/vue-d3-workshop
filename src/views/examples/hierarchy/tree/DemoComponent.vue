@@ -3,29 +3,40 @@
 
     <svg>
       <g class="edges">
-        <line v-for="(item, index) in links"
+        <!-- <line v-for="(item, index) in links"
               :key="index"
               :x1="item.source.y"
               :y1="item.source.x"
               :x2="item.target.y"
               :y2="item.target.x"
               stroke="#fff"
-              :stroke-width="item.target.height + 1"></line>
+              :stroke-width="item.target.height + 1"></line> -->
+
+        <path v-for="(link, i) in linkPaths"
+              :key="i"
+              :d="link"
+              stroke="#fff"
+              stroke-width="2" />
       </g>
       <g class="nodes">
-        <d3-hierarchy-node v-for="(item, index) in descendants" :key="index + 'g'" :node-data="item" layout-type="cluster" >
-          
+        <d3-hierarchy-node v-for="(item, index) in descendants"
+                           :key="index + 'g'"
+                           :node-data="item"
+                           layout-type="partition">
+          <circle :cx="item.y"
+                  :cy="item.x"
+                  r="10"
+                  stroke="#fff"
+                  stroke-width="2"
+                  fill="green">
+            <title>{{item.data.name}} - {{item.value}}</title>
+          </circle>
         </d3-hierarchy-node>
-        <circle v-for="(item, index) in descendants"
-                :key="index"
-                :cx="item.y"
-                :cy="item.x"
-                r="5"
-                :stroke="getNodeColor(item)"
-                stroke-width="2"
-                :fill="getNodeColor(item)">
-          <title>{{item.data.name}}</title>
-        </circle>
+
+        <path v-if="myPath"
+              :d="myPath._"
+              stroke="#fff"
+              stroke-width="3" />
       </g>
 
     </svg>
@@ -38,9 +49,12 @@ import * as d3 from 'd3-hierarchy'
 import * as shapes from 'd3-shape'
 import * as scale from 'd3-scale'
 import * as collection from 'd3-array'
+import { path } from 'd3-path'
 import chroma from 'chroma-js'
 
 import D3HierarchyNode from '@/components/d3/finished/D3HierarchyNode'
+
+window.d3 = d3
 
 export default {
   components: {
@@ -51,7 +65,8 @@ export default {
       dataset: null,
       size: [500, 500],
       theme: 'Spectral',
-      root: null
+      root: null,
+      myPath: new path()
     }
   },
   props: {
@@ -69,14 +84,22 @@ export default {
     },
     links() {
       if (this.root) return this.root.links()
+      //  path.path().quadraticCurveTo()
     },
     linkPaths() {
       if (this.links) {
-        return this.links.map(v => {
-          return shapes
-            .linkHorizontal()
-            .source(v => v.source)
-            .target(v => v.target)(v)
+        const leafPaths = this.root.leaves().map(v => v.ancestors())
+        return leafPaths.map(v => {
+          const l = shapes
+            .line()
+            .curve(shapes.curveStep)
+            .x(v => v.y << 0)
+            .y(v => v.x << 0)
+
+          return l(v)
+          // .linkHorizontal()
+          // .source(v => [v.source.y, v.source.x])
+          // .target(v => [v.target.y, v.target.x])(v)
         })
       }
     }
@@ -89,11 +112,11 @@ export default {
         this.dataset = this.vData
       })
     } else {
-      this.$http.get('/static/demo_data/hierarchy/flare.json').then(res => {
+      this.$http.get('/static/demo_data/hierarchy/edisco.json').then(res => {
         this.$nextTick(() => {
           const bounds = this.$el.querySelector('svg').getBoundingClientRect()
           this.size = [bounds.width, bounds.height]
-          this.dataset = res.data
+          this.dataset = res.data[0]
         })
       })
     }
@@ -102,7 +125,7 @@ export default {
     dataset: {
       handler(val) {
         if (val) {
-          this.root = d3.hierarchy(this.dataset)
+          this.root = d3.hierarchy(this.dataset).count()
           // .sum(v => v.size)
           // .sort((a, b) => b.size - a.size)
           // .count()
@@ -115,10 +138,10 @@ export default {
   methods: {
     getNodeColor(item) {
       // return a color depending if this is a leaf or not
-      if(item.data.leaf){
+      if (item.data.leaf) {
         return 'green'
-      }else{
-        return '#fff'
+      } else {
+        return 'green'
       }
     }
   }
@@ -135,5 +158,13 @@ export default {
 svg {
   transform: translateY(-50%) translateX(-50%);
   padding: 5px;
+}
+
+.edges {
+  path {
+    fill: none;
+    // stroke: #fff;
+    // stroke-width: 4;
+  }
 }
 </style>

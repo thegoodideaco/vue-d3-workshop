@@ -1,14 +1,17 @@
 <template>
   <base-page>
+
     <div slot="readme"
          ref="readme"
-         v-html="readme"></div>
+         v-html="readme" />
+
     <div slot="example"
          ref="example">
       <svg>
-        <d3-pie />
+        <d3-pie :padAngle="0.02" />
       </svg>
     </div>
+
   </base-page>
 
 </template>
@@ -16,7 +19,7 @@
 <script>
 import readme from './readme'
 import BasePage from '@/views/BasePage'
-import D3Pie from '@/components/d3/D3Pie'
+import D3Pie from '@/components/d3/finished/D3Pie'
 // import WordCloud from '@/components/d3/finished/WordCloud'
 export default {
   data() {

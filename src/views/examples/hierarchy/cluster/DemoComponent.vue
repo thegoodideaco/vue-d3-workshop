@@ -1,30 +1,42 @@
 <template>
-  <svg>
-    <g class="edges">
-      <line v-for="(item, index) in links"
-            :key="index"
-            :x1="item.source.x"
-            :y1="item.source.y"
-            :x2="item.target.x"
-            :y2="item.target.y"
-            stroke="#fff"
-            :stroke-width="item.target.height + 1"></line>
-    </g>
-    <g class="nodes">
-      <circle v-for="(item, index) in descendants"
+  <div class="fill">
+    <svg ref="svg">
+      <g class="edges">
+        <line v-for="(item, index) in links"
               :key="index"
-              :cx="item.x"
-              :cy="item.y"
-              r="5"
+              :x1="item.source.y"
+              :y1="item.source.x"
+              :x2="item.target.y"
+              :y2="item.target.x"
               stroke="#fff"
-              stroke-width="2"
-              fill="green" >
-              <title>{{item.data.name}}</title>
-              </circle>
-    </g>
+              :stroke-width="item.target.height + 1"></line>
+      </g>
+      <g class="nodes">
+        <g v-for="(item, index) in descendants"
+           :key="index">
+          <circle :cx="item.y"
+                  :cy="item.x"
+                  r="10"
+                  stroke="#fff"
+                  stroke-width="2"
+                  :fill="depthFill(item)">
+            <title>{{item.data.name}} - {{item.depth}}</title>
+          </circle>
 
-  </svg>
+          <foreignObject 
+                         fill="#fff"
+                         :x="!item.children ? item.y - 50 : item.y"
+                         :y="item.x - 40">
+            <div class="text-overlay">
 
+              <span>{{item.data.name}}</span>
+            </div>
+          </foreignObject>
+        </g>
+      </g>
+
+    </svg>
+  </div>
 </template>
 
 <script>
@@ -57,23 +69,34 @@ export default {
     },
     links() {
       if (this.root) return this.root.links()
+    },
+    depthColorScale() {
+      return scale
+        .scaleOrdinal()
+        .domain([0, 1, 2, 5, 6])
+        .range(chroma.scale(chroma.brewer.Set3).colors(5))
     }
   },
   beforeMount() {
     if (this.vData) {
       this.$nextTick(() => {
-        const bounds = this.$el.getBoundingClientRect()
-        this.size = [bounds.width, bounds.height]
+        const bounds = this.$refs.svg.getBoundingClientRect()
+        this.size = [bounds.width, bounds.height].reverse()
         this.dataset = this.vData
       })
     } else {
-      this.$http.get('/static/demo_data/hierarchy/flare.json').then(res => {
+      this.$http.get('/static/demo_data/hierarchy/edisco.json').then(res => {
         this.$nextTick(() => {
-          const bounds = this.$el.getBoundingClientRect()
-          this.size = [bounds.width, bounds.height]
-          this.dataset = res.data
+          const bounds = this.$refs.svg.getBoundingClientRect()
+          this.size = [bounds.width, bounds.height].reverse()
+          this.dataset = res.data[0]
         })
       })
+    }
+  },
+  methods: {
+    depthFill(node) {
+      return this.depthColorScale(node.depth)
     }
   },
   watch: {
@@ -91,7 +114,46 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.fill {
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+  position: relative;
+}
 svg {
   transform: translateY(-50%) translateX(-50%);
+  padding: 5px;
+}
+.text-overlay {
+  white-space: nowrap;
+  background-color: rgb(100, 149, 237);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 11px;
+  border: 2px solid rgb(255, 255, 255);
+  text-rendering: optimizeLegibility;
+  text-shadow: 0 2px 4px #000;
+  font-weight: bold;
+  display: inline-block;
+  transform: translate(-50%, -50%);
+}
+.nodes {
+  text {
+    font-size: 14px;
+    stroke: rgba(141, 211, 199, 0.1);
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    stroke-width: 2;
+    stroke-linecap: butt;
+    text-shadow: 1px 0px 1px black;
+  }
+}
+
+.edges {
+  path {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 4;
+  }
 }
 </style>
