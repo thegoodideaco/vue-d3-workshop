@@ -1,25 +1,22 @@
 <template>
   <div ref="svg"
        class="fill">
-    Thread Arcs
+    <recursive-tree v-if="root" :tree-node="root">
+      did it work
+    </recursive-tree>
 
     <svg>
-      <circle v-for="(item, index) in descendants"
-              :key="index"
-              :cx="item.depth * 20"
-              :cy="item.depth * 40 * index"
-              fill="#fff"
-              r="5">
+      <thread-arc v-for="(item, index) in descendants"
+                  :key="index"
+                  :tree-node="item"
+                  :root-node="root">
 
-        <title>work please {{index}}</title>
+        <title slot="circle">{{item.data.name}} {{item.value}}</title>
 
-      </circle>
+        <text>{{item.data.name}} - {{item.depth ? item.depth : 0}} - {{item.value}}</text>
 
-      <text v-for="(item, tindex) in descendants"
-            :key="tindex"
-            class="title-text"
-            :x="(item.depth * 20) + 15"
-            :y="item.depth * 40 * tindex">{{item.data.name}}</text>
+      </thread-arc>
+
     </svg>
   </div>
 
@@ -33,12 +30,18 @@ import * as collection from 'd3-array'
 import { path } from 'd3-path'
 import chroma from 'chroma-js'
 import _ from 'lodash'
+import ThreadArc from './ThreadArc'
+import RecursiveTree from './RecursiveTree'
 
 import D3HierarchyNode from '@/components/d3/finished/D3HierarchyNode'
 
+// window.d3 = d3
+
 export default {
   components: {
-    D3HierarchyNode
+    D3HierarchyNode,
+    ThreadArc,
+    RecursiveTree
   },
   data() {
     return {
@@ -85,7 +88,19 @@ export default {
     dataset: {
       handler(val) {
         if (val) {
-          this.root = d3.hierarchy(this.dataset).count()
+          // debugger
+          this.root = d3
+            .hierarchy(this.dataset)
+            // .sum(d => d.children && d.children.length ? d.children.length : 0)
+            .sum(d => d.size)
+            .count()
+            .sort(function(a, b) {
+              return b.height - a.height || b.value - a.value
+            }).each(n => {
+              Object.assign(n, {
+                y: n.parent ? n.parent.y + 50 : 0
+              })
+            })
         }
       },
       immediate: true
@@ -110,5 +125,9 @@ svg {
     fill: #fff;
     dominant-baseline: central;
   }
+}
+
+.thread-arc {
+  fill: #fff;
 }
 </style>

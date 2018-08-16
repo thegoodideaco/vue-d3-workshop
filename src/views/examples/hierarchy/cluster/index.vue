@@ -53,12 +53,12 @@ export default {
   flex-flow: column nowrap;
   .svg-inner {
     margin-top: 10px;
-    overflow: hidden;
+    overflow: visible;
     width: 100%;
     height: 100%;
     flex: 1 1 100%;
-    border-color: #1cdd87;
-    border-style: dashed;
+    // border-color: #1cdd87;
+    // border-style: dashed;
   }
 }
 </style>
