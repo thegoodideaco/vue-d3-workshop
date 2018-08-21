@@ -7,7 +7,7 @@
          ref="example">
       <!-- <word-cloud v-bind="cloudOptions" /> -->
       <geo-map ref="map"
-               @mousedown.native="stopAnimation()"
+               @mousedown.left.native="stopAnimation()"
                @mouseup.native="onMouseUp" />
     </div>
   </base-page>
@@ -40,7 +40,7 @@ export default {
     animate(id) {
       this.curRotation[0]++
       if (this.$refs.map) this.$refs.map.rotation = this.curRotation
-      console.log('wtf')
+      // console.log('wtf')
       if (!this.curAnimation) this.curAnimation = id
       if (this.animating) return requestAnimationFrame(this.animate)
     },
