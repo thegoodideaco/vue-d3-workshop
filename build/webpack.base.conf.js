@@ -25,6 +25,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      '@d3': resolve('src/components/d3/finished'),
       '@data': resolve('static/demo_data'),
       '@md': resolve('static/markdown')
     }

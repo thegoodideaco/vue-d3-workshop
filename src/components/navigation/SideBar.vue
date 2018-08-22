@@ -43,10 +43,6 @@ export default {
 </script>
 
 <style lang="scss">
-* {
-  box-sizing: border-box;
-}
-
 nav.side-bar {
   user-select: none;
   font-size: 0.7em;

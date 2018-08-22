@@ -10,6 +10,11 @@ export default {
         import ('@/views/examples/scaling')
     },
     {
+      path: 'axis',
+      name: 'Axis',
+      component: () => import('@/views/examples/axis')
+    },
+    {
       path: 'versor',
       name: 'Versor Dragging',
       component: () =>
@@ -65,7 +70,8 @@ export default {
         {
           path: 'email-threading',
           name: 'Email Threading',
-          component: () => import('@/views/examples/hierarchy/threads')
+          component: () =>
+            import ('@/views/examples/hierarchy/threads')
         }
       ]
     }

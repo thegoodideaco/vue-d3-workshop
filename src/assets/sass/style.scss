@@ -3,6 +3,12 @@
 @import './_ui-controls';
 @import './_vue-slider';
 @import './_markdown';
+
+
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   font-size: 20px;
@@ -81,8 +87,7 @@ div.page-container {
   article {
     //     display: flex;
     //     flex-flow: column nowrap;
-    flex: 0 1 auto; //        width: 450px;
-    max-width: 550px; //   height: 100%;
+    flex: 0 0 500px; //   height: 100%;
     //     padding-right: 50px;
     img {
       max-width: 100%;
@@ -145,8 +150,8 @@ div.page-container {
   }
 }
 
-
-.gpu, .vb-content {
+.gpu,
+.vb-content {
   transform: translateZ(0);
   position: relative;
 }
