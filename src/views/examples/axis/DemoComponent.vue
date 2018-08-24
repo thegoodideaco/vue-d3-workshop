@@ -1,31 +1,30 @@
 <template>
-  <div class="fill">
-    <svg v-if="dataset"
-         :viewBox="viewBox">
-      <d3-line :dataset="lineData" />
-      <!-- <circle v-for="(item, index) in points"
-              :key="index"
-              v-bind="item.positioning"
-              fill="white" /> -->
-    </svg>
+  <div class="fill"
+       ref="container">
+
+    <!-- SVG Chart -->
+    <chart-example :dataset="dataset">
+      <text slot="yAxis" slot-scope="{value}">{{value}}</text>
+    </chart-example>
+
   </div>
 </template>
 
 <script>
-import * as scales from 'd3-scale'
 import * as d3 from 'd3-fetch'
 import * as axis from 'd3-axis'
 import _ from 'lodash'
+import ChartExample from './ChartExample'
 
 export default {
   data() {
     return {
-      dataset: null,
-      size: [300, 300]
+      axis: axis.axisTop(),
+      dataset: null
     }
   },
 
-  // Once created, load the data
+  //* Once created, load / Transform the data
   created() {
     d3.csv('/static/demo_data/time/browser-usage.csv').then(res => {
       // Convert the dataset into multiple arrays for each browser
@@ -40,7 +39,13 @@ export default {
             }
 
             if (obj[0] !== 'date') {
-              prev.browsers[obj[0]].push(_.toNumber(obj[1]))
+              const percent = _.toNumber(obj[1])
+
+              // Populate the browser
+              prev.browsers[obj[0]].push(percent)
+
+              // Update maxPercentage
+              prev.maxPercent = Math.max(percent, prev.maxPercent)
             } else {
               prev.dates.push(new Date(obj[1]))
             }
@@ -50,86 +55,71 @@ export default {
         },
         {
           dates: [],
-          browsers: {}
+          browsers: {},
+          maxPercent: 0
         }
       )
     })
   },
 
-  mounted() {
-    this.$nextTick(() => {
-      const bounds = this.$el.getBoundingClientRect()
-      this.size = [_.toInteger(bounds.width), _.toInteger(bounds.height)]
-    })
-  },
-
   components: {
-    D3Line: () => import('@d3/D3Line')
-  },
-
-  computed: {
-    timeScale() {
-      if (!this.dataset) return
-      const beginTime = new Date(_.first(this.dataset.dates))
-      const endTime = new Date(_.last(this.dataset.dates))
-
-      return scales
-        .scaleTime()
-        .range([0, this.size[0]])
-        .domain([beginTime, endTime])
-    },
-    yScale() {
-      if (!this.dataset) return
-
-      return scales
-        .scaleLinear()
-        .range([0, this.size[1]])
-        .domain([100, 0])
-    },
-    viewBox() {
-      return `0 0 ${this.size[0]} ${this.size[1]}`
-    },
-    points() {
-      if (!this.dataset) return
-
-      return this.dataset.browsers['Firefox'].map((v, i) => {
-        const date = this.dataset.dates[i]
-        const cx = this.timeScale(date)
-        const cy = this.yScale(v)
-        const r = 2
-        return {
-          positioning: {
-            cx,
-            cy,
-            r
-          }
-        }
-      })
-    },
-    lineData() {
-      if (this.points) {
-        return this.points.map(v => {
-          return [v.positioning.cx, v.positioning.cy]
-        })
-      }
-    }
+    D3Axis: () => import('./D3Axis'),
+    ChartExample
   }
 }
 </script>
 
 <style lang="scss" scoped>
 div.fill {
-  // padding-left: 100px;
-  // padding-right: 10px;
-  border: 1px solid #fff;
+  padding-left: 200px;
+  padding-right: 10px;
+  padding-bottom: 100px;
+  padding-top: 100px;
+  border: 1px solid rgba(#fff, 0.5);
+}
+
+.tickerx,
+.tickery {
+  fill: #fff;
+
+  text {
+    text-anchor: end;
+  }
 }
 
 svg {
   left: auto;
   top: auto;
-
+  width: 100%;
+  height: 100%;
+  border: 1px solid #fff;
   path {
     stroke-width: 2px;
+
+    &.google-chrome {
+      stroke: green;
+    }
+    &.firefox {
+      stroke: orange;
+    }
+    &.microsoft-edge {
+      stroke: lighten(blue, 20);
+    }
+    &.internet-explorer {
+      stroke: blue;
+    }
+    &.opera {
+      stroke: red;
+    }
+    &.safari {
+      stroke: yellow;
+    }
+    &.mozilla {
+      stroke: orange;
+    }
+    &.other-unknown {
+      stroke: pink;
+    }
   }
 }
 </style>

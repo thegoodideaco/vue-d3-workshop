@@ -1,7 +1,5 @@
 <template>
-  <g>
-    <path :d="d"></path>
-  </g>
+  <path :d="_d"></path>
 </template>
 
 <script>
@@ -18,16 +16,29 @@ export default {
       default() {
         return [[12, 50], [40, 70], [50, 10], [80, 30], [143, 90], [180, 20]]
       }
+    },
+    xGetter: {
+      type: Function,
+      default: v => v[0]
+    },
+    yGetter: {
+      type: Function,
+      default: v => v[1]
+    },
+    curve: {
+      type: Function,
+      default: d3.curveLinear
     }
   },
   computed: {
-    d() {
+    _d() {
       return (
         d3
           .line()
           // .curve(curveCardinal)
-          .x(v => v[0])
-          .y(v => v[1])(this.dataset)
+          .curve(this.curve)
+          .x(this.xGetter)
+          .y(this.yGetter)(this.dataset)
       )
     }
   }
@@ -38,8 +49,5 @@ export default {
 path {
   fill: none;
   stroke: #fff;
-  // stroke-width: 5px;
-
-  transition: all 1500ms ease;
 }
 </style>
