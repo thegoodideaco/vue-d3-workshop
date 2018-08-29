@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <article v-bar>
+    <article class="readme" v-bar>
       <section ref="cloudContent">
         <div>
           <div class="section-content">
