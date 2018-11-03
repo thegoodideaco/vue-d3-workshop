@@ -96,7 +96,7 @@ the path definition. Let's try it out
           fill="none"
           stroke-width="5"
           :d="d" />
-    <circle r="20"
+    <circle r="10"
             v-for="(item, index) in dataset"
             :cx="item[0]"
             :cy="item[1]"
@@ -121,7 +121,9 @@ export default {
     onClick(item) {
       console.log('this is the item!', item)
       this.curve =
-        this.curve === 'curveStepAfter' ? 'curveStepBefore' : 'curveStepAfter'
+        this.curve === 'curveStepAfter'
+         ? 'curveStepBefore'
+         : 'curveStepAfter'
 
       // Let's flip the data just cause!
       this.dataset = _.shuffle(this.dataset)

@@ -1,10 +1,10 @@
 <template>
   <svg>
-    <path stroke="#fff"
+    <path stroke="rgba(255, 255, 255, 0.5)"
           fill="none"
           stroke-width="5"
           :d="d" />
-    <circle r="20"
+    <circle r="10"
             v-for="(item, index) in dataset"
             :cx="item[0]"
             :cy="item[1]"

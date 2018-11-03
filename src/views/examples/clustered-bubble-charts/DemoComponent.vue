@@ -25,6 +25,7 @@ const fillColor = d3
   .range(chroma.scale(chroma.brewer.Set2).colors(8))
 
 export default {
+  name: 'Clustered Bubble Charts',
   data() {
     return {
       fillColor,
@@ -185,6 +186,7 @@ export default {
 <style scoped>
 .fill {
   height: 100%;
+  transform: translateZ(0);
 }
 
 circle {

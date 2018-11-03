@@ -27,6 +27,7 @@ import { Pie } from 'd3-shape'
 import * as chroma from 'chroma-js'
 
 export default Vue.extend({
+  name: 'D3 Pie Chart',
   components: {
     D3Arc
   },

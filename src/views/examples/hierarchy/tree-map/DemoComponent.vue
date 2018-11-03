@@ -21,6 +21,7 @@ import * as collection from 'd3-array'
 import chroma from 'chroma-js'
 
 export default {
+  name: 'Tree Map',
   data() {
     return {
       dataset: null,

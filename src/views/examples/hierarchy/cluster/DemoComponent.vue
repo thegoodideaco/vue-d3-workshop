@@ -8,8 +8,8 @@
               :y1="item.source.x"
               :x2="item.target.y"
               :y2="item.target.x"
-              stroke="#fff"
-              :stroke-width="item.target.height + 1"></line>
+              stroke="#000"
+              :stroke-width="item.target.height + 2"></line>
       </g>
       <g class="nodes">
         <g v-for="(item, index) in descendants"
@@ -17,13 +17,13 @@
           <circle :cx="item.y"
                   :cy="item.x"
                   r="10"
-                  stroke="#fff"
-                  stroke-width="2"
+                  stroke="#000"
+                  stroke-width="4"
                   :fill="depthFill(item)">
             <title>{{item.data.name}} - {{item.depth}}</title>
           </circle>
 
-          <foreignObject 
+          <!-- <foreignObject 
                          fill="#fff"
                          :x="!item.children ? item.y - 50 : item.y"
                          :y="item.x - 40">
@@ -31,7 +31,7 @@
 
               <span>{{item.data.name}}</span>
             </div>
-          </foreignObject>
+          </foreignObject> -->
         </g>
       </g>
 
@@ -123,6 +123,10 @@ export default {
 svg {
   transform: translateY(-50%) translateX(-50%);
   padding: 5px;
+  width: 480px;
+  height: 210px;
+
+
 }
 .text-overlay {
   white-space: nowrap;

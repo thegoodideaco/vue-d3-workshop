@@ -1,236 +1,209 @@
-[
-    {
-        "name": "Custodians",
+[{
+  "name": "Custodians",
+  "id": null,
+  "size": 405,
+  "y": 0,
+  "children": [{
+    "name": "No Custodian",
+    "id": null,
+    "size": 405,
+    "y": 0,
+    "children": [{
+        "name": "MD-(03160.pst",
         "id": null,
-        "size": 405,
+        "size": 195,
         "y": 0,
-        "children": [
+        "children": [{
+          "name": "Archive PST Store",
+          "id": null,
+          "size": 195,
+          "y": 0,
+          "children": [{
+            "name": "Inbox",
+            "id": null,
+            "size": 195,
+            "y": 0,
+            "children": [{
+              "name": "M",
+              "id": null,
+              "size": 195,
+              "y": 0,
+              "children": null,
+              "data": null,
+              "drilldown": null,
+              "folderId": 25,
+              "colorByPoint": false
+            }],
+            "data": null,
+            "drilldown": null,
+            "folderId": 24,
+            "colorByPoint": false
+          }],
+          "data": null,
+          "drilldown": null,
+          "folderId": 23,
+          "colorByPoint": false
+        }],
+        "data": null,
+        "drilldown": null,
+        "folderId": 22,
+        "colorByPoint": false
+      },
+      {
+        "name": "MD.PST",
+        "id": null,
+        "size": 57,
+        "y": 0,
+        "children": [{
+          "name": "Archive PST Store",
+          "id": null,
+          "size": 57,
+          "y": 0,
+          "children": [{
+              "name": "Inbox",
+              "id": null,
+              "size": 57,
+              "y": 0,
+              "children": null,
+              "data": null,
+              "drilldown": null,
+              "folderId": 28,
+              "colorByPoint": false
+            },
             {
-                "name": "No Custodian",
+              "name": "Outbox",
+              "id": null,
+              "size": 57,
+              "y": 0,
+              "children": null,
+              "data": null,
+              "drilldown": null,
+              "folderId": 28,
+              "colorByPoint": false
+            }
+          ],
+          "data": null,
+          "drilldown": null,
+          "folderId": 27,
+          "colorByPoint": false
+        }],
+        "data": null,
+        "drilldown": null,
+        "folderId": 26,
+        "colorByPoint": false
+      },
+      {
+        "name": "MD.pst",
+        "id": null,
+        "size": 153,
+        "y": 0,
+        "children": [{
+            "name": "Archive PST Store",
+            "id": null,
+            "size": 153,
+            "y": 0,
+            "children": [{
+              "name": "Inbox",
+              "id": null,
+              "size": 153,
+              "y": 0,
+              "children": [{
+                "name": "Dec16-31",
                 "id": null,
-                "size": 405,
+                "size": 153,
                 "y": 0,
-                "children": [
-                    {
-                        "name": "MD-(03160.pst",
-                        "id": null,
-                        "size": 195,
-                        "y": 0,
-                        "children": [
-                            {
-                                "name": "Archive PST Store",
-                                "id": null,
-                                "size": 195,
-                                "y": 0,
-                                "children": [
-                                    {
-                                        "name": "Inbox",
-                                        "id": null,
-                                        "size": 195,
-                                        "y": 0,
-                                        "children": [
-                                            {
-                                                "name": "M",
-                                                "id": null,
-                                                "size": 195,
-                                                "y": 0,
-                                                "children": null,
-                                                "data": null,
-                                                "drilldown": null,
-                                                "folderId": 25,
-                                                "colorByPoint": false
-                                            }
-                                        ],
-                                        "data": null,
-                                        "drilldown": null,
-                                        "folderId": 24,
-                                        "colorByPoint": false
-                                    }
-                                ],
-                                "data": null,
-                                "drilldown": null,
-                                "folderId": 23,
-                                "colorByPoint": false
-                            }
-                        ],
-                        "data": null,
-                        "drilldown": null,
-                        "folderId": 22,
-                        "colorByPoint": false
-                    },
-                    {
-                        "name": "MD.PST",
-                        "id": null,
-                        "size": 57,
-                        "y": 0,
-                        "children": [
-                            {
-                                "name": "Archive PST Store",
-                                "id": null,
-                                "size": 57,
-                                "y": 0,
-                                "children": [
-                                    {
-                                        "name": "Inbox",
-                                        "id": null,
-                                        "size": 57,
-                                        "y": 0,
-                                        "children": null,
-                                        "data": null,
-                                        "drilldown": null,
-                                        "folderId": 28,
-                                        "colorByPoint": false
-                                    },
-                                    {
-                                        "name": "Outbox",
-                                        "id": null,
-                                        "size": 57,
-                                        "y": 0,
-                                        "children": null,
-                                        "data": null,
-                                        "drilldown": null,
-                                        "folderId": 28,
-                                        "colorByPoint": false
-                                    }
-                                ],
-                                "data": null,
-                                "drilldown": null,
-                                "folderId": 27,
-                                "colorByPoint": false
-                            }
-                        ],
-                        "data": null,
-                        "drilldown": null,
-                        "folderId": 26,
-                        "colorByPoint": false
-                    },
-                    {
-                        "name": "MD.pst",
-                        "id": null,
-                        "size": 153,
-                        "y": 0,
-                        "children": [
-                            {
-                                "name": "Archive PST Store",
-                                "id": null,
-                                "size": 153,
-                                "y": 0,
-                                "children": [
-                                    {
-                                        "name": "Inbox",
-                                        "id": null,
-                                        "size": 153,
-                                        "y": 0,
-                                        "children": [
-                                            {
-                                                "name": "Dec16-31",
-                                                "id": null,
-                                                "size": 153,
-                                                "y": 0,
-                                                "children": null,
-                                                "data": null,
-                                                "drilldown": null,
-                                                "folderId": 32,
-                                                "colorByPoint": false
-                                            }
-                                        ],
-                                        "data": null,
-                                        "drilldown": null,
-                                        "folderId": 31,
-                                        "colorByPoint": false
-                                    }
-                                ],
-                                "data": null,
-                                "drilldown": null,
-                                "folderId": 30,
-                                "colorByPoint": false
-                            },
-                            {
-                                "name": "Archive PST Store",
-                                "id": null,
-                                "size": 153,
-                                "y": 0,
-                                "children": [
-                                    {
-                                        "name": "Inbox",
-                                        "id": null,
-                                        "size": 153,
-                                        "y": 0,
-                                        "children": [
-                                            {
-                                                "name": "Dec16-31",
-                                                "id": null,
-                                                "size": 153,
-                                                "y": 0,
-                                                "children": null,
-                                                "data": null,
-                                                "drilldown": null,
-                                                "folderId": 32,
-                                                "colorByPoint": false
-                                            }
-                                        ],
-                                        "data": null,
-                                        "drilldown": null,
-                                        "folderId": 31,
-                                        "colorByPoint": false
-                                    }
-                                ],
-                                "data": null,
-                                "drilldown": null,
-                                "folderId": 30,
-                                "colorByPoint": false
-                            },
-                            {
-                                "name": "Archive PST Store",
-                                "id": null,
-                                "size": 153,
-                                "y": 0,
-                                "children": [
-                                    {
-                                        "name": "Inbox",
-                                        "id": null,
-                                        "size": 153,
-                                        "y": 0,
-                                        "children": [
-                                            {
-                                                "name": "Dec16-31",
-                                                "id": null,
-                                                "size": 153,
-                                                "y": 0,
-                                                "children": null,
-                                                "data": null,
-                                                "drilldown": null,
-                                                "folderId": 32,
-                                                "colorByPoint": false
-                                            }
-                                        ],
-                                        "data": null,
-                                        "drilldown": null,
-                                        "folderId": 31,
-                                        "colorByPoint": false
-                                    }
-                                ],
-                                "data": null,
-                                "drilldown": null,
-                                "folderId": 30,
-                                "colorByPoint": false
-                            }
-                        ],
-                        "data": null,
-                        "drilldown": null,
-                        "folderId": 29,
-                        "colorByPoint": false
-                    }
-                ],
+                "children": null,
                 "data": null,
                 "drilldown": null,
-                "folderId": 21,
+                "folderId": 32,
                 "colorByPoint": false
-            }
+              }],
+              "data": null,
+              "drilldown": null,
+              "folderId": 31,
+              "colorByPoint": false
+            }],
+            "data": null,
+            "drilldown": null,
+            "folderId": 30,
+            "colorByPoint": false
+          },
+          {
+            "name": "Archive PST Store",
+            "id": null,
+            "size": 153,
+            "y": 0,
+            "children": [{
+              "name": "Inbox",
+              "id": null,
+              "size": 153,
+              "y": 0,
+              "children": [{
+                "name": "Dec16-31",
+                "id": null,
+                "size": 153,
+                "y": 0,
+                "children": null,
+                "data": null,
+                "drilldown": null,
+                "folderId": 32,
+                "colorByPoint": false
+              }],
+              "data": null,
+              "drilldown": null,
+              "folderId": 31,
+              "colorByPoint": false
+            }],
+            "data": null,
+            "drilldown": null,
+            "folderId": 30,
+            "colorByPoint": false
+          },
+          {
+            "name": "Archive PST Store",
+            "id": null,
+            "size": 153,
+            "y": 0,
+            "children": [{
+              "name": "Inbox",
+              "id": null,
+              "size": 153,
+              "y": 0,
+              "children": [{
+                "name": "Dec16-31",
+                "id": null,
+                "size": 153,
+                "y": 0,
+                "children": null,
+                "data": null,
+                "drilldown": null,
+                "folderId": 32,
+                "colorByPoint": false
+              }],
+              "data": null,
+              "drilldown": null,
+              "folderId": 31,
+              "colorByPoint": false
+            }],
+            "data": null,
+            "drilldown": null,
+            "folderId": 30,
+            "colorByPoint": false
+          }
         ],
         "data": null,
         "drilldown": null,
-        "folderId": 20,
+        "folderId": 29,
         "colorByPoint": false
-    }
-]
+      }
+    ],
+    "data": null,
+    "drilldown": null,
+    "folderId": 21,
+    "colorByPoint": false
+  }],
+  "data": null,
+  "drilldown": null,
+  "folderId": 20,
+  "colorByPoint": false
+}]

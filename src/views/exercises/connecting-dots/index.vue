@@ -31,7 +31,7 @@ export default {
   },
   components: {
     WordCloud,
-    DemoComponent: () => import('./component'),
+    DemoComponent: () => import('./finished.vue'),
     BasePage
   },
   mounted() {

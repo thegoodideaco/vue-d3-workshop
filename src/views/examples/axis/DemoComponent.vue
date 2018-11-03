@@ -23,7 +23,8 @@
            fill="yellow">
         <rect width="100%"
               height="100%"
-              fill="yellow" />
+              fill="yellow"
+              :transform="transformStyle" />
         <d3-axis class="axis"
                  :scale="axisScale" />
       </svg>
@@ -102,9 +103,9 @@ export default {
       this.zoomer.on('zoom', v => {
         const e = select.event
 
-        if (e.type === 'zoom') {
+        // if (e.type === 'zoom') {
           this.zoomProps = e.transform
-        }
+        // }
         // debugger
       })
 
@@ -129,6 +130,16 @@ export default {
         .translateExtent([[-100, -100], [this.size[1] + 90, this.size[1] + 90]])
 
       return z
+    },
+    transformStyle() {
+      if (this.zoomProps) {
+        const {
+          k,
+          x,
+          y
+        } = this.zoomProps
+        return `translate(${x},${y}) scale(${k})`
+      }
     }
   },
 

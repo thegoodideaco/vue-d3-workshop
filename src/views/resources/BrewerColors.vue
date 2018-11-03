@@ -29,7 +29,7 @@ import { mapValues, reduce } from 'lodash'
 const brewerColors = reduce(
   mapValues(chroma.brewer),
   (prev, curr, k, obj) => {
-    console.log(prev, curr, k, obj)
+    // console.log(prev, curr, k, obj)
     if (k.match(/([A-Z])/g) !== null) {
       prev[k] = curr
     }
