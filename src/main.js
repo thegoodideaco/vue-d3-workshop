@@ -35,6 +35,20 @@ Vue.mixin({
   }
 })
 
+if (debug) {
+  Vue.mixin({
+    methods: {
+      openInEditor() {
+        return Axios.get('__open-in-editor', {
+          params: {
+            file: this.$options.__file
+          }
+        })
+      }
+    }
+  })
+}
+
 /* eslint-disable no-new */
 // you can see what
 new Vue({
