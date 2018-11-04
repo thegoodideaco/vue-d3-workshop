@@ -2,7 +2,7 @@
   <base-page>
     <div slot="readme"
          ref="readme"
-         v-html="readme"></div>
+         v-html="readme()"></div>
     <div slot="example"
          ref="example">
       <word-cloud :value="cloudText"
@@ -21,7 +21,7 @@ import WordCloud from '@/components/d3/finished/WordCloud'
 export default {
   data() {
     return {
-      readme,
+      readme: () => readme,
       cloudText: null,
       svgSize: [1000, 1000],
       rotations: [0, 360],

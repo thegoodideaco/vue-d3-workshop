@@ -9,19 +9,35 @@
           y="-50%"
           fill="#203243" />
     <path fill="#1cdd87"
-          :d="d" />
+          :d="d()" />
     <rec></rec>
   </svg>
 
 </template>
 
 <script>
+import Vue from 'vue'
 import * as d3 from 'd3-geo'
 import * as topojson from 'topojson-client'
 import versor from 'versor'
 import dataset from '@/assets/geo/110m.json'
 
 const land = topojson.feature(dataset, dataset.objects.land)
+const projection = d3
+        // .geoAzimuthalEquidistant()
+        // .geoAzimuthalEqualArea()
+        // .geoGnomonic()
+        // .geoOrthographic()
+        // .geoStereographic()
+        // .geoConicConformal()
+        // .geoConicEqualArea()
+        // .geoConicEquidistant()
+        // .geoEquirectangular()
+        // .geoMercator()
+        // .geoTransverseMercator()
+        .geoNaturalEarth1()
+        .translate([0, 0])
+        .precision(0.1)
 
 export default {
   data() {
@@ -72,14 +88,18 @@ export default {
         .geoNaturalEarth1()
         .translate([0, 0])
         .precision(0.1),
-      path: null,
+      // path: null,
       v0: null, // Mouse position in Cartesian coordinates at start of drag gesture.
       r0: null, // Projection rotation as Euler angles at start.
       q0: null, // Projection rotation as versor at start.,
       v1: null, // Mouse position in Cartesian coordinates at start of drag gesture.
       r1: null, // Projection rotation as Euler angles at start.
       q1: null, // Projection rotation as versor at start.,
-      d: null
+      // d: null,
+      // $pathData: {
+        d: null,
+        path: null
+      // }
     }
   },
   props: {
@@ -90,8 +110,7 @@ export default {
   },
   beforeMount() {
     this.path = d3.geoPath().projection(this.projection)
-
-    this.d = this.path(land)
+    this.d = () => this.path(land)
   },
   watch: {
     projectorType: {
@@ -101,7 +120,7 @@ export default {
           this.projection.rotate(this.r1)
         }
         this.path = d3.geoPath().projection(this.projection)
-        this.d = this.path(land)
+        this.d = () => this.path(land)
       },
       immediate: true
     }
@@ -143,7 +162,8 @@ export default {
 
       this.projection.rotate(this.r1)
 
-      this.d = this.path(land)
+      this.$options._d = this.path(land)
+      this.d = () => this.$options._d
     },
     onDragEnd(event) {
       window.removeEventListener('mousemove', this.onDrag)
@@ -169,12 +189,12 @@ export default {
         .translate([0, 0])
         .precision(0.1)
     },
-    realPath() {
-      return d3.geoPath().projection(this.realProjection)
-    },
-    realD() {
-      return this.realPath(land)
-    },
+    // realPath() {
+    //   return this.$options._d
+    // },
+    // realD() {
+    //   return this.realPath(land)
+    // },
     rotation: {
       get() {
         return this.r1
@@ -182,10 +202,13 @@ export default {
       set(val) {
         this.r1 = val
         this.projection.rotate(val)
-        this.d = this.path(land)
+        // this.$options._d = this.path(land)
+        this.d = () => this.path(land)
+        // Vue.set(this.$options, '_d', this.path(land))
       }
     }
-  }
+  },
+  _d: null
 }
 </script>
 

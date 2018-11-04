@@ -1,5 +1,5 @@
 <template>
-  <base-page>
+  <base-page v-cloak>
 
     <!-- Readme -->
     <div slot="readme"
@@ -11,24 +11,26 @@
          class="example"
          ref="example">
 
-      <!-- Example Controls -->
-      <div class="controls">
-        <div v-for="(item, index) in arcProps"
-             :key="index">
+      <div>
+        <!-- SVG -->
+        <svg>
+          <d3-arc v-bind="arcProps" ref="demo" />
+        </svg>
 
-          <value-slider :name="index"
-                        :min="arcRanges[index][0]"
-                        :max="arcRanges[index][1]"
-                        :step="0.001"
-                        v-model.number="arcProps[index]" />
+        <!-- Example Controls -->
+        <div class="controls">
+          <div v-for="(item, index) in arcProps"
+               :key="index">
+
+            <value-slider :name="index"
+                          :min="arcRanges[index][0]"
+                          :max="arcRanges[index][1]"
+                          :step="0.001"
+                          v-model.number="arcProps[index]" />
+          </div>
+
         </div>
-
       </div>
-
-      <!-- SVG -->
-      <svg>
-        <d3-arc v-bind="arcProps" />
-      </svg>
 
     </div>
   </base-page>
@@ -38,7 +40,7 @@
 <script>
 import readme from './readme'
 import BasePage from '@/views/BasePage'
-// import D3Arc from '@/components/d3/D3Arc'
+import D3Arc from '@/components/d3/D3Arc'
 import ValueSlider from '@/components/base/ValueSlider'
 export default {
   data() {
@@ -61,7 +63,8 @@ export default {
     }
   },
   components: {
-    D3Arc: () => import('@/components/d3/D3Arc'),
+    // D3Arc: () => import('@/components/d3/D3Arc'),
+    D3Arc,
     BasePage,
     ValueSlider
   }
@@ -69,6 +72,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.example > div {
+  display: grid;
+  // grid: max-content 1fr / 100%;
+  grid:
+    [row1-start] 'controls' max-content [row1-end]
+    [row2-start] 'demo' 1fr [row2-end]
+    / 100%;
+
+  height: 100%;
+
+  > svg {
+    grid-area: demo;
+  }
+
+  > .controls {
+    grid-area: controls;
+  }
+}
 .controls {
   display: flex;
 

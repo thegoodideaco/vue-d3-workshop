@@ -3,7 +3,14 @@ export default {
   name: 'Demos',
   component: () =>
     import ('@/views/examples'),
-  children: [{
+  children: [
+    {
+      path: 'parallelcoords',
+      name: 'Parallel Coords',
+      component: () =>
+        import ('@/views/examples/parallelcoords')
+    },
+    {
       path: 'scales',
       name: 'Scales',
       component: () =>
@@ -61,18 +68,18 @@ export default {
           component: () =>
             import ('@/views/examples/hierarchy/circle-packing')
         },
-        {
-          path: 'edge-bundling',
-          name: 'Edge Bundling',
-          component: () =>
-            import ('@/views/examples/hierarchy/edge-bundling')
-        },
-        {
-          path: 'email-threading',
-          name: 'Email Threading',
-          component: () =>
-            import ('@/views/examples/hierarchy/threads')
-        }
+        // {
+        //   path: 'edge-bundling',
+        //   name: 'Edge Bundling',
+        //   component: () =>
+        //     import ('@/views/examples/hierarchy/edge-bundling')
+        // },
+        // {
+        //   path: 'email-threading',
+        //   name: 'Email Threading',
+        //   component: () =>
+        //     import ('@/views/examples/hierarchy/threads')
+        // }
       ]
     }
   ]

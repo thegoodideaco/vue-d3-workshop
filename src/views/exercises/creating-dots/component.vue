@@ -13,6 +13,7 @@
 <script>
 import dataset from './dataset'
 export default {
+  name: 'creating-dots',
   data() {
     return {
       dataset

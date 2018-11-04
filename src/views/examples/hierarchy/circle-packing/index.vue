@@ -10,11 +10,10 @@
 
       <div class="svg-inner">
         <demo-component ref="layout">
-          <div class="fill"
-               slot-scope="{item, size}"
-               @click="randomizeStyle($event, item)">
-
-          </div>
+          <template slot-scope="slotData">
+            <circle-display class="fill"
+                 v-bind="slotData" />
+          </template>
         </demo-component>
       </div>
     </div>
@@ -26,6 +25,7 @@
 import readme from './readme'
 import BasePage from '@/views/BasePage'
 import MarkdownUtils from '@/utils/mixins/MarkdownUtils'
+import CircleDisplay from './CircleItem.vue'
 export default {
   mixins: [MarkdownUtils],
   data() {
@@ -35,6 +35,7 @@ export default {
   },
   components: {
     DemoComponent: () => import('./DemoComponent'),
+    CircleDisplay,
     BasePage
   },
   methods: {

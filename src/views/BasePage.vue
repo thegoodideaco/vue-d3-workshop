@@ -20,7 +20,7 @@
 
     <!-- Top Controls -->
     <div class="top-controls animated faster slideInDown">
-      <h4>{{componentName}}</h4>
+      <h4>{{componentName | titleCased}}</h4>
       <button @click="openComponent"><span class="fa fa-fw fa-external-link"></span> Open in editor</button>
     </div>
 
@@ -35,10 +35,20 @@
 </template>
 
 <script>
+import startCase from 'lodash/startCase'
+const _ = {startCase}
 export default {
   data() {
     return {
       demoComponent: null
+    }
+  },
+  props: {
+
+  },
+  filters: {
+    titleCased(str) {
+      return _.startCase(str)
     }
   },
   methods: {
@@ -50,12 +60,16 @@ export default {
   mounted() {
     // console.log(this.$children[0].$options.__file)
     if (!this.demoComponent) {
-      this.demoComponent = this.$children[0]
+      this.$nextTick(() => {
+        this.demoComponent = this.$refs.demo ||this.$children[0]
+      })
     }
   },
   updated() {
     if (!this.demoComponent) {
-      this.demoComponent = this.$children[0]
+      this.$nextTick(() => {
+        this.demoComponent = this.$refs.demo ||this.$children[0]
+      })
     }
   },
   computed: {
@@ -117,7 +131,7 @@ $btn-color: #41b883;
   grid:
     [row1-start] 'readme controls' min-content [row1-end]
     [row2-start] 'readme demo' 1fr [row2-end]
-    / minmax(25%, min-content) 1fr;
+    / minmax(35%, min-content) 1fr;
 
   > * {
     &:first-child {

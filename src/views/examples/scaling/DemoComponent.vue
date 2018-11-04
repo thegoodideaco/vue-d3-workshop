@@ -15,6 +15,7 @@ import {
   scaleOrdinal
 } from 'd3-scale'
 export default {
+  name: 'D3-Scale-Demos',
   data() {
     return {
       scales: {

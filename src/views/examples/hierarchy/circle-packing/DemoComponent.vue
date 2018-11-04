@@ -28,7 +28,7 @@ export default {
       theme: 'Spectral',
       t: null,
       tileStyles: [d3.treemapBinary, d3.treemapSquarify],
-      asCircle: false
+      asCircle: true
     }
   },
   props: {
@@ -53,13 +53,13 @@ export default {
     colorScale() {
       if (this.hierarchy) {
         const colors = chroma
-          .scale(chroma.brewer.Spectral)
+          .scale(chroma.brewer.BuPu)
           // .correctLightness(true)
           .colors(100, 'hex')
         return scale
           .scaleLinear()
           .domain(collection.ticks(0, this.hierarchy.value, colors.length))
-          .nice(100)
+          // .nice(100)
           .range(colors)
       }
     },
@@ -84,8 +84,8 @@ export default {
       return this.tileStyles[this.tileStyle || 0]
     },
     treemap() {
-      if (this.treeMapGenerator && this.hierarchy)
-        return this.treeMapGenerator(this.hierarchy)
+      if (this.circlePack && this.hierarchy)
+        return this.circlePack(this.hierarchy)
     },
     packer() {
       if (this.circlePack && this.hierarchy) {
@@ -141,6 +141,7 @@ export default {
   beforeMount() {
     this.$http.get('/static/demo_data/hierarchy/flare.json').then(res => {
       this.$nextTick(() => {
+        
         const bounds = this.$el.getBoundingClientRect()
         this.size = [bounds.width, bounds.height]
         this.dataset = res.data
@@ -154,7 +155,7 @@ export default {
           this.circlePack(this.hierarchy)
         }
       },
-      immediate: true
+      // immediate: true
     }
   }
 }

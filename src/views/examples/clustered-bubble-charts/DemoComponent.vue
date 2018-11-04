@@ -25,7 +25,7 @@ const fillColor = d3
   .range(chroma.scale(chroma.brewer.Set2).colors(8))
 
 export default {
-  name: 'Clustered Bubble Charts',
+  name: 'clustered-bubble-charts',
   data() {
     return {
       fillColor,

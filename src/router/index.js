@@ -31,7 +31,7 @@ export default new Router({
       path: '/resources',
       name: 'Resources',
       component: () =>
-        import ('@/views/PageView'),
+        import ('@/views/resources'),
       redirect: {
         name: 'Brewer Colors'
       },

@@ -1,11 +1,12 @@
 <template>
   <path fill="yellow"
-  :d="d"/>
+  :d="arcGenerator()"/>
 </template>
 
 <script>
 import * as d3 from 'd3-shape'
 export default {
+  name: 'D3-Arc',
   props: {
     innerRadius: {
       type: Number,
@@ -37,9 +38,6 @@ export default {
         .cornerRadius(this.cornerRadius)
         .startAngle(this.startAngle)
         .endAngle(this.endAngle)
-    },
-    d() {
-      return this.arcGenerator()
     }
   }
 }
