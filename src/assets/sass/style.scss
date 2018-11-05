@@ -123,6 +123,8 @@ div.page-container {
   align-items: center;
   justify-content: center;
   flex: 1 1 auto;
+  overflow: hidden;
+  padding: 50px;
 //   margin-left: auto;
   circle {
     cursor: pointer;

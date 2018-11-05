@@ -1,5 +1,7 @@
 <template>
-  <svg class="parallel-coords">
+  <svg class="parallel-coords"
+       :width="width"
+       :height="height">
 
     <!-- Will contain all of the lines -->
     <!-- <g class="datum-display">
@@ -10,10 +12,12 @@
             stroke-width="1.5"
             :d="line(item)" />
     </g> -->
-    <g class="datum-display">
+    <g class="datum-display"
+       v-if="hugeLine()">
       <path fill="transparent"
             stroke="rgba(255,255,255,0.2)"
             stroke-width="1.5"
+            class="path-render"
             :d="hugeLine()" />
     </g>
 
@@ -43,7 +47,9 @@ export default {
     return {
       sampled: [],
       // These will contain the y values of each item, named by dimension key
-      yValues: {}
+      yValues: {},
+
+      viewBox: null
     }
   },
   components: {
@@ -99,6 +105,7 @@ export default {
           .scaleLinear()
           .domain([min, max])
           .range([this.height, 0])
+          .clamp(false)
 
         prev.push(scale)
         this.yValues[k] = scale
@@ -116,6 +123,11 @@ export default {
         .domain(this.dimensionKeys)
         .range([0, this.width])
     }
+  },
+
+  // set original value
+  mounted() {
+    this.viewBox = `0 0 ${this.width} ${this.height}`
   },
   methods: {
     line(datum) {
@@ -138,10 +150,15 @@ export default {
       )
     },
     hugeLine() {
-      return this.dataset.map(v => this.line(v)).join()
+      if (this.dataset) {
+        return this.dataset.map(v => this.line(v)).join()
+      }
     },
     randomSample(amount) {
       this.sampled = _.sampleSize(this.dataset, amount)
+    },
+    refreshViewbox() {
+      this.viewBox = `0 0 ${this.width} ${this.height}`
     }
   },
   watch: {
@@ -156,8 +173,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.parallel-coords {
+.path-render {
   shape-rendering: optimizeSpeed;
+  stroke-opacity: 0.4;
+  stroke: #fff;
 }
 .datum-display {
   transform: translateZ(0);
