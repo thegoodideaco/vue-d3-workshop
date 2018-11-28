@@ -27,9 +27,3 @@ each dimension column, swapping placements with other columns accordingly.
 ## Data Structure
 
 Considering that the data needs to be a collection of things with the same dimension properties, by default the structure it looks for is a json-type format.
-
-A simple example can be something such as
-
-```json
-
-```

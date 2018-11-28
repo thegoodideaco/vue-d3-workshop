@@ -33,16 +33,9 @@ export default {
     }
   },
   beforeCreate() {
-    d3.csv('/static/demo_data/time/browser-usage.csv').then(d => {
+    d3.csv('/static/demo_data/cars.csv').then(d => {
       this.updateDimensions()
-      this.dataset = d.map(v => {
-        return {
-          ...v,
-          date: new Date(v.date)
-        }
-      })
-
-      this.sampled = _.sampleSize(this.dataset, 100)
+      this.dataset = d
     })
   },
   methods: {

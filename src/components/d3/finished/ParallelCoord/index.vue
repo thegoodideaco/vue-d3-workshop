@@ -37,6 +37,7 @@
 <script>
 import * as d3 from 'd3'
 import _ from 'lodash'
+import * as crossfilter from 'crossfilter2'
 import DimensionColumn from './DimensionColumn.vue'
 // const
 const bundle = d3.curveBundle
@@ -49,7 +50,9 @@ export default {
       // These will contain the y values of each item, named by dimension key
       yValues: {},
 
-      viewBox: null
+      viewBox: null,
+
+      filtered: null
     }
   },
   components: {
@@ -86,6 +89,26 @@ export default {
         return Object.keys(this.dataset[0]).filter(v => {
           return this.ignoredDimensions.some(b => b !== v)
         })
+      }
+    },
+
+    cross() {
+      if(this.dataset) {
+        const cf = crossfilter(this.dataset)
+        cf.onChange(v => {
+            this.filtered = cf.allFiltered()
+            console.log('col')
+        })
+        return cf
+      }
+    },
+
+    dimensions() {
+      if(this.cross){
+        return this.dimensionKeys.reduce((prev, v) => {
+          prev[v] = this.cross.dimension(d => d[v]).filterAll()
+          return prev
+        }, {})
       }
     },
 
