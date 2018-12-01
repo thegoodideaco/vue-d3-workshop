@@ -4,7 +4,7 @@ AMC Ambassador DPL,15,8,390,190,3850,8.5,70
 AMC Ambassador SST,17,8,304,150,3672,11.5,72
 AMC Concord DL 6,20.2,6,232,90,3265,18.2,79
 AMC Concord DL,18.1,6,258,120,3410,15.1,78
-AMC Concord DL,23,4,151,,3035,20.5,82
+AMC Concord DL,23,4,151,0,3035,20.5,82
 AMC Concord,19.4,6,232,90,3210,17.2,78
 AMC Concord,24.3,4,151,90,3003,20.1,80
 AMC Gremlin,18,6,232,100,2789,15,73
@@ -25,7 +25,7 @@ AMC Matador,16,6,258,110,3632,18,74
 AMC Matador,18,6,232,100,3288,15.5,71
 AMC Pacer D/L,17.5,6,258,95,3193,17.8,76
 AMC Pacer,19,6,232,90,3211,17,75
-AMC Rebel SST (Wagon),,8,360,175,3850,11,70
+AMC Rebel SST (Wagon),0,8,360,175,3850,11,70
 AMC Rebel SST,16,8,304,150,3433,12,70
 AMC Spirit DL,27.4,4,121,80,2670,15,79
 Audi 100 LS,20,4,114,91,2582,14,73
@@ -65,7 +65,7 @@ Chevrolet Caprice Classic,17.5,8,305,145,3880,12.5,77
 Chevrolet Cavalier 2-Door,34,4,112,88,2395,18,82
 Chevrolet Cavalier Wagon,27,4,112,88,2640,18.6,82
 Chevrolet Cavalier,28,4,112,88,2605,19.6,82
-Chevrolet Chevelle Concours (Wagon),,8,350,165,4142,11.5,70
+Chevrolet Chevelle Concours (Wagon),0,8,350,165,4142,11.5,70
 Chevrolet Chevelle Concours (Wagon),13,8,307,130,4098,14,72
 Chevrolet Chevelle Malibu Classic,16,6,250,100,3781,17,74
 Chevrolet Chevelle Malibu Classic,17.5,8,305,140,4215,13,76
@@ -110,7 +110,7 @@ Chrysler Lebaron Salon,17.6,6,225,85,3465,16.6,81
 Chrysler Lebaron Town & Country (Wagon),18.5,8,360,150,3940,13,79
 Chrysler New Yorker Brougham,13,8,440,215,4735,11,73
 Chrysler Newport Royal,13,8,400,190,4422,12.5,72
-Citroen DS-21 Pallas,,4,133,115,3090,17.5,70
+Citroen DS-21 Pallas,0,4,133,115,3090,17.5,70
 Datsun 1200,35,4,72,69,1613,18,71
 Datsun 200SX,23.9,4,119,97,2405,14.9,78
 Datsun 200SX,32.9,4,119,100,2615,14.8,81
@@ -202,11 +202,11 @@ Ford LTD,13,8,351,158,4363,13,73
 Ford LTD,14,8,351,148,4657,13.5,75
 Ford Maverick,15,6,250,72,3158,19.5,75
 Ford Maverick,18,6,250,88,3021,16.5,73
-Ford Maverick,21,6,200,,2875,17,74
+Ford Maverick,21,6,200,0,2875,17,74
 Ford Maverick,21,6,200,85,2587,16,70
 Ford Maverick,24,6,200,81,3012,17.6,76
-Ford Mustang Boss 302,,8,302,140,3353,8,70
-Ford Mustang Cobra,23.6,4,140,,2905,14.3,80
+Ford Mustang Boss 302,0,8,302,140,3353,8,70
+Ford Mustang Cobra,23.6,4,140,0,2905,14.3,80
 Ford Mustang GL,27,4,140,86,2790,15.6,82
 Ford Mustang II 2+2,25.5,4,140,89,2755,15.8,77
 Ford Mustang II,13,8,302,129,3169,12,75
@@ -216,12 +216,12 @@ Ford Pinto Runabout,21,4,122,86,2226,16.5,72
 Ford Pinto,18,6,171,97,2984,14.5,75
 Ford Pinto,19,4,122,85,2310,18.5,73
 Ford Pinto,23,4,140,83,2639,17,75
-Ford Pinto,25,4,98,,2046,19,71
+Ford Pinto,25,4,98,0,2046,19,71
 Ford Pinto,26,4,122,80,2451,16.5,74
 Ford Pinto,26.5,4,140,72,2565,13.6,76
 Ford Ranger,28,4,120,79,2625,18.6,82
 Ford Thunderbird,16,8,351,149,4335,14.5,77
-Ford Torino (Wagon),,8,351,153,4034,11,70
+Ford Torino (Wagon),0,8,351,153,4034,11,70
 Ford Torino 500,19,6,250,88,3302,15.5,71
 Ford Torino,17,8,302,140,3449,10.5,70
 Hi 1200D,9,8,304,193,4732,18.5,70
@@ -308,7 +308,7 @@ Plymouth Horizon,34.2,4,105,70,2200,13.2,79
 Plymouth Reliant,27.2,4,135,84,2490,15.7,81
 Plymouth Reliant,30,4,135,84,2385,12.9,81
 Plymouth Sapporo,23.2,4,156,105,2745,16.7,78
-Plymouth Satellite (Wagon),,8,383,175,4166,10.5,70
+Plymouth Satellite (Wagon),0,8,383,175,4166,10.5,70
 Plymouth Satellite Custom (Wagon),14,8,318,150,4077,14,72
 Plymouth Satellite Custom,16,6,225,105,3439,15.5,71
 Plymouth Satellite Sebring,18,6,225,105,3613,16.5,74
@@ -337,10 +337,10 @@ Pontiac Sunbird Coupe,24.5,4,151,88,2740,16,77
 Pontiac Ventura Sj,18.5,6,250,110,3645,16.2,76
 Renault 12 (Wagon),26,4,96,69,2189,18,72
 Renault 12TL,27,4,101,83,2202,15.3,76
-Renault 18I,34.5,4,100,,2320,15.8,81
+Renault 18I,34.5,4,100,0,2320,15.8,81
 Renault 5 Gtl,36,4,79,58,1825,18.6,77
-Renault Lecar Deluxe,40.9,4,85,,1835,17.3,80
-Saab 900S,,4,121,110,2800,15.4,81
+Renault Lecar Deluxe,40.9,4,85,0,1835,17.3,80
+Saab 900S,0,4,121,110,2800,15.4,81
 Saab 99E,25,4,104,95,2375,17.5,70
 Saab 99GLE,21.6,4,121,115,2795,15.7,78
 Saab 99LE,24,4,121,110,2660,14,73
@@ -396,7 +396,7 @@ Volkswagen Rabbit,29,4,90,70,1937,14.2,76
 Volkswagen Rabbit,29.5,4,97,71,1825,12.2,76
 Volkswagen Rabbit,41.5,4,98,76,2144,14.7,80
 Volkswagen Scirocco,31.5,4,89,71,1990,14.9,78
-Volkswagen Super Beetle 117,,4,97,48,1978,20,71
+Volkswagen Super Beetle 117,0,4,97,48,1978,20,71
 Volkswagen Super Beetle,26,4,97,46,1950,21,73
 Volkswagen Type 3,23,4,97,54,2254,23.5,72
 Volvo 144EA,19,4,121,112,2868,15.5,73

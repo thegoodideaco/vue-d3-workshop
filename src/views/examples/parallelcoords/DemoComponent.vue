@@ -1,11 +1,19 @@
 <template>
-  <div class="fill">
-    <parallel-coord class="coord"
+  <div class="fill content">
+    <parallel-coord v-if="dataset"
+                    class="coord"
                     ref="svg"
                     :ignored-dimensions="['name']"
                     :dataset="dataset"
                     :curve-name="curveName"
-                    v-bind="dimensions" />
+                    v-bind="dimensions"
+                    :include-keys="['cylinders', '0-60 mph (s)', 'power (hp)', 'year']"
+                    @filtered="output = $event" />
+
+    <ag-grid-vue class="ag-theme-material"
+                 v-if="dataset"
+                 v-bind="tableOptions" />
+
   </div>
 </template>
 
@@ -14,22 +22,44 @@ import * as d3 from 'd3'
 import _ from 'lodash'
 const curveNames = Object.keys(d3).filter(v => v.startsWith('curve'))
 
+import { AgGridVue } from 'ag-grid-vue'
+
 export default {
   name: 'Parallel-Coords',
   components: {
     ParallelCoord: () =>
-      import('@/components/d3/finished/ParallelCoord/index.vue')
+      import('@/components/d3/finished/ParallelCoord/index.vue'),
+    AgGridVue
   },
   data() {
     return {
       dataset: null,
       sampled: null,
+      output: [],
       dimensions: {
         width: 700,
-        height: 700,
+        height: 700
         // viewBox: '0 0 700 700'
       },
       curveName: 'curveLinear'
+    }
+  },
+  computed: {
+    tableOptions() {
+      return {
+        rowData: this.output,
+        pagination: true,
+        columnDefs: this.output[0]
+          ? Object.keys(this.output[0]).map(v => {
+              return {
+                // headerName: 'Col A',
+                field: v
+              }
+            })
+          : null,
+        enableSorting: true,
+        enableColResize: true
+      }
     }
   },
   beforeCreate() {
@@ -68,7 +98,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 svg.coord {
   left: 0;
   top: 0;
@@ -80,5 +110,13 @@ svg.coord {
     stroke-width: 1px;
     stroke-linecap: round;
   }
+}
+
+.content {
+  display: grid;
+  grid: 50% 50% / 100%;
+  row-gap: 15px;
+  position: relative;
+  height: 100%;
 }
 </style>

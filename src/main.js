@@ -13,6 +13,10 @@ import VueAxios from 'vue-axios'
 
 import _ from 'lodash'
 
+import 'ag-grid/src/styles/ag-grid.scss'
+import 'ag-grid/src/styles/ag-theme-balham-dark.scss'
+import 'ag-grid/src/styles/ag-theme-material.scss'
+
 window._ = _
 
 
@@ -30,7 +34,7 @@ Vue.mixin({
   data() {
     return {
       colors: chroma.scale(chroma.brewer.Set3).colors,
-      debug
+      _debug: debug
     }
   }
 })

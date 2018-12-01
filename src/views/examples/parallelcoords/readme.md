@@ -1,9 +1,6 @@
 # Parallel Coords
 
-**Parallel coordinates** are a common way of visualizing
-[high‑dimensional](/wiki/High‑dimensional 'High‑dimensional')
-[geometry](/wiki/Geometry 'Geometry') and analyzing
-[multivariate data](/wiki/Multivariate_data 'Multivariate data').
+**Parallel coordinates** are a common way of visualizing Multivariate data.
 
 ## Use Case
 

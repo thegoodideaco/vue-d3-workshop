@@ -12,6 +12,9 @@
     "serve": "http-server dist -o"
   },
   "dependencies": {
+    "ag-grid": "^18.1.2",
+    "ag-grid-community": "^19.1.4",
+    "ag-grid-vue": "^19.1.2",
     "animate.css": "^3.7.0",
     "axios": "^0.18.0",
     "chroma-js": "^1.4.1",
