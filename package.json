@@ -1,9 +1,12 @@
 {
-  "name": "d3-workshop-v2",
-  "version": "0.1.0",
+  "name": "vue-d3-workshop",
+  "version": "1.0.0",
+  "description": "A Vue.js project",
+  "author": "Jonathan Snyder <jon.jsstudios@gmail.com>",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
@@ -58,6 +61,10 @@
     "typescript": "^3.0.0",
     "vue-cli-plugin-webpack-bundle-analyzer": "^1.2.0",
     "vue-template-compiler": "^2.5.17"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
   },
   "postcss": {
     "plugins": {
