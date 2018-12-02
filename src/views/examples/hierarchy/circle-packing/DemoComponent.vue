@@ -56,11 +56,13 @@ export default {
           .scale(chroma.brewer.BuPu)
           // .correctLightness(true)
           .colors(100, 'hex')
-        return scale
-          .scaleLinear()
-          .domain(collection.ticks(0, this.hierarchy.value, colors.length))
-          // .nice(100)
-          .range(colors)
+        return (
+          scale
+            .scaleLinear()
+            .domain(collection.ticks(0, this.hierarchy.value, colors.length))
+            // .nice(100)
+            .range(colors)
+        )
       }
     },
     circlePack() {
@@ -104,7 +106,7 @@ export default {
       let x = leaf.x0
       let y = leaf.y0
       let width = leaf.x1 - leaf.x0
-      let height = leaf.y1 - leaf.y0
+      const height = leaf.y1 - leaf.y0
 
       if (this.asCircle) {
         x = leaf.x - leaf.r
@@ -116,7 +118,7 @@ export default {
       const b = chroma(c).luminance()
 
       // const transDelay = this.treemap.
-      let options = {
+      const options = {
         left: 0,
         transform: `translate3d(${x}px, ${y}px, 0)`,
         width: `${width}px`,
@@ -126,7 +128,7 @@ export default {
         borderRadius: this.asCircle ? '50%' : '0'
       }
 
-      options.transitionDelay = `${this.dataset.height / leaf.height * 100}ms`
+      options.transitionDelay = `${(this.dataset.height / leaf.height) * 100}ms`
 
       if (Math.sqrt(width * width + height * height) < 400) {
         options.fontSize = '10px'
@@ -141,7 +143,6 @@ export default {
   beforeMount() {
     this.$http.get('/static/demo_data/hierarchy/flare.json').then(res => {
       this.$nextTick(() => {
-        
         const bounds = this.$el.getBoundingClientRect()
         this.size = [bounds.width, bounds.height]
         this.dataset = res.data
@@ -154,7 +155,7 @@ export default {
         if (val) {
           this.circlePack(this.hierarchy)
         }
-      },
+      }
       // immediate: true
     }
   }

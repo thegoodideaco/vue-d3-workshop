@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import readme from './readme'
-import BasePage from '@/views/BasePage'
+import readme from './readme.md'
+import BasePage from '@/views/BasePage.vue'
 import MarkdownUtils from '@/utils/mixins/MarkdownUtils'
 import TreemapSection from './TreemapSection'
 export default {

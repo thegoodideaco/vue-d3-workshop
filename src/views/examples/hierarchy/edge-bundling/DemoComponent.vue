@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import * as d3 from 'd3-hierarchy'
 import * as scale from 'd3-scale'
 import * as collection from 'd3-array'
@@ -47,7 +47,7 @@ export default {
         return d3
           .hierarchy(this.dataset)
           .sum(v => v.size || 0)
-          .sort((a, b) => b.size - a.size || b.height - a.height)
+          .sort((a: any, b: any) => b.size - a.size || b.height - a.height)
       }
     },
     colorScale() {
@@ -55,7 +55,7 @@ export default {
         const colors = chroma
           .scale(chroma.brewer.BuGn)
           .correctLightness(true)
-          .colors(100, 'hex')
+          .colors(100, 'hex') as any as ReadonlyArray<number>
         return scale
           .scaleLinear()
           .domain(collection.ticks(0, this.hierarchy.value, colors.length))
@@ -116,14 +116,16 @@ export default {
       const b = chroma(c).luminance()
 
       // const transDelay = this.treemap.
-      let options = {
+      const options = {
         left: 0,
         transform: `translate3d(${x}px, ${y}px, 0)`,
         width: `${width}px`,
         height: `${height}px`,
         backgroundColor: c,
         color: '#000',
-        borderRadius: this.asCircle ? '50%' : '0'
+        borderRadius: this.asCircle ? '50%' : '0',
+        transitionDelay: '',
+        fontSize: ''
       }
 
       options.transitionDelay = `${this.dataset.height / leaf.height * 100}ms`

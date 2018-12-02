@@ -105,8 +105,8 @@ export default {
           const l = shapes
             .line()
             .curve(shapes[this.selectedCurve])
-            .x(v => v.y << 0)
-            .y(v => v.x << 0)
+            .x(vv => vv.y << 0)
+            .y(vv => vv.x << 0)
 
           return l(v)
           // .linkHorizontal()

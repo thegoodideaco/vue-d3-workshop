@@ -16,8 +16,8 @@
 
 <script>
 import * as d3 from 'd3-shape'
-import _ from 'lodash/shuffle'
-import dataset from './dataset'
+import shuffle from 'lodash/shuffle'
+import dataset from './dataset.json'
 export default {
   name: 'connecting-dots',
   data() {
@@ -33,7 +33,7 @@ export default {
         this.curve === 'curveStepAfter' ? 'curveStepBefore' : 'curveStepAfter'
 
       // Let's flip the data just cause!
-      this.dataset = _.shuffle(this.dataset)
+      this.dataset = shuffle(this.dataset)
     }
   },
   computed: {

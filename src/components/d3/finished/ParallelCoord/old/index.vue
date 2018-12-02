@@ -93,18 +93,18 @@ export default {
     },
 
     cross() {
-      if(this.dataset) {
+      if (this.dataset) {
         const cf = crossfilter(this.dataset)
         cf.onChange(v => {
-            this.filtered = cf.allFiltered()
-            console.log('col')
+          this.filtered = cf.allFiltered()
+          console.log('col')
         })
         return cf
       }
     },
 
     dimensions() {
-      if(this.cross){
+      if (this.cross) {
         return this.dimensionKeys.reduce((prev, v) => {
           prev[v] = this.cross.dimension(d => d[v]).filterAll()
           return prev

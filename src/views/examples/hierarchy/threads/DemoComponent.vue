@@ -1,7 +1,8 @@
 <template>
   <div ref="svg"
        class="fill">
-    <recursive-tree v-if="root" :tree-node="root">
+    <recursive-tree v-if="root"
+                    :tree-node="root">
       did it work
     </recursive-tree>
 
@@ -13,7 +14,8 @@
 
         <title slot="circle">{{item.data.name}} {{item.value}}</title>
 
-        <text>{{item.data.name}} - {{item.depth ? item.depth : 0}} - {{item.value}}</text>
+        <text>{{item.data.name}} - {{item.depth ? item.depth : 0}} -
+          {{item.value}}</text>
 
       </thread-arc>
 
@@ -22,7 +24,7 @@
 
 </template>
 
-<script>
+<script lang="ts">
 import * as d3 from 'd3-hierarchy'
 import * as shapes from 'd3-shape'
 import * as scale from 'd3-scale'
@@ -30,14 +32,15 @@ import * as collection from 'd3-array'
 import { path } from 'd3-path'
 import chroma from 'chroma-js'
 import _ from 'lodash'
-import ThreadArc from './ThreadArc'
-import RecursiveTree from './RecursiveTree'
+import ThreadArc from './ThreadArc.vue'
+import RecursiveTree from './RecursiveTree.vue'
 
-import D3HierarchyNode from '@/components/d3/finished/D3HierarchyNode'
+import D3HierarchyNode from '@/components/d3/finished/D3HierarchyNode.vue'
+import Vue from 'vue'
 
 // window.d3 = d3
 
-export default {
+export default Vue.extend({
   components: {
     D3HierarchyNode,
     ThreadArc,
@@ -47,7 +50,7 @@ export default {
     return {
       dataset: null,
       size: [500, 500],
-      root: null
+      root: null as d3.HierarchyNode<any> | any
     }
   },
   props: {
@@ -94,11 +97,12 @@ export default {
             // .sum(d => d.children && d.children.length ? d.children.length : 0)
             .sum(d => d.size)
             .count()
-            .sort(function(a, b) {
+            .sort((a: any, b: any) => {
               return b.height - a.height || b.value - a.value
-            }).each(n => {
+            })
+            .each(n => {
               Object.assign(n, {
-                y: n.parent ? n.parent.y + 50 : 0
+                y: n.parent ? (n.parent as any).y + 50 : 0
               })
             })
         }
@@ -106,7 +110,7 @@ export default {
       immediate: true
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

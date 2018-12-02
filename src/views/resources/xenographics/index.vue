@@ -15,17 +15,18 @@
 </template>
 
 <script>
-import readme from './readme'
-import BasePage from '@/views/BasePage'
-import WordCloud from '@/components/d3/finished/WordCloud'
-export default {
+import readme from './readme.md'
+import BasePage from '@/views/BasePage.vue'
+import WordCloud from '@/components/d3/finished/WordCloud.vue'
+import Vue from 'vue'
+export default Vue.extend({
   data() {
     return {
       readme,
       cloudText: null,
       svgSize: [1000, 1000],
       rotations: [0, 360],
-      seansRadius: v => (Math.random() > 0.5 ? 0 : 90 * Math.PI / 180)
+      seansRadius: (v) => (Math.random() > 0.5 ? 0 : 90 * Math.PI / 180)
     }
   },
   components: {
@@ -40,5 +41,5 @@ export default {
       this.cloudText = this.$refs.readme.innerText
     })
   }
-}
+})
 </script>

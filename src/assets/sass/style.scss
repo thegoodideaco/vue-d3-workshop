@@ -15,6 +15,7 @@ body {
   font-size: 20px;
   font-family: 'Lato', Arial, sans-serif;
   font-weight: 300;
+  height: 100%;
 }
 
 h1,
@@ -65,7 +66,7 @@ a {
   -moz-osx-font-smoothing: grayscale;
   background-color: #203243;
   color: #fcfcfc;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 $page-transition-speed: 200ms;

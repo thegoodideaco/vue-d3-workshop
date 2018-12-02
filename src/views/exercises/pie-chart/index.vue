@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import readme from './readme'
-import BasePage from '@/views/BasePage'
-import D3Pie from '@/components/d3/finished/D3Pie'
-// import WordCloud from '@/components/d3/finished/WordCloud'
+import readme from './readme.md'
+import BasePage from '@/views/BasePage.vue'
+import D3Pie from '@/components/d3/finished/D3Pie.vue'
+// import WordCloud from '@/components/d3/finished/WordCloud.vue'
 export default {
   data() {
     return {

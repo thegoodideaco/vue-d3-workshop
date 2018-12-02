@@ -1,15 +1,17 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import 'animate.css'
-import 'normalize.css'
-import chroma from 'chroma-js'
 import Vue from 'vue'
-import Vuebar from 'vuebar'
-import App from './App'
-import router from './router'
-
+import App from './App.vue'
+import router from './router/index'
+import store from './store'
 import Axios from 'axios'
 import VueAxios from 'vue-axios'
+import './registerServiceWorker'
+
+import 'animate.css'
+import 'normalize.css'
+import '@/assets/sass/style.scss'
+
+import chroma from 'chroma-js'
+import Vuebar from 'vuebar'
 
 import _ from 'lodash'
 
@@ -17,11 +19,11 @@ import 'ag-grid/src/styles/ag-grid.scss'
 import 'ag-grid/src/styles/ag-theme-balham-dark.scss'
 import 'ag-grid/src/styles/ag-theme-material.scss'
 
-window._ = _
-
+(window as any)._ = _
 
 const debug = process.env.NODE_ENV !== 'production'
-Vue.config.productionTip = debug
+
+Vue.config.productionTip = false
 Vue.config.performance = debug
 
 Vue.use(VueAxios, Axios)
@@ -45,7 +47,7 @@ if (debug) {
       openInEditor() {
         return Axios.get('__open-in-editor', {
           params: {
-            file: this.$options.__file
+            file: (this.$options as any).__file
           }
         })
       }
@@ -53,13 +55,8 @@ if (debug) {
   })
 }
 
-/* eslint-disable no-new */
-// you can see what
 new Vue({
-  el: '#app',
   router,
-  components: {
-    App
-  },
-  template: '<App/>'
-})
+  store,
+  render: (h) => h(App)
+}).$mount('#app')

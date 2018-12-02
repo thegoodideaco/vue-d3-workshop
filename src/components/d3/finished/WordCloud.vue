@@ -26,18 +26,19 @@
   </svg>
 </template>
 
-<script>
+<script lang="ts">
 import _ from 'lodash'
 import * as d3 from 'd3-scale'
 import chroma from 'chroma-js'
 import cloud from 'd3-cloud'
+import Vue from 'vue'
 
 const co = chroma.scale(chroma.brewer.Greens)
 
 /**
  * https://github.com/jasondavies/d3-cloud
  */
-export default {
+export default Vue.extend({
   data() {
     return {
       dataset: [],
@@ -47,14 +48,14 @@ export default {
       color: d3
         .scaleLinear()
         .domain([0, 9])
-        .range(co.colors(3)),
+        .range(co.colors(3) as any),
       onEnd: v => {
-        this.dataset = v
+        this.$data.dataset = v
           .map(n => {
             return {
               ...n,
               style: {
-                fill: this.color(n.value),
+                fill: this.$data.color(n.value),
                 // transform: `translate3d(${n.x}px, ${n.y}px, 0) rotateZ(${
                 //   n.rotate
                 // }rad)`,
@@ -79,6 +80,7 @@ export default {
     value: {
       type: String,
       default:
+        // tslint:disable-next-line:max-line-length
         'Design creates stories, and stories create memorable experiences, and great experiences change the way in which we view our world.'
     },
     size: {
@@ -91,7 +93,7 @@ export default {
       type: [Number, Function],
       default() {
         // return 0
-        return v => (Math.random() > 0.5 ? 0 : 90 * Math.PI / 180)
+        return v => (Math.random() > 0.5 ? 0 : (90 * Math.PI) / 180)
       }
     },
     padding: {
@@ -99,7 +101,8 @@ export default {
       default: 20
     },
     immediate: {
-      type: Boolean
+      type: Boolean,
+      default: true
     }
   },
   watch: {
@@ -116,7 +119,7 @@ export default {
           }
 
           // Get the unique words, and their frequency
-          let ds = Object.entries(
+          let ds: any = Object.entries(
             _.words(val).reduce((stats, word) => {
               if (stats.hasOwnProperty(word)) {
                 stats[word] += 1
@@ -127,7 +130,7 @@ export default {
             }, [])
           )
           // convert it to a dataset that the cloud will write to
-          ds = ds.map(v => {
+          ds = ds.map((v: any[]) => {
             return {
               text: v[0],
               value: v[1]
@@ -135,11 +138,11 @@ export default {
           })
 
           // Sort it by frequency
-          ds.sort((a, b) => {
+          ds.sort((a: any, b: any) => {
             return b.value - a.value
           })
 
-          let max = 50
+          const max = 50
 
           // if it's more than 50, sample it
           if (ds.length > max) {
@@ -153,7 +156,7 @@ export default {
           }
         })
       },
-      immediate: this.immediate ? true : false
+      immediate: true
     }
   },
   computed: {
@@ -175,7 +178,7 @@ export default {
         .domain(this.scaleDomain)
     }
   }
-}
+})
 </script>
 
 <style scoped lang="scss">

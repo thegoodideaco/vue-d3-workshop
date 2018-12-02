@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import readme from './readme'
-import BasePage from '@/views/BasePage'
-import WordCloud from '@/components/d3/finished/WordCloud'
+import readme from './readme.md'
+import BasePage from '@/views/BasePage.vue'
+import WordCloud from '@/components/d3/finished/WordCloud.vue'
 export default {
   data() {
     return {

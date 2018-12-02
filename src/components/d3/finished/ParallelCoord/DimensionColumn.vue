@@ -2,7 +2,8 @@
   <g class="dimension-column">
 
     <!-- Red Line -->
-    <line ref="line" v-bind="lineAttr" />
+    <line ref="line"
+          v-bind="lineAttr" />
 
     <!-- Filter Selector -->
     <rect v-bind="rectAttr"
@@ -82,9 +83,8 @@ export default {
 
     brushExtent: {
       get() {
-        if(this.brushPos)
-        return [this.scale(this.brushPos[1]), this.scale(this.brushPos[0])]
-      
+        if (this.brushPos)
+          return [this.scale(this.brushPos[1]), this.scale(this.brushPos[0])]
       }
     }
   },
@@ -92,7 +92,7 @@ export default {
     startDrag(mouseEvent) {
       const { top, left, height } = this.$refs.line.getBoundingClientRect()
       const { pageX, pageY } = mouseEvent
-      
+
       this.brushPos = [height - (pageY - top), height - (pageY - top)]
       console.log(this.brushPos)
       window.addEventListener('mousemove', this.updateDrag)

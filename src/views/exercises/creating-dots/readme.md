@@ -42,7 +42,7 @@ them
 </template>
 
 <script>
-import dataset from './dataset'
+import dataset from './dataset.json'
 export default {
   data() {
     return {
@@ -72,7 +72,7 @@ are interacted with. For a simple use case, let's `log` the item being clicked
 </template>
 
 <script>
-import dataset from './dataset'
+import dataset from './dataset.json'
 export default {
   data() {
     return {

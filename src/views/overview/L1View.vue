@@ -13,7 +13,7 @@
 
 <script>
 import readme from '@md/4 - Excercise 1.md'
-import BasePage from '@/views/BasePage'
+import BasePage from '@/views/BasePage.vue'
 export default {
   data() {
     return {

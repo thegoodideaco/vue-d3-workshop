@@ -17,7 +17,6 @@
           :y2="height"
           style="stroke:rgb(255,0,0);stroke-width:2" />
 
-
   </svg>
 </template>
 
@@ -73,10 +72,11 @@ export default {
       }, {})
     },
     xScale() {
-      return d3.scalePoint()
+      return d3
+        .scalePoint()
         .domain(this.includeKeys)
         .rangeRound([0, this.width])
-        .padding(.1)
+        .padding(0.1)
     },
     columnData() {
       return this.includeKeys.reduce((prev, v) => {
@@ -85,14 +85,12 @@ export default {
           return +vv[v]
         })
 
-        debugger
+        // debugger
 
-        const yScale = d3.scaleLinear()
-        .domain(extent)
-        .range([this.height, 0])
-
-        
-        
+        const yScale = d3
+          .scaleLinear()
+          .domain(extent)
+          .range([this.height, 0])
 
         prev[v] = {
           dimension,
@@ -109,10 +107,7 @@ export default {
     this.filtered = this.dataset
 
     this.$nextTick(() => {
-      const {
-        width,
-        height
-      } = this.$el.getBoundingClientRect()
+      const { width, height } = this.$el.getBoundingClientRect()
 
       this.width = width
       this.height = height

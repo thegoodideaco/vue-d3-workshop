@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import readme from './readme'
-import BasePage from '@/views/BasePage'
+import readme from './readme.md'
+import BasePage from '@/views/BasePage.vue'
 export default {
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
   },
   components: {
     BasePage,
-    GeoMap: () => import('@/components/d3/finished/VersorDrag')
+    GeoMap: () => import('@/components/d3/finished/VersorDrag.vue')
   },
   methods: {
     animate(id) {

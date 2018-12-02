@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     links() {
-      if(this.nodeData){
+      if (this.nodeData) {
         return this.nodeData.links()
       }
     },
@@ -45,7 +45,7 @@ export default {
           ? this.nodeData.y0
           : this.nodeData.y
 
-      let props = {
+      const props = {
         transform: `translate3d(${x}px,${y}px,0)`
       }
 

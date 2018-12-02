@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import SideBar from './components/navigation/SideBar'
+import SideBar from '@/components/navigation/SideBar.vue'
 
 export default {
   name: 'App',
@@ -29,7 +29,6 @@ export default {
 }
 </script>
 
-<style src="@/assets/sass/style.scss" lang="scss" />
 <style lang="scss">
 #app {
   display: flex;

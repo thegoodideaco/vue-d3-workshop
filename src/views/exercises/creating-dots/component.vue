@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import dataset from './dataset'
+import dataset from './dataset.json'
 export default {
   name: 'creating-dots',
   data() {

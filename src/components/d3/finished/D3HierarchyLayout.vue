@@ -66,7 +66,7 @@ export default {
     //  This is essentially the hierarchy
     rootNode() {
       if (this.dataset) {
-        let root = hierarchy
+        const root = hierarchy
           .hierarchy(this.dataset)
           .sum(v => v.size || v.height)
           .sort((a, b) => {

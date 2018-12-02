@@ -13,14 +13,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import * as d3 from 'd3'
 import chroma from 'chroma-js'
-var t = 0
+const t = 0
 // Nice looking colors - no reason to buck the trend
 // @v4 scales now have a flattened naming scheme
 const fillColor = d3
-  .scaleSqrt()
+  .scaleOrdinal()
   .domain(['low', 'medium', 'high'])
   .range(chroma.scale(chroma.brewer.Set2).colors(8))
 
@@ -68,25 +68,27 @@ export default {
       if (!this.rawData) return
       // Use the max total_amount in the data as the max in the scale's domain
       // note we have to ensure the total_amount is a number.
-      var maxAmount = d3.max(this.rawData, function(d) {
+      const maxAmount = d3.max(this.rawData, (d: any) => {
         return +d.total_amount
       })
 
-      fillColor.domain([0, maxAmount])
+      const domainVal = [0, maxAmount] as any
+
+      fillColor.domain(domainVal)
 
       // Sizes bubbles based on area.
       // @v4: new flattened scale names.
-      var radiusScale = d3
+      const radiusScale = d3
         .scalePow()
         .exponent(0.6)
         .range([5, 85])
-        .domain([0, maxAmount])
+        .domain(domainVal)
 
       // Use map() to convert raw data into node data.
       // Checkout http://learnjsdata.com/ for more on
       // working with data.
       this.orgNames = []
-      var myNodes = this.rawData.map(d => {
+      const myNodes = this.rawData.map(d => {
         if (!this.orgNames.includes(d.group)) {
           this.orgNames.push(d.group)
         }
@@ -104,7 +106,7 @@ export default {
       })
 
       // sort them to prevent occlusion of smaller nodes.
-      myNodes.sort(function(a, b) {
+      myNodes.sort((a, b) => {
         return b.value - a.value
       })
 
@@ -157,7 +159,7 @@ export default {
           d3
             .forceX()
             .strength(this.forceStrength)
-            .x(d => {
+            .x((d: any) => {
               return val
                 ? this.yearCenters[r ? d.group : d.year].x
                 : this.center.x
@@ -169,7 +171,7 @@ export default {
           d3
             .forceY()
             .strength(this.forceStrength)
-            .y(d => {
+            .y((d: any) => {
               return val
                 ? this.yearCenters[r ? d.group : d.year].y
                 : this.center.y

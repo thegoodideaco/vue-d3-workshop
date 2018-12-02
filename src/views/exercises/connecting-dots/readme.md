@@ -53,7 +53,7 @@ area of dots into a more uniform line graph, using `D3.line`
 
 <script>
 import * as d3 from 'd3'
-import dataset from './dataset'
+import dataset from './dataset.json'
 export default {
   data() {
     return {
@@ -109,7 +109,7 @@ the path definition. Let's try it out
 <script>
 import * as d3 from 'd3'
 import _ from 'lodash/shuffle'
-import dataset from './dataset'
+import dataset from './dataset.json'
 export default {
   data() {
     return {

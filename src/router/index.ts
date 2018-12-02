@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import MainPage from '@/views/MainPage'
 
 import sections from './sections/exercises'
 import demos from './sections/demos'
@@ -12,13 +11,13 @@ export default new Router({
       path: '/',
       name: 'Introduction',
       component: () =>
-        import ('@/views/introduction')
+        import ('@/views/introduction/index.vue')
     },
     {
       path: '/overview',
       name: 'Overview',
       component: () =>
-        import ('@/views/overview')
+        import ('@/views/overview/index.vue')
     },
     ...sections,
     // {
@@ -31,7 +30,7 @@ export default new Router({
       path: '/resources',
       name: 'Resources',
       component: () =>
-        import ('@/views/resources'),
+        import ('@/views/resources/index.vue'),
       redirect: {
         name: 'Brewer Colors'
       },
@@ -39,32 +38,32 @@ export default new Router({
           name: 'Brewer Colors',
           path: 'brewer',
           component: () =>
-            import ('@/views/resources/BrewerColors')
+            import ('@/views/resources/BrewerColors.vue')
         },
         {
           name: 'Xenographics',
           path: 'xenographics',
           component: () =>
-            import ('@/views/resources/xenographics')
+            import ('@/views/resources/xenographics/index.vue')
         },
         {
           name: 'Semiology of Graphics',
           path: 'semiology-of-graphics',
           component: () =>
-            import ('@/views/resources/semiology')
+            import ('@/views/resources/semiology/index.vue')
         },
         {
           name: 'UX Principles as Algorithms',
           path: 'ux-principles',
           component: () =>
-            import ('@/views/resources/uxprinciples')
-        },
+            import ('@/views/resources/uxprinciples/index.vue')
+        }
       ]
     },
     demos,
     {
 path: '/chart',
-component: () => import('@/views/ChartView')
+component: () => import('@/views/ChartView.vue')
     },
     {
       path: '*',

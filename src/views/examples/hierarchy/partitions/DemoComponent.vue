@@ -116,7 +116,7 @@ export default {
       const b = chroma(c).luminance()
 
       // const transDelay = this.treemap.
-      let options = {
+      const options = {
         left: 0,
         transform: `translate3d(${x}px, ${y}px, 0)`,
         width: `${width}px`,

@@ -1,18 +1,16 @@
 <template>
-    <div class="page-container">
-        <transition name="page-fade"
-                    mode="out-in">
-            <keep-alive>
-                <router-view></router-view>
-            </keep-alive>
-        </transition>
-    </div>
+  <div class="page-container">
+    <transition name="page-fade"
+                mode="out-in">
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    </transition>
+  </div>
 </template>
 
 <script>
-export default {
-  
-}
+export default {}
 </script>
 
 <style scoped lang="scss">

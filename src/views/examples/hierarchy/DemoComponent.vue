@@ -113,21 +113,15 @@ export default {
   },
   methods: {
     generateNodeStyle(leaf, parent = null) {
-      let x = leaf.x0
-      let y = leaf.y0
-      let width = leaf.x1 - leaf.x0
-      let height = leaf.y1 - leaf.y0
-
-      if (parent) {
-        // x += parent.x0
-        // y += parent.y0
-      }
-
+      const x = leaf.x0
+      const y = leaf.y0
+      const width = leaf.x1 - leaf.x0
+      const height = leaf.y1 - leaf.y0
       const c = this.colorScale(leaf.value)
       const b = chroma(c).luminance()
 
       // const transDelay = this.treemap.
-      let options = {
+      const options = {
         left: 0,
         transform: `translate3d(${x}px, ${y}px, 0)`,
         width: `${width}px`,

@@ -32,7 +32,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import * as scale from 'd3-scale'
 import * as fetch from 'd3-fetch'
 import * as axis from 'd3-axis'
@@ -44,7 +44,7 @@ import { set } from 'd3'
 export default {
   data() {
     return {
-      axis: axis.axisTop(),
+      axis: axis.axisTop(scale.scaleOrdinal() as any),
       size: [0, 500],
       domain: [0, 100000],
       dataset: null,
@@ -57,7 +57,7 @@ export default {
     }
   },
 
-  //* Once created, load / Transform the data
+  // * Once created, load / Transform the data
   created() {
     fetch.csv('/static/demo_data/time/browser-usage.csv').then(res => {
       // Convert the dataset into multiple arrays for each browser
@@ -80,7 +80,9 @@ export default {
               // Update maxPercentage
               prev.maxPercent = Math.max(percent, prev.maxPercent)
             } else {
-              prev.dates.push(new Date(obj[1]))
+              const vd: VarDate = obj[1] as any
+              const d = new Date(vd) as never
+              prev.dates.push(d)
             }
           }
 
@@ -104,7 +106,7 @@ export default {
         const e = select.event
 
         // if (e.type === 'zoom') {
-          this.zoomProps = e.transform
+        this.zoomProps = e.transform
         // }
         // debugger
       })
@@ -155,8 +157,8 @@ export default {
   },
 
   components: {
-    D3Axis: () => import('./D3Axis'),
-    ValueSlider: () => import('@/components/base/ValueSlider')
+    D3Axis: () => import('./D3Axis.vue'),
+    ValueSlider: () => import('@/components/base/ValueSlider.vue')
   }
 }
 </script>
