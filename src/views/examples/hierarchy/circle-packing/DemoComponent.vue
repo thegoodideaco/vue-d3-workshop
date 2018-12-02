@@ -106,7 +106,7 @@ export default {
       let x = leaf.x0
       let y = leaf.y0
       let width = leaf.x1 - leaf.x0
-      const height = leaf.y1 - leaf.y0
+      let height = leaf.y1 - leaf.y0
 
       if (this.asCircle) {
         x = leaf.x - leaf.r
