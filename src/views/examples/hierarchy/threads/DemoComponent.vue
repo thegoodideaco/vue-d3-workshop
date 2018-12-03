@@ -96,7 +96,7 @@ export default {
             // .sum(d => d.children && d.children.length ? d.children.length : 0)
             .sum(d => d.size)
             .count()
-            .sort(function(a, b) {
+            .sort((a, b) => {
               return b.height - a.height || b.value - a.value
             })
             .each(n => {

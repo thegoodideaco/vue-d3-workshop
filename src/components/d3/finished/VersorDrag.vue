@@ -222,4 +222,8 @@ export default {
   user-select: none;
   // overflow: hidden;
 }
+
+svg {
+  shape-rendering: optimizeSpeed;
+}
 </style>

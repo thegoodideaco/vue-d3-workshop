@@ -6,7 +6,7 @@
     "jsx": "preserve",
     "importHelpers": true,
     "noImplicitAny": false,
-    "noImplicitThis": false,
+    "noImplicitThis": true,
     // "suppressExcessPropertyErrors": true,
     // "resolveJsonModule": true,
     "moduleResolution": "node",
