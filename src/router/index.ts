@@ -1,7 +1,8 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import Router, { RouteConfig } from 'vue-router'
 
 import sections from './sections/exercises'
+
 import demos from './sections/demos'
 
 Vue.use(Router)
