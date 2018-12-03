@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import * as d3 from 'd3'
 import chroma from 'chroma-js'
 const t = 0
@@ -68,11 +68,11 @@ export default {
       if (!this.rawData) return
       // Use the max total_amount in the data as the max in the scale's domain
       // note we have to ensure the total_amount is a number.
-      const maxAmount = d3.max(this.rawData, (d: any) => {
+      const maxAmount = d3.max(this.rawData, d => {
         return +d.total_amount
       })
 
-      const domainVal = [0, maxAmount] as any
+      const domainVal = [0, maxAmount]
 
       fillColor.domain(domainVal)
 
@@ -159,7 +159,7 @@ export default {
           d3
             .forceX()
             .strength(this.forceStrength)
-            .x((d: any) => {
+            .x(d => {
               return val
                 ? this.yearCenters[r ? d.group : d.year].x
                 : this.center.x
@@ -171,7 +171,7 @@ export default {
           d3
             .forceY()
             .strength(this.forceStrength)
-            .y((d: any) => {
+            .y(d => {
               return val
                 ? this.yearCenters[r ? d.group : d.year].y
                 : this.center.y

@@ -32,7 +32,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import * as scale from 'd3-scale'
 import * as fetch from 'd3-fetch'
 import * as axis from 'd3-axis'
@@ -44,7 +44,7 @@ import { set } from 'd3'
 export default {
   data() {
     return {
-      axis: axis.axisTop(scale.scaleOrdinal() as any),
+      axis: axis.axisTop(scale.scaleOrdinal()),
       size: [0, 500],
       domain: [0, 100000],
       dataset: null,
@@ -80,8 +80,8 @@ export default {
               // Update maxPercentage
               prev.maxPercent = Math.max(percent, prev.maxPercent)
             } else {
-              const vd: VarDate = obj[1] as any
-              const d = new Date(vd) as never
+              const vd = obj[1]
+              const d = new Date(vd)
               prev.dates.push(d)
             }
           }
@@ -135,11 +135,7 @@ export default {
     },
     transformStyle() {
       if (this.zoomProps) {
-        const {
-          k,
-          x,
-          y
-        } = this.zoomProps
+        const { k, x, y } = this.zoomProps
         return `translate(${x},${y}) scale(${k})`
       }
     }

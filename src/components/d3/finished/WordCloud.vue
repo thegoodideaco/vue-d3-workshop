@@ -26,7 +26,7 @@
   </svg>
 </template>
 
-<script lang="ts">
+<script>
 import _ from 'lodash'
 import * as d3 from 'd3-scale'
 import chroma from 'chroma-js'
@@ -48,7 +48,7 @@ export default Vue.extend({
       color: d3
         .scaleLinear()
         .domain([0, 9])
-        .range(co.colors(3) as any),
+        .range(co.colors(3)),
       onEnd: v => {
         this.$data.dataset = v
           .map(n => {
@@ -119,7 +119,7 @@ export default Vue.extend({
           }
 
           // Get the unique words, and their frequency
-          let ds: any = Object.entries(
+          let ds = Object.entries(
             _.words(val).reduce((stats, word) => {
               if (stats.hasOwnProperty(word)) {
                 stats[word] += 1
@@ -130,7 +130,7 @@ export default Vue.extend({
             }, [])
           )
           // convert it to a dataset that the cloud will write to
-          ds = ds.map((v: any[]) => {
+          ds = ds.map(v => {
             return {
               text: v[0],
               value: v[1]
@@ -138,7 +138,7 @@ export default Vue.extend({
           })
 
           // Sort it by frequency
-          ds.sort((a: any, b: any) => {
+          ds.sort((a, b) => {
             return b.value - a.value
           })
 

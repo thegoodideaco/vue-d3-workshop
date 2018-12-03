@@ -19,12 +19,10 @@
   </svg>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 import D3Arc from './D3Arc.vue'
-import * as d3 from 'd3-shape'
-import { Pie } from 'd3-shape'
-import * as chroma from 'chroma-js'
+import { pie, Pie } from 'd3-shape'
 
 export default Vue.extend({
   name: 'Pie-Chart',
@@ -68,14 +66,13 @@ export default Vue.extend({
     }
   },
   computed: {
-    pieGenerator(): Pie<any, any> {
-      return d3
-        .pie()
+    pieGenerator() {
+      return pie()
         .startAngle(this.startAngle)
         .endAngle(this.endAngle)
         .padAngle(this.padAngle)
     },
-    paths(): any[] {
+    paths() {
       if (this.inputDatum) {
         return this.pieGenerator(this.inputDatum)
       } else {

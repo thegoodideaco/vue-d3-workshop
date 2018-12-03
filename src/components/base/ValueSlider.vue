@@ -1,6 +1,6 @@
 <template>
     <fieldset class="value-slider">
-        <label :for="name">{{name}}: {{value}}</label>
+        <label :for="name">{{name}}<br>{{value}}</label>
         <input type="range"
                :name="name"
                :min="min"
