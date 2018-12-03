@@ -11,8 +11,12 @@
 
     <!-- This will be testing d3 brush -->
     <svg>
-      <g is="d3-brush" :scale="myScale"
-                v-model="output" />
+      <g is="d3-brush"
+         :scale="myScale"
+         
+         v-model="output" />
+
+         <brush-input :width="10" :scale="myScale" v-model="output" />
     </svg>
     <!-- This will be testing d3 brush -->
   </div>
@@ -61,12 +65,12 @@ export default {
       myScale: scaleLinear()
         .domain([0, 1000])
         .range([500, 0]),
-      output: [0, 10]
+      output: null
     }
   },
   components: {
     ScaleInput: ScaleInputVue,
-    D3Brush: D3BrushVue
+    BrushInput: D3BrushVue
   },
   watch: {
     myScale: {

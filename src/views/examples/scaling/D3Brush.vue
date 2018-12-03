@@ -9,8 +9,7 @@
 import { brushY } from 'd3-brush'
 import * as d3 from 'd3-selection'
 import { scaleLinear, ScaleLinear } from 'd3-scale'
-import Vue from 'vue'
-export default Vue.extend({
+export default {
   props: {
     scale: {
       type: Function,
@@ -87,15 +86,28 @@ export default Vue.extend({
         }
       })
       .on('end', () => {
+
+        /**
+         * Gives us the extent
+         * @type [number, number] | undefined
+         */
+        const s = d3.event.selection
+
+        
         if (this.moving) {
           this.moving = false
           return
         }
 
         this.brushing = false
+
+        if(s == null) {
+          this.$emit('input', null)
+        }
       })
 
     this.selection = d3.select(this.$el).call(this.brush)
+    this.brush.move(this.selection, this.value ? this.value.map(v => this.scale(v)) : null)
   },
   beforeDestroy() {
     d3.select(this.$el).remove()
@@ -103,10 +115,10 @@ export default Vue.extend({
   watch: {
     value: {
       /**
-       * @param {[number, number]} val
+       * @param {[number, number] | null} val
        */
       handler(val) {
-        if (this.brushing) {
+        if (this.brushing || val == null) {
           return
         }
         this.moving = true
@@ -114,7 +126,7 @@ export default Vue.extend({
       }
     }
   }
-})
+}
 </script>
 
 <style scoped lang="scss">

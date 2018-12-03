@@ -17,8 +17,9 @@
 <script>
 import readme from './readme.md'
 import BasePage from '@/views/BasePage.vue'
-import WordCloud from '@/components/d3/finished/WordCloud.vue'
 import Vue from 'vue'
+import WordCloud from '@/components/d3/finished/WordCloud.vue'
+
 export default Vue.extend({
   data() {
     return {

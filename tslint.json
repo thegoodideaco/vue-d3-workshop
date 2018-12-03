@@ -10,7 +10,7 @@
     "align": true,
     "jsdoc-format": false,
     "no-unused-expression":true,
-    "ordered-imports": true,
+    "ordered-imports": false,
     "variable-name": true,
     "trailing-comma": [true, {
       "multiline": "never",
@@ -40,7 +40,7 @@
     "arrow-parens": false,
     "no-console": false,
     "no-unused-expression":true,
-    "ordered-imports": true,
+    "ordered-imports": false,
     "variable-name": true
   }
 }
