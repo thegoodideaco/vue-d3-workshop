@@ -14,20 +14,29 @@
   </div>
 </template>
 
-<script lang="ts">
-import * as d3 from 'd3-hierarchy'
-import * as scale from 'd3-scale'
+<script>
+import {
+  hierarchy,
+  treemapBinary,
+  treemapSquarify,
+  HierarchyNode,
+  TreemapLayout,
+  pack,
+  treemap
+} from 'd3-hierarchy'
+import { scaleLinear, ScaleLinear } from 'd3-scale'
 import * as collection from 'd3-array'
 import chroma from 'chroma-js'
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   data() {
     return {
       dataset: null,
       size: [500, 500],
       theme: 'Spectral',
       t: null,
-      tileStyles: [d3.treemapBinary, d3.treemapSquarify],
+      tileStyles: [treemapBinary, treemapSquarify],
       asCircle: false
     }
   },
@@ -44,10 +53,9 @@ export default {
   computed: {
     hierarchy() {
       if (this.dataset) {
-        return d3
-          .hierarchy(this.dataset)
+        return hierarchy(this.dataset)
           .sum(v => v.size || 0)
-          .sort((a: any, b: any) => b.size - a.size || b.height - a.height)
+          .sort((a, b) => b.size - a.size || b.height - a.height)
       }
     },
     colorScale() {
@@ -55,23 +63,21 @@ export default {
         const colors = chroma
           .scale(chroma.brewer.BuGn)
           .correctLightness(true)
-          .colors(100, 'hex') as any as ReadonlyArray<number>
-        return scale
-          .scaleLinear()
-          .domain(collection.ticks(0, this.hierarchy.value, colors.length))
+          .colors(100, 'hex')
+
+        return scaleLinear()
+          .domain(collection.ticks(0, this.hierarchy.value || 0, colors.length))
           .nice(100)
           .range(colors)
       }
     },
     circlePack() {
-      return d3
-        .pack()
+      return pack()
         .size(this.size)
         .padding(5)
     },
     treeMapGenerator() {
-      return d3
-        .treemap()
+      return treemap()
         .size(this.size)
         .round(true)
         .padding(5)
@@ -128,7 +134,7 @@ export default {
         fontSize: ''
       }
 
-      options.transitionDelay = `${this.dataset.height / leaf.height * 100}ms`
+      options.transitionDelay = `${(this.dataset.height / leaf.height) * 100}ms`
 
       if (Math.sqrt(width * width + height * height) < 400) {
         options.fontSize = '10px'
@@ -154,7 +160,7 @@ export default {
       if (val) this.circlePack(this.hierarchy)
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

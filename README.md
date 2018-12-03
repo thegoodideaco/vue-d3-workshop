@@ -27,15 +27,15 @@ resources:
 
 > ### Related to Data Analysis and Visualization
 
-https://d3js.org/
+<https://d3js.org/>
 
-http://d3indepth.com
+<http://d3indepth.com>
 
-https://bl.ocks.org/mbostock
+<https://bl.ocks.org/mbostock>
 
-https://bost.ocks.org/mike/
+<https://bost.ocks.org/mike/>
 
-https://homes.cs.washington.edu/~jheer
+<https://homes.cs.washington.edu/~jheer>
 
 [\*\* Also check out his video!](https://www.youtube.com/watch?v=vc1bq0qIKoA)
 

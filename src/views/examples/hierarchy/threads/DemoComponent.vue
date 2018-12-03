@@ -24,7 +24,7 @@
 
 </template>
 
-<script lang="ts">
+<script>
 import * as d3 from 'd3-hierarchy'
 import * as shapes from 'd3-shape'
 import * as scale from 'd3-scale'
@@ -32,15 +32,14 @@ import * as collection from 'd3-array'
 import { path } from 'd3-path'
 import chroma from 'chroma-js'
 import _ from 'lodash'
-import ThreadArc from './ThreadArc.vue'
-import RecursiveTree from './RecursiveTree.vue'
+import ThreadArc from './ThreadArc'
+import RecursiveTree from './RecursiveTree'
 
-import D3HierarchyNode from '@/components/d3/finished/D3HierarchyNode.vue'
-import Vue from 'vue'
+import D3HierarchyNode from '@/components/d3/finished/D3HierarchyNode'
 
 // window.d3 = d3
 
-export default Vue.extend({
+export default {
   components: {
     D3HierarchyNode,
     ThreadArc,
@@ -50,7 +49,7 @@ export default Vue.extend({
     return {
       dataset: null,
       size: [500, 500],
-      root: null as d3.HierarchyNode<any> | any
+      root: null
     }
   },
   props: {
@@ -97,12 +96,12 @@ export default Vue.extend({
             // .sum(d => d.children && d.children.length ? d.children.length : 0)
             .sum(d => d.size)
             .count()
-            .sort((a: any, b: any) => {
+            .sort(function(a, b) {
               return b.height - a.height || b.value - a.value
             })
             .each(n => {
               Object.assign(n, {
-                y: n.parent ? (n.parent as any).y + 50 : 0
+                y: n.parent ? n.parent.y + 50 : 0
               })
             })
         }
@@ -110,7 +109,7 @@ export default Vue.extend({
       immediate: true
     }
   }
-})
+}
 </script>
 
 <style lang="scss" scoped>
