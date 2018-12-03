@@ -1,14 +1,14 @@
+import Axios from 'axios'
 import Vue from 'vue'
+import VueAxios from 'vue-axios'
 import App from './App.vue'
+import './registerServiceWorker'
 import router from './router/index'
 import store from './store'
-import Axios from 'axios'
-import VueAxios from 'vue-axios'
-import './registerServiceWorker'
 
+import '@/assets/sass/style.scss'
 import 'animate.css'
 import 'normalize.css'
-import '@/assets/sass/style.scss'
 
 import chroma from 'chroma-js'
 import Vuebar from 'vuebar'

@@ -2,7 +2,9 @@
   <base-page>
     <div slot="readme"
          ref="readme"
-         v-html="readme" v-once></div>
+         v-html="readme"
+         v-once />
+
     <div slot="example"
          ref="example"
          class="demo-inner">
@@ -11,6 +13,7 @@
         <demo-component />
       </div>
     </div>
+
   </base-page>
 
 </template>

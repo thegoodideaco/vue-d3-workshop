@@ -25,7 +25,7 @@
             <value-slider :name="index"
                           :min="arcRanges[index][0]"
                           :max="arcRanges[index][1]"
-                          :step="0.001"
+                          :step="0.000000000000001"
                           v-model.number="arcProps[index]" />
           </div>
 
@@ -55,10 +55,10 @@ export default {
       },
       arcRanges: {
         cornerRadius: [0, 50],
-        endAngle: [0, Math.PI * 2],
+        endAngle: [0, 6.283185307179586],
         innerRadius: [0, 300],
         outerRadius: [0, 500],
-        startAngle: [0, Math.PI * 2]
+        startAngle: [0, 6.283185307179586]
       }
     }
   },

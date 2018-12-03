@@ -8,7 +8,10 @@
     "semicolon": [true, "never"],
     "quotemark": [true, "single"],
     "align": true,
-    "jsdoc-format": true,
+    "jsdoc-format": false,
+    "no-unused-expression":true,
+    "ordered-imports": true,
+    "variable-name": true,
     "trailing-comma": [true, {
       "multiline": "never",
       "singleline": "never"
@@ -23,7 +26,6 @@
     "quotemark": [true, "single"],
     "indent": [true, "spaces", 2],
     "interface-name": false,
-    "ordered-imports": false,
     "object-literal-sort-keys": false,
     "no-consecutive-blank-lines": true,
     "semicolon": [true, "never"],
@@ -36,6 +38,9 @@
     "no-bitwise":false,
     
     "arrow-parens": false,
-    "no-console": false
+    "no-console": false,
+    "no-unused-expression":true,
+    "ordered-imports": true,
+    "variable-name": true
   }
 }

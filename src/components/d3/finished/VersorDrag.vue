@@ -224,6 +224,7 @@ export default {
 }
 
 svg {
+  transform: translateZ(0);
   shape-rendering: optimizeSpeed;
 }
 </style>
