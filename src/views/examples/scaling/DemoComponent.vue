@@ -13,10 +13,13 @@
     <svg>
       <g is="d3-brush"
          :scale="myScale"
-         
          v-model="output" />
 
-         <brush-input :width="10" :scale="myScale" v-model="output" />
+      <brush-input :width="10"
+                   :height="height"
+                   :scale="myScale"
+                   :value="output"
+                   @input="output = $event" />
     </svg>
     <!-- This will be testing d3 brush -->
   </div>
@@ -24,7 +27,6 @@
 
 <script>
 // import all scales
-// ! getting coffee one sec
 import {
   scalePoint,
   scaleSequential,
@@ -62,10 +64,9 @@ export default {
           range: [0, 1]
         }
       }),
-      myScale: scaleLinear()
-        .domain([0, 1000])
-        .range([500, 0]),
-      output: null
+
+      output: [386, 0],
+      height: 300
     }
   },
   components: {
@@ -78,6 +79,13 @@ export default {
         console.log('changed')
       },
       deep: true
+    }
+  },
+  computed: {
+    myScale() {
+      return scaleLinear()
+        .domain([0, 1000])
+        .range([this.height, 0])
     }
   }
 }

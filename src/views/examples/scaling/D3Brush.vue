@@ -9,8 +9,11 @@
 import { brushY } from 'd3-brush'
 import * as d3 from 'd3-selection'
 import { scaleLinear, ScaleLinear } from 'd3-scale'
+import _ from 'lodash'
 export default {
   props: {
+    domain: Array,
+    range: Array,
     scale: {
       type: Function,
       default() {
@@ -40,7 +43,12 @@ export default {
       brush: brushY(),
       selection: null,
       brushing: false,
-      moving: false
+      moving: false,
+      debounceFunction: (min, max) => {
+        _.debounce(() => {
+          this.$emit('input', min === max ? null : [min, max])
+        }, 50)()
+      }
     }
   },
   mounted() {
@@ -82,10 +90,14 @@ export default {
           })
 
           // ? Emit the new extent value
-          this.$emit('input', min === max ? null : [min, max])
+          this.debounceFunction(min, max)
         }
       })
       .on('end', () => {
+        if (this.moving) {
+          this.moving = false
+          return
+        }
 
         /**
          * Gives us the extent
@@ -93,21 +105,18 @@ export default {
          */
         const s = d3.event.selection
 
-        
-        if (this.moving) {
-          this.moving = false
-          return
-        }
-
         this.brushing = false
 
-        if(s == null) {
+        if (s == null) {
           this.$emit('input', null)
         }
       })
 
     this.selection = d3.select(this.$el).call(this.brush)
-    this.brush.move(this.selection, this.value ? this.value.map(v => this.scale(v)) : null)
+    this.brush.move(
+      this.selection,
+      this.value ? this.value.map(v => this.scale(v)) : null
+    )
   },
   beforeDestroy() {
     d3.select(this.$el).remove()
@@ -122,7 +131,78 @@ export default {
           return
         }
         this.moving = true
-        this.brush.move(this.selection, val.map(v => this.scale(v)))
+      }
+    },
+    height: {
+      handler(val) {
+        const [a, b] = this.brush.extent()()
+        // console.log(e) this.brush = brushY()
+
+        /** @type ScaleLinear<number, number> */
+        const { range, domain } = this.scale
+
+        const r = range()
+        const d = domain()
+
+        this.brush = brushY()
+          .extent([[0, Math.min(...r)], [this.width, Math.max(...r)]])
+          .on('start', () => {
+            if (this.moving) {
+              return
+            }
+            this.brushing = true
+          })
+          .on('brush', () => {
+            if (this.moving) {
+              return
+            }
+
+            /**
+             * Gives us the extent
+             * @type [number, number] | undefined
+             */
+            const s = d3.event.selection
+
+            /** @type ScaleLinear */
+            const myScale = this.scale
+
+            // !If there is no selection, return none
+            if (s == null) {
+              console.log('none')
+            } else {
+              /** @type [number, number] */
+              const [min, max] = s.map(v => {
+                return myScale.invert(v)
+              })
+
+              // ? Emit the new extent value
+              this.debounceFunction(min, max)
+            }
+          })
+          .on('end', () => {
+            if (this.moving) {
+              this.moving = false
+              return
+            }
+
+            /**
+             * Gives us the extent
+             * @type [number, number] | undefined
+             */
+            const s = d3.event.selection
+
+            this.brushing = false
+
+            if (s == null) {
+              this.$emit('input', null)
+            }
+          })
+
+        this.selection = d3.select(this.$el).call(this.brush)
+        this.brush.move(
+          this.selection,
+          this.value ? this.value.map(v => this.scale(v)) : null
+        )
       }
     }
   }

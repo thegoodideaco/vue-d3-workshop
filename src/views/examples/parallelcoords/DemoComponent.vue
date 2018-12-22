@@ -1,5 +1,7 @@
 <template>
   <div class="fill content">
+
+    <!-- Parallel Coordinate Display -->
     <parallel-coord v-if="dataset"
                     class="coord"
                     ref="svg"
@@ -14,23 +16,21 @@
                  v-if="dataset"
                  v-bind="tableOptions" />
 
-                 
-
   </div>
 </template>
 
 <script>
 import * as d3 from 'd3'
 import _ from 'lodash'
+import { AgGridVue } from 'ag-grid-vue'
+import ParallelCoord from '@/components/d3/finished/ParallelCoord/index.vue'
+
 const curveNames = Object.keys(d3).filter(v => v.startsWith('curve'))
 
-import { AgGridVue } from 'ag-grid-vue'
-
 export default {
-  name: 'Parallel-Coords',
+  name: 'Parallel-Coords-Demo',
   components: {
-    ParallelCoord: () =>
-      import('@/components/d3/finished/ParallelCoord/index.vue'),
+    ParallelCoord,
     AgGridVue
   },
   data() {
@@ -115,6 +115,7 @@ svg.coord {
 }
 
 .content {
+  height: 100%;
   display: grid;
   grid: 50% 50% / 100%;
   row-gap: 15px;

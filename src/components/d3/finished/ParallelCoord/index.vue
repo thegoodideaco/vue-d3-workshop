@@ -4,18 +4,15 @@
        :height="height"
        fill='#000'>
 
-    <!-- Temp background -->
-    <rect width="100%"
-          height="100%"
-          fill="#000"></rect>
-
-    <line v-for="(item, index) in columnData"
-          :key="index"
-          :x1="item.x"
-          y1="0"
-          :x2="item.x"
-          :y2="height"
-          style="stroke:rgb(255,0,0);stroke-width:2" />
+    <!-- Dimension Columns -->
+    <column-brush v-for="(item, index) in columnData"
+                  :key="index"
+                  :scale="item.yScale"
+                  :transform="`translate(${item.x} 0)`"
+                  :width="30"
+                  :height="height"
+                  :value="item.extent"
+                  @input="updateDimension(item.dimension, $event)" />
 
   </svg>
 </template>
@@ -24,12 +21,12 @@
 import * as d3 from 'd3'
 import _ from 'lodash'
 import * as crossfilter from 'crossfilter2'
-
-import DimensionColumn from './DimensionColumn.vue'
+import ColumnBrushVue from '@/components/d3/finished/ParallelCoord/ColumnBrush.vue'
 
 window.d3 = d3
 
 export default {
+  name: 'ParallelCoord',
   props: {
     dataset: {
       type: Array,
@@ -41,7 +38,7 @@ export default {
     }
   },
   components: {
-    DimensionColumn
+    ColumnBrush: ColumnBrushVue
   },
   data() {
     return {
@@ -81,6 +78,8 @@ export default {
     columnData() {
       return this.includeKeys.reduce((prev, v) => {
         const dimension = this.dimensions[v]
+
+        /** @type [number, number] */
         const extent = d3.extent(this.dataset, vv => {
           return +vv[v]
         })
@@ -89,8 +88,8 @@ export default {
 
         const yScale = d3
           .scaleLinear()
-          .domain(extent)
-          .range([this.height, 0])
+          .domain(extent.reverse())
+          .range([0, this.height])
 
         prev[v] = {
           dimension,
@@ -107,7 +106,12 @@ export default {
     this.filtered = this.dataset
 
     this.$nextTick(() => {
+      // debugger
+
+      // ? Height is not beig calculated correctly.. bBox maybe?
       const { width, height } = this.$el.getBoundingClientRect()
+
+      // debugger
 
       this.width = width
       this.height = height
@@ -116,6 +120,15 @@ export default {
   watch: {
     filtered(val) {
       this.$emit('filtered', val)
+    }
+  },
+  methods: {
+
+    updateDimension(dim, val) {
+      dim.filterAll(null)
+      this.$nextTick(() => {
+        dim.filterRange([val[1],val[0]])
+      })
     }
   }
 }
