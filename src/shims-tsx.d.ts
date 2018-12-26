@@ -1,4 +1,5 @@
 import Vue, { VNode } from 'vue'
+import { LoDashStatic } from 'lodash';
 
 declare global {
   namespace JSX {
@@ -10,4 +11,6 @@ declare global {
       [elem: string]: any
     }
   }
+
+  
 }

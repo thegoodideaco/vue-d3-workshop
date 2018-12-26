@@ -47,3 +47,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+fieldset {
+  user-select: none;
+}
+</style>
+
