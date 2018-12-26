@@ -1,11 +1,9 @@
 <template>
   <div class="fill">
-    <div
-      class="box"
-      v-for="(item, index) in descendants"
-      :key="index"
-      :style="generateNodeStyle(item)"
-    >
+    <div class="box"
+         v-for="(item, index) in descendants"
+         :key="index"
+         :style="generateNodeStyle(item)">
       <slot v-bind="{ item, size: hierarchy.value }">
         <small>{{ item.data.name }}</small>
         <small>{{ item.data.size }}</small>

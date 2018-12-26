@@ -5,7 +5,7 @@
       <section ref="cloudContent">
         <div>
           <div class="section-content">
-            <div class="section-inner sectionLayout--insetColumn gpu">
+            <div class="section-inner sectionLayout--insetColumn gpu" ref="readme">
               <slot name="readme"><h2>Put Readme Content Here</h2></slot>
             </div>
           </div>
@@ -55,6 +55,18 @@ export default {
     if (!this.demoComponent) {
       this.$nextTick(() => {
         this.demoComponent = this.$refs.demo || this.$children[0]
+
+        // Make all links to be target blank
+        const html = this.$refs.readme.outerHTML
+        const div = document.createElement('div')
+        div.innerHTML = html
+
+        div.querySelectorAll('a').forEach(v => {
+          v.target = '_blank'
+        })
+
+        this.$refs.readme.outerHTML = div.innerHTML
+        div.remove()
       })
     }
   },
