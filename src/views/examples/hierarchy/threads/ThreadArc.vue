@@ -1,6 +1,9 @@
 <template>
-  <g v-if="nodePosition" :transform="transformProps">
-    <circle :class="{ active: active }" r="10" @click="itemClick()" />
+  <g v-if="nodePosition"
+     :transform="transformProps">
+    <circle :class="{ active: active }"
+            r="10"
+            @click="itemClick()" />
 
     <slot name="circle">
       <text>{{ treeNode.data.name }}</text>
@@ -15,7 +18,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {

@@ -1,8 +1,15 @@
 <template>
   <!-- SVG Display -->
-  <svg @mousedown.prevent.left="startDrag" class="no-select" fill="white">
-    <rect width="100%" height="100%" x="-50%" y="-50%" fill="#203243" />
-    <path fill="#1cdd87" :d="d()" />
+  <svg @mousedown.prevent.left="startDrag"
+       class="no-select"
+       fill="white">
+    <rect width="100%"
+          height="100%"
+          x="-50%"
+          y="-50%"
+          fill="#203243" />
+    <path fill="#1cdd87"
+          :d="d()" />
     <Rec></Rec>
   </svg>
 </template>
@@ -14,7 +21,6 @@ import versor from 'versor'
 import dataset from '@/assets/geo/110m.json'
 
 const land = topojson.feature(dataset, dataset.objects.land)
-
 
 export default {
   data() {
@@ -51,32 +57,17 @@ export default {
         y: null
       },
       projection: d3
-        // .geoAzimuthalEquidistant()
-        // .geoAzimuthalEqualArea()
-        // .geoGnomonic()
-        // .geoOrthographic()
-        // .geoStereographic()
-        // .geoConicConformal()
-        // .geoConicEqualArea()
-        // .geoConicEquidistant()
-        // .geoEquirectangular()
-        // .geoMercator()
-        // .geoTransverseMercator()
         .geoNaturalEarth1()
         .translate([0, 0])
         .precision(0.1),
-      // path: null,
       v0:   null, // Mouse position in Cartesian coordinates at start of drag gesture.
       r0:   null, // Projection rotation as Euler angles at start.
       q0:   null, // Projection rotation as versor at start.,
       v1:   null, // Mouse position in Cartesian coordinates at start of drag gesture.
       r1:   null, // Projection rotation as Euler angles at start.
-      q1:   null, // Projection rotation as versor at start.,
-      // d: null,
-      // $pathData: {
+      q1:   null, // Projection rotation as versor at start.
       d:    null,
       path: null
-      // }
     }
   },
   props: {
@@ -150,28 +141,11 @@ export default {
   computed: {
     realProjection() {
       return d3[
-        // .geoAzimuthalEquidistant()
-        // .geoAzimuthalEqualArea()
-        // .geoGnomonic()
-        // .geoOrthographic()
-        // .geoStereographic()
-        // .geoConicConformal()
-        // .geoConicEqualArea()
-        // .geoConicEquidistant()
-        // .geoEquirectangular()
-        // .geoMercator()
-        // .geoTransverseMercator()
         this.projectorType
       ]()
         .translate([0, 0])
         .precision(0.1)
     },
-    // realPath() {
-    //   return this.$options._d
-    // },
-    // realD() {
-    //   return this.realPath(land)
-    // },
     rotation: {
       get() {
         return this.r1

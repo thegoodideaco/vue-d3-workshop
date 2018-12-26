@@ -20,7 +20,7 @@ import 'ag-grid/src/styles/ag-theme-balham-dark.scss'
 import 'ag-grid/src/styles/ag-theme-material.scss'
 
 // TODO: Remove this
-;(window as any)._ = _
+(window as any)._ = _
 
 const debug = process.env.NODE_ENV !== 'production'
 
