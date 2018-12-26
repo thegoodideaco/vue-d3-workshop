@@ -2,19 +2,11 @@
   <div>
     <button @click="getData()">Click me</button>
     <ul>
-      <li v-for="(item, index) in sites"
-          :key="index">
-        {{item.url}}
-      </li>
+      <li v-for="(item, index) in sites" :key="index">{{ item.url }}</li>
     </ul>
-    <slot>
-      This is default content
-    </slot>
+    <slot>This is default content</slot>
     <ul>
-      <li v-for="a in admins"
-          :key="a">
-        {{a}}
-      </li>
+      <li v-for="a in admins" :key="a">{{ a }}</li>
     </ul>
   </div>
 </template>
@@ -46,5 +38,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

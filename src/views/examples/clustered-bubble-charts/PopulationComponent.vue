@@ -1,7 +1,5 @@
 <template>
-  <div class="fill">
-    Hey There
-  </div>
+  <div class="fill">Hey There</div>
 </template>
 
 <script>
@@ -16,7 +14,6 @@ export default {
     d3.json('/static/demo_data/quantifiable/populations.json').then(res => {
       this.dataset = res
     })
-
   }
 }
 </script>

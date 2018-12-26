@@ -2,38 +2,35 @@
   <svg class="parallel-coords"
        :width="width"
        :height="height"
-       fill='#000'>
-
+       fill="#000">
     <!-- Dimension Columns -->
-    <column-brush v-for="(item, index) in columnData"
-                  :key="index"
-                  :scale="item.yScale"
-                  :transform="`translate(${item.x} 0)`"
-                  :width="30"
-                  :height="height"
-                  :value="item.extent"
-                  @input="updateDimension(item.dimension, $event)" />
-
+    <ColumnBrush v-for="(item, index) in columnData"
+                 :key="index"
+                 :scale="item.yScale"
+                 :transform="`translate(${item.x} 0)`"
+                 :width="30"
+                 :height="height"
+                 :value="item.extent"
+                 @input="updateDimension(item.dimension, $event)" />
   </svg>
 </template>
 
 <script>
 import * as d3 from 'd3'
-import _ from 'lodash'
 import * as crossfilter from 'crossfilter2'
 import ColumnBrushVue from '@/components/d3/finished/ParallelCoord/ColumnBrush.vue'
 
 window.d3 = d3
 
 export default {
-  name: 'ParallelCoord',
+  name:  'ParallelCoord',
   props: {
     dataset: {
-      type: Array,
+      type:     Array,
       required: true
     },
     includeKeys: {
-      type: Array,
+      type:     Array,
       required: true
     }
   },
@@ -42,8 +39,8 @@ export default {
   },
   data() {
     return {
-      width: 500,
-      height: 500,
+      width:    500,
+      height:   500,
       filtered: null,
       onChange: cb => {
         console.log(cb)
@@ -123,11 +120,10 @@ export default {
     }
   },
   methods: {
-
     updateDimension(dim, val) {
       dim.filterAll(null)
       this.$nextTick(() => {
-        dim.filterRange([val[1],val[0]])
+        dim.filterRange([val[1], val[0]])
       })
     }
   }

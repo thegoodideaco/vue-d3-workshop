@@ -1,14 +1,16 @@
 <template>
   <div class="fill">
-    <input v-model.number="forceStrength">
+    <input v-model.number="forceStrength" />
     <svg>
-      <circle v-for="(node, index) in nodes"
-              :key="index"
-              :cx="node.x"
-              :cy="node.y"
-              :fill="fillColor(node.value)"
-              :r="node.radius"
-              @click="showYears = !showYears"></circle>
+      <circle
+        v-for="(node, index) in nodes"
+        :key="index"
+        :cx="node.x"
+        :cy="node.y"
+        :fill="fillColor(node.value)"
+        :r="node.radius"
+        @click="showYears = !showYears"
+      ></circle>
     </svg>
   </div>
 </template>
@@ -16,7 +18,6 @@
 <script>
 import * as d3 from 'd3'
 import chroma from 'chroma-js'
-const t = 0
 // Nice looking colors - no reason to buck the trend
 // @v4 scales now have a flattened naming scheme
 const fillColor = d3
@@ -25,15 +26,15 @@ const fillColor = d3
   .range(chroma.scale(chroma.brewer.Set2).colors(8))
 
 export default {
-  name: 'clustered-bubble-charts',
+  name: 'ClusteredBubbleCharts',
   data() {
     return {
       fillColor,
-      center: { x: 0, y: 0 },
+      center:        { x: 0, y: 0 },
       forceStrength: 0.03,
-      rawData: null,
-      simulation: null,
-      yearCenters: {
+      rawData:       null,
+      simulation:    null,
+      yearCenters:   {
         2008: {
           x: -200,
           y: 0
@@ -60,7 +61,7 @@ export default {
         }
       },
       showYears: false,
-      orgNames: []
+      orgNames:  []
     }
   },
   computed: {
@@ -93,15 +94,15 @@ export default {
           this.orgNames.push(d.group)
         }
         return {
-          id: d.id,
+          id:     d.id,
           radius: radiusScale(+d.total_amount),
-          value: +d.total_amount,
-          name: d.grant_title,
-          org: d.organization,
-          group: d.group,
-          year: d.start_year,
-          x: Math.random() * 900,
-          y: Math.random() * 800
+          value:  +d.total_amount,
+          name:   d.grant_title,
+          org:    d.organization,
+          group:  d.group,
+          year:   d.start_year,
+          x:      Math.random() * 900,
+          y:      Math.random() * 800
         }
       })
 
@@ -129,7 +130,7 @@ export default {
     })
   },
   watch: {
-    nodes(val) {
+    nodes() {
       this.simulation = d3
         .forceSimulation(this.nodes)
         .velocityDecay(0.3)

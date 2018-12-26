@@ -1,31 +1,28 @@
 <template>
   <svg v-if="paths">
-    <d3-arc v-for="(item, key) in paths"
-            :key="key"
-            :fill-color="colors(paths.length)[key]"
-            :start-angle="item.startAngle"
-            :end-angle="item.endAngle"
-            :pad-angle="item.padAngle"
-            :inner-radius="innerRadius"
-            :outer-radius="outerRadius"
-            :corner-radius="cornerRadius">
-
-      <template slot-scope="{centroid}">
-        <slot v-bind="{item, key, centroid, color: colors(paths.length)[key]}">
-        </slot>
+    <D3Arc v-for="(item, key) in paths"
+           :key="key"
+           :fill-color="colors(paths.length)[key]"
+           :start-angle="item.startAngle"
+           :end-angle="item.endAngle"
+           :pad-angle="item.padAngle"
+           :inner-radius="innerRadius"
+           :outer-radius="outerRadius"
+           :corner-radius="cornerRadius">
+      <template slot-scope="{ centroid }">
+        <slot v-bind="{ item, key, centroid, color: colors(paths.length)[key] }"></slot>
       </template>
-
-    </d3-arc>
+    </D3Arc>
   </svg>
 </template>
 
 <script>
 import Vue from 'vue'
 import D3Arc from './D3Arc.vue'
-import { pie, Pie } from 'd3-shape'
+import { pie } from 'd3-shape'
 
 export default Vue.extend({
-  name: 'Pie-Chart',
+  name:       'PieChart',
   components: {
     D3Arc
   },
@@ -37,31 +34,31 @@ export default Vue.extend({
       }
     },
     index: {
-      type: Number,
+      type:    Number,
       default: 0
     },
     startAngle: {
-      type: Number,
+      type:    Number,
       default: 0
     },
     endAngle: {
-      type: Number,
+      type:    Number,
       default: Math.PI * 2
     },
     padAngle: {
-      type: Number,
+      type:    Number,
       default: 0
     },
     innerRadius: {
-      type: Number,
+      type:    Number,
       default: 200
     },
     outerRadius: {
-      type: Number,
+      type:    Number,
       default: 300
     },
     cornerRadius: {
-      type: Number,
+      type:    Number,
       default: 0
     }
   },

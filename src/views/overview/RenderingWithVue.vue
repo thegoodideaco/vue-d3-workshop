@@ -1,16 +1,17 @@
 <template>
-    <div class="svg-container">
-        <svg width="100%"
-             height="100%">
-            <g transform="translate(-100 -100)">
-                <circle v-for="(item, index) in dataset"
-                        :key="index"
-                        r="5"
-                        :cx="xPos(item[0])"
-                        :cy="item[1]" />
-            </g>
-        </svg>
-    </div>
+  <div class="svg-container">
+    <svg width="100%" height="100%">
+      <g transform="translate(-100 -100)">
+        <circle
+          v-for="(item, index) in dataset"
+          :key="index"
+          r="5"
+          :cx="xPos(item[0])"
+          :cy="item[1]"
+        />
+      </g>
+    </svg>
+  </div>
 </template>
 
 <script>
@@ -19,7 +20,7 @@ import dataset from '@data/quantifiable/simple/lineData.json'
 export default {
   data() {
     return {
-      size: [0, 400],
+      size:    [0, 400],
       dataset: dataset.sort((a, b) => a[0] - b[0])
     }
   },

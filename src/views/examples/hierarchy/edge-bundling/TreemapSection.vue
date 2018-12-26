@@ -1,8 +1,6 @@
 <template>
-  <div v-on="$listeners"
-       class="tree-node"
-       :class="{active}">
-    {{item.x1}}
+  <div v-on="$listeners" class="tree-node" :class="{ active }">
+    {{ item.x1 }}
   </div>
 </template>
 
@@ -11,14 +9,11 @@ export default {
   data() {
     return {
       descendants: null,
-      active: false
+      active:      false
     }
   },
-  props: ['index', 'item', 'size'],
+  props:    ['index', 'item', 'size'],
   computed: {
-    ['$listeners']() {
-      return this.$parent.$listeners
-    },
     connectedComponents() {
       return this.descendants ? this.descendants.map(v => v.component) : null
     }

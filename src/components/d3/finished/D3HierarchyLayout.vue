@@ -1,21 +1,21 @@
 <template>
   <svg v-if="rootNode">
-
     <!-- Nodes -->
     <g class="nodes">
-      <d3-hierarchy-node v-for="(item, index) in rootNode.descendants()"
-                         :key="index"
-                         :node-data="item"
-                         :layout-type="layoutType"
-                         :auto-position="autoPosition">
+      <D3HierarchyNode
+        v-for="(item, index) in rootNode.descendants()"
+        :key="index"
+        :node-data="item"
+        :layout-type="layoutType"
+        :auto-position="autoPosition"
+      >
         <slot v-bind="item"></slot>
-      </d3-hierarchy-node>
+      </D3HierarchyNode>
     </g>
 
     <!-- Links -->
     <g class="links">
-      <d3-hierarchy-link v-for="(link, i) in rootNode.descendants()"
-                         :key="i" />
+      <D3HierarchyLink v-for="(link, i) in rootNode.descendants()" :key="i" />
     </g>
   </svg>
 </template>
@@ -33,10 +33,10 @@ export default {
       type: Object,
       default() {
         return {
-          name: 'root',
+          name:     'root',
           children: [
             {
-              name: 'item1',
+              name:     'item1',
               children: [
                 {
                   name: 'child1'
@@ -52,7 +52,7 @@ export default {
     },
     layoutType: {
       // Types can be treemap, tree, cluster, pack, or parition
-      type: String,
+      type:    String,
       default: 'treemap'
     },
     layoutSize: {
@@ -74,32 +74,32 @@ export default {
           })
 
         switch (this.layoutType) {
-          case 'tree':
-            hierarchy
-              .tree()
-              .size(this.layoutSize)
-              .apply(this, [root])
-            break
+        case 'tree':
+          hierarchy
+            .tree()
+            .size(this.layoutSize)
+            .apply(this, [root])
+          break
 
-          case 'treemap':
-            hierarchy
-              .treemap()
-              .size(this.layoutSize)
-              .padding(2)
-              .tile(hierarchy.treemapBinary)(root)
-            break
+        case 'treemap':
+          hierarchy
+            .treemap()
+            .size(this.layoutSize)
+            .padding(2)
+            .tile(hierarchy.treemapBinary)(root)
+          break
 
-          case 'partition':
-            hierarchy
-              .partition()
-              .size(this.layoutSize)
-              .round(true)
-              .padding(2)(root)
-            break
+        case 'partition':
+          hierarchy
+            .partition()
+            .size(this.layoutSize)
+            .round(true)
+            .padding(2)(root)
+          break
 
-          case 'pack':
-            hierarchy.pack().size(this.layoutSize)(root)
-            break
+        case 'pack':
+          hierarchy.pack().size(this.layoutSize)(root)
+          break
         }
         //   call a layout that mutates this object
         // TODO: remove tree and make conditionals based on layout type

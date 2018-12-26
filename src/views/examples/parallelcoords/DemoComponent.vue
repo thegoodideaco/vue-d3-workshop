@@ -1,21 +1,19 @@
 <template>
   <div class="fill content">
-
     <!-- Parallel Coordinate Display -->
-    <parallel-coord v-if="dataset"
-                    class="coord"
-                    ref="svg"
-                    :ignored-dimensions="['name']"
-                    :dataset="dataset"
-                    :curve-name="curveName"
-                    v-bind="dimensions"
-                    :include-keys="['cylinders', '0-60 mph (s)', 'power (hp)', 'year']"
-                    @filtered="output = $event" />
+    <ParallelCoord
+      v-if="dataset"
+      class="coord"
+      ref="svg"
+      :ignored-dimensions="['name']"
+      :dataset="dataset"
+      :curve-name="curveName"
+      v-bind="dimensions"
+      :include-keys="['cylinders', '0-60 mph (s)', 'power (hp)', 'year']"
+      @filtered="output = $event"
+    />
 
-    <ag-grid-vue class="ag-theme-material"
-                 v-if="dataset"
-                 v-bind="tableOptions" />
-
+    <AgGridVue class="ag-theme-material" v-if="dataset" v-bind="tableOptions" />
   </div>
 </template>
 
@@ -28,18 +26,18 @@ import ParallelCoord from '@/components/d3/finished/ParallelCoord/index.vue'
 const curveNames = Object.keys(d3).filter(v => v.startsWith('curve'))
 
 export default {
-  name: 'Parallel-Coords-Demo',
+  name:       'ParallelCoordsDemo',
   components: {
     ParallelCoord,
     AgGridVue
   },
   data() {
     return {
-      dataset: null,
-      sampled: null,
-      output: [],
+      dataset:    null,
+      sampled:    null,
+      output:     [],
       dimensions: {
-        width: 700,
+        width:  700,
         height: 700
         // viewBox: '0 0 700 700'
       },
@@ -49,17 +47,17 @@ export default {
   computed: {
     tableOptions() {
       return {
-        rowData: this.output,
+        rowData:    this.output,
         pagination: true,
         columnDefs: this.output[0]
           ? Object.keys(this.output[0]).map(v => {
-              return {
-                // headerName: 'Col A',
-                field: v
-              }
-            })
+            return {
+              // headerName: 'Col A',
+              field: v
+            }
+          })
           : null,
-        enableSorting: true,
+        enableSorting:   true,
         enableColResize: true
       }
     }

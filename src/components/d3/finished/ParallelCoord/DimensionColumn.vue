@@ -1,28 +1,28 @@
 <template>
   <g class="dimension-column">
-
     <!-- Red Line -->
-    <line ref="line"
-          v-bind="lineAttr" />
+    <line ref="line" v-bind="lineAttr" />
 
     <!-- Filter Selector -->
-    <rect v-bind="rectAttr"
-          @mousedown="startDrag" />
+    <rect v-bind="rectAttr" @mousedown="startDrag" />
 
     <!-- TODO: replace with values and tick -->
-    <circle v-for="(step, index) in steps"
-            :key="index"
-            :cx="x"
-            :cy="scale(step)"
-            r="5" />
+    <circle
+      v-for="(step, index) in steps"
+      :key="index"
+      :cx="x"
+      :cy="scale(step)"
+      r="5"
+    />
 
     <!-- Represents the extent of this column -->
-    <column-brush v-if="brushPos"
-                  :scale="scale"
-                  :x="x - 10"
-                  :width="20"
-                  :extent="brushExtent" />
-
+    <ColumnBrush
+      v-if="brushPos"
+      :scale="scale"
+      :x="x - 10"
+      :width="20"
+      :extent="brushExtent"
+    />
   </g>
 </template>
 
@@ -41,11 +41,11 @@ export default {
   },
   props: {
     x: {
-      type: Number,
+      type:    Number,
       default: 0
     },
     scale: {
-      type: Function,
+      type:    Function,
       default: d3
         .scaleLinear()
         .range([-1000, 1000])
@@ -62,22 +62,22 @@ export default {
 
     lineAttr() {
       return {
-        x1: this.x,
-        y1: this.scale.range()[0],
-        x2: this.x,
-        y2: this.scale.range()[1],
-        stroke: 'red',
+        x1:          this.x,
+        y1:          this.scale.range()[0],
+        x2:          this.x,
+        y2:          this.scale.range()[1],
+        stroke:      'red',
         strokeWidth: '5px'
       }
     },
 
     rectAttr() {
       return {
-        x: this.x - 20,
-        y: this.scale.range()[1],
-        width: 40,
+        x:      this.x - 20,
+        y:      this.scale.range()[1],
+        width:  40,
         height: this.scale.range()[0],
-        fill: 'green'
+        fill:   'green'
       }
     },
 
@@ -90,8 +90,8 @@ export default {
   },
   methods: {
     startDrag(mouseEvent) {
-      const { top, left, height } = this.$refs.line.getBoundingClientRect()
-      const { pageX, pageY } = mouseEvent
+      const { top, height } = this.$refs.line.getBoundingClientRect()
+      const { pageY } = mouseEvent
 
       this.brushPos = [height - (pageY - top), height - (pageY - top)]
       console.log(this.brushPos)
@@ -99,8 +99,8 @@ export default {
       window.addEventListener('mouseup', this.endDrag)
     },
     updateDrag(mouseEvent) {
-      const { top, left, height } = this.$refs.line.getBoundingClientRect()
-      const { pageX, pageY } = mouseEvent
+      const { top} = this.$refs.line.getBoundingClientRect()
+      const { pageY } = mouseEvent
       this.brushPos = [pageY - top, this.brushPos[1]]
     },
     endDrag() {

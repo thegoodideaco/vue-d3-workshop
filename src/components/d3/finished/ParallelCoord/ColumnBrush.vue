@@ -1,20 +1,17 @@
 <template>
-  <g class="d3-brush"
-     :class="{brushing: brushing}">
-
-  </g>
+  <g class="d3-brush" :class="{ brushing: brushing }"></g>
 </template>
 
 <script>
 import { brushY } from 'd3-brush'
 import * as d3 from 'd3-selection'
-import { scaleLinear, ScaleLinear } from 'd3-scale'
+import { scaleLinear } from 'd3-scale'
 import _ from 'lodash'
 export default {
   props: {
     domain: Array,
-    range: Array,
-    scale: {
+    range:  Array,
+    scale:  {
       type: Function,
       default() {
         return scaleLinear()
@@ -25,25 +22,25 @@ export default {
     value: Array,
 
     width: {
-      type: Number,
+      type:    Number,
       default: 20
     },
 
     height: {
-      type: Number,
+      type:    Number,
       default: 500
     }
   },
   model: {
     event: 'input',
-    prop: 'value'
+    prop:  'value'
   },
   data() {
     return {
-      brush: brushY(),
-      selection: null,
-      brushing: false,
-      moving: false,
+      brush:            brushY(),
+      selection:        null,
+      brushing:         false,
+      moving:           false,
       debounceFunction: (min, max) => {
         _.debounce(() => {
           this.$emit('input', min === max ? null : [min, max])
@@ -53,10 +50,9 @@ export default {
   },
   mounted() {
     /** @type ScaleLinear<number, number> */
-    const { range, domain } = this.scale
+    const { range} = this.scale
 
     const r = range()
-    const d = domain()
 
     this.brush
       .extent([[0, Math.min(...r)], [this.width, Math.max(...r)]])
@@ -134,15 +130,13 @@ export default {
       }
     },
     height: {
-      handler(val) {
-        const [a, b] = this.brush.extent()()
+      handler() {
         // console.log(e) this.brush = brushY()
 
         /** @type ScaleLinear<number, number> */
-        const { range, domain } = this.scale
+        const { range} = this.scale
 
         const r = range()
-        const d = domain()
 
         this.brush = brushY()
           .extent([[0, Math.min(...r)], [this.width, Math.max(...r)]])

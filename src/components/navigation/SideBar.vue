@@ -1,33 +1,28 @@
 <template>
   <nav class="side-bar">
     <div class="logo">
-      <img src="@/assets/logos-sm.png">
+      <img src="@/assets/logos-sm.png" />
       <p class="small">Composing D3 Visuals with Vue.js</p>
     </div>
 
     <h2>Table of Contents</h2>
 
     <div v-bar>
-      <ul is="SideBarListItems"
-          class="sidebar-list"
-          :items="routes">
-
+      <ul is="SideBarListItems" class="sidebar-list" :items="routes">
         <template slot-scope="item">
-          <router-link :to="item">
-            <span>{{item.name}}</span>
-          </router-link>
+          <RouterLink :to="item">
+            <span>{{ item.name }}</span>
+          </RouterLink>
         </template>
-
       </ul>
     </div>
-
   </nav>
 </template>
 
 <script>
 import SideBarListItems from './SideBarListItems'
 export default {
-  name: 'SideBar',
+  name:       'SideBar',
   components: {
     SideBarListItems
   },

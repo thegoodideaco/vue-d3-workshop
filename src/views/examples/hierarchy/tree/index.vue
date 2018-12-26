@@ -1,25 +1,18 @@
 <template>
-  <base-page>
-
-    <div slot="readme"
-         ref="readme"
-         v-html="readme"></div>
-    <div slot="example"
-         ref="example"
-         class="demo-inner">
-
+  <BasePage>
+    <div ref="readme" slot="readme" v-html="readme"></div>
+    <div class="demo-inner" ref="example" slot="example">
       <div class="svg-inner">
-        <demo-component ref="layout">
-          <div class="fill"
-               slot-scope="{item, size}"
-               @click="randomizeStyle($event, item)">
-
-          </div>
-        </demo-component>
+        <DemoComponent ref="layout">
+          <div
+            @click="randomizeStyle($event, item)"
+            class="fill"
+            slot-scope="{ item }"
+          ></div>
+        </DemoComponent>
       </div>
     </div>
-  </base-page>
-
+  </BasePage>
 </template>
 
 <script>

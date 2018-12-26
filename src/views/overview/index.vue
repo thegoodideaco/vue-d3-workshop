@@ -1,17 +1,15 @@
 <template>
-  <base-page>
-    <div slot="readme"
-         ref="readme"
-         v-html="readme"></div>
-    <div slot="example"
-         ref="example">
+  <BasePage>
+    <div slot="readme" ref="readme" v-html="readme"></div>
+    <div slot="example" ref="example">
       <!-- <word-cloud v-bind="cloudOptions" /> -->
-      <geo-map ref="map"
-               @mousedown.left.native="stopAnimation()"
-               @mouseup.native="onMouseUp" />
+      <GeoMap
+        ref="map"
+        @mousedown.left.native="stopAnimation()"
+        @mouseup.native="onMouseUp"
+      />
     </div>
-  </base-page>
-
+  </BasePage>
 </template>
 
 <script>
@@ -22,14 +20,14 @@ export default {
     return {
       readme,
       cloudOptions: {
-        value: null,
-        size: [1000, 1000],
-        rotate: v => (Math.random() > 0.5 ? 0 : 90 * Math.PI / 180),
+        value:     null,
+        size:      [1000, 1000],
+        rotate:    () => (Math.random() > 0.5 ? 0 : (90 * Math.PI) / 180),
         immediate: true
       },
-      curRotation: [0, 0, 0],
+      curRotation:  [0, 0, 0],
       curAnimation: null,
-      animating: true
+      animating:    true
     }
   },
   components: {
@@ -51,7 +49,7 @@ export default {
       this.animating = true
       this.animate()
     },
-    onMouseUp(ev) {
+    onMouseUp() {
       this.curRotation = this.$refs.map.rotation
       this.startAnimation()
     }

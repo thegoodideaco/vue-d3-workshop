@@ -1,40 +1,28 @@
 <template>
   <div class="flex">
-
-    <transition name="page-fade"
-                mode="out-in">
-
-      <keep-alive>
-
-        <router-view v-if="hasChild"
-                     :key="$route.path" />
-        <base-page v-else
-                   key="$route.fullPath">
-
-          <div slot="readme"
-               ref="readme"
-               v-html="readme"></div>
-          <div slot="example"
-               ref="example"
-               class="demo-inner">
-
+    <Transition name="page-fade" mode="out-in">
+      <KeepAlive>
+        <RouterView v-if="hasChild" :key="$route.path" />
+        <BasePage v-else key="$route.fullPath">
+          <div slot="readme" ref="readme" v-html="readme"></div>
+          <div slot="example" ref="example" class="demo-inner">
             <div class="svg-inner">
-              <demo-component :tileStyle="style">
-                <div class="fill"
-                     slot-scope="{item, size}"
-                     @click="randomizeStyle(item)">
-                  {{item.data.name}} - size: {{Math.floor(item.value / size * 100)}}%
+              <DemoComponent :tile-style="style">
+                <div
+                  class="fill"
+                  slot-scope="{ item, size }"
+                  @click="randomizeStyle(item)"
+                >
+                  {{ item.data.name }} - size:
+                  {{ Math.floor((item.value / size) * 100) }}%
                 </div>
-              </demo-component>
+              </DemoComponent>
             </div>
           </div>
-        </base-page>
-
-      </keep-alive>
-
-    </transition>
+        </BasePage>
+      </KeepAlive>
+    </Transition>
   </div>
-
 </template>
 
 <script>
@@ -59,7 +47,7 @@ export default {
         'geoMercator',
         'geoTransverseMercator'
       ],
-      style: 1,
+      style:   1,
       geoType: 'geoMercator'
     }
   },

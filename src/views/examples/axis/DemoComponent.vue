@@ -1,32 +1,34 @@
 <template>
-  <div @click="updateSize()"
-       class="fill"
-       ref="container">
+  <div @click="updateSize()" class="fill" ref="container">
+    <small>{{ zoomProps }}</small>
 
-    <small>{{zoomProps}}</small>
-
-    <value-slider v-model.number="offset"
-                  :min="0"
-                  :max="500000"
-                  name="Offset"></value-slider>
-    <value-slider v-model.number="domain[0]"
-                  :min="0"
-                  :max="500000"
-                  name="Min Range"></value-slider>
-    <value-slider v-model.number="domain[1]"
-                  :min="500001"
-                  :max="1e6"
-                  name="Max Range"></value-slider>
+    <ValueSlider
+      v-model.number="offset"
+      :min="0"
+      :max="500000"
+      name="Offset"
+    ></ValueSlider>
+    <ValueSlider
+      v-model.number="domain[0]"
+      :min="0"
+      :max="500000"
+      name="Min Range"
+    ></ValueSlider>
+    <ValueSlider
+      v-model.number="domain[1]"
+      :min="500001"
+      :max="1e6"
+      name="Max Range"
+    ></ValueSlider>
     <div style="flex: 1; min-height: 0; position: relative; ">
-      <svg ref="svg"
-           height="100%"
-           fill="yellow">
-        <rect width="100%"
-              height="100%"
-              fill="yellow"
-              :transform="transformStyle" />
-        <d3-axis class="axis"
-                 :scale="axisScale" />
+      <svg ref="svg" height="100%" fill="yellow">
+        <rect
+          width="100%"
+          height="100%"
+          fill="yellow"
+          :transform="transformStyle"
+        />
+        <D3Axis class="axis" :scale="axisScale" />
       </svg>
     </div>
   </div>
@@ -39,16 +41,15 @@ import * as axis from 'd3-axis'
 import * as zoom from 'd3-zoom'
 import * as select from 'd3-selection'
 import _ from 'lodash'
-import { set } from 'd3'
 
 export default {
   data() {
     return {
-      axis: axis.axisTop(scale.scaleOrdinal()),
-      size: [0, 500],
-      domain: [0, 100000],
-      dataset: null,
-      offset: 0,
+      axis:      axis.axisTop(scale.scaleOrdinal()),
+      size:      [0, 500],
+      domain:    [0, 100000],
+      dataset:   null,
+      offset:    0,
       zoomProps: {
         k: 0,
         x: 0,
@@ -62,7 +63,7 @@ export default {
     fetch.csv('/static/demo_data/time/browser-usage.csv').then(res => {
       // Convert the dataset into multiple arrays for each browser
       this.dataset = res.reduce(
-        (prev, curr, i, next) => {
+        (prev, curr) => {
           // Key / Value pairs of current interation
           const pairs = Object.entries(curr)
 
@@ -89,8 +90,8 @@ export default {
           return prev
         },
         {
-          dates: [],
-          browsers: {},
+          dates:      [],
+          browsers:   {},
           maxPercent: 0
         }
       )
@@ -102,7 +103,7 @@ export default {
       const bounds = this.$refs.svg.getBoundingClientRect()
       this.size = [0, bounds.height]
 
-      this.zoomer.on('zoom', v => {
+      this.zoomer.on('zoom', () => {
         const e = select.event
 
         // if (e.type === 'zoom') {
@@ -153,7 +154,7 @@ export default {
   },
 
   components: {
-    D3Axis: () => import('./D3Axis.vue'),
+    D3Axis:      () => import('./D3Axis.vue'),
     ValueSlider: () => import('@/components/base/ValueSlider.vue')
   }
 }
@@ -224,4 +225,3 @@ svg {
   }
 }
 </style>
-

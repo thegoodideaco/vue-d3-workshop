@@ -1,35 +1,41 @@
 <template>
-  <div class="fill"
-       @click="layoutType = layoutType !== 'partition' ? 'partition' : 'treemap'">
-    <d3-hierarchy-layout :dataset="dataset"
-                         :layout-size="size"
-                         class="reset-position"
-                         :layout-type="layoutType">
+  <div
+    class="fill"
+    @click="layoutType = layoutType !== 'partition' ? 'partition' : 'treemap'"
+  >
+    <D3HierarchyLayout
+      :dataset="dataset"
+      :layout-size="size"
+      class="reset-position"
+      :layout-type="layoutType"
+    >
       <template slot-scope="node">
-        <rect v-if="layoutType === 'partition' || layoutType == 'treemap'"
-              :width="node.x1 - node.x0"
-              :height="node.y1 - node.y0"
-              :x="node.x0"
-              :y="node.y0"
-              :class="{leaf: !node.data.children}"
-              :style="{transitionDelay: `${node.depth * 90}ms`}">
-
-          <title>{{node.data.name}}</title>
+        <rect
+          v-if="layoutType === 'partition' || layoutType == 'treemap'"
+          :width="node.x1 - node.x0"
+          :height="node.y1 - node.y0"
+          :x="node.x0"
+          :y="node.y0"
+          :class="{ leaf: !node.data.children }"
+          :style="{ transitionDelay: `${node.depth * 90}ms` }"
+        >
+          <title>{{ node.data.name }}</title>
         </rect>
 
-        <circle v-else-if="layoutType === 'pack'"
-                :r="node.r"
-                :cx="node.x"
-                :cy="node.y"
-                :class="{leaf: !node.data.children}"
-                :style="{transitionDelay: `${node.depth * 90}ms`}" />
+        <circle
+          v-else-if="layoutType === 'pack'"
+          :r="node.r"
+          :cx="node.x"
+          :cy="node.y"
+          :class="{ leaf: !node.data.children }"
+          :style="{ transitionDelay: `${node.depth * 90}ms` }"
+        />
         <!-- <text>.
           <title>{{data.name}}</title>
         </text> -->
         <!-- <text :tx="x">{{data.name}} - {{x}}</text> -->
       </template>
-    </d3-hierarchy-layout>
-
+    </D3HierarchyLayout>
   </div>
 </template>
 
@@ -44,20 +50,20 @@ import D3HierarchyLayout from '@/components/d3/finished/D3HierarchyLayout'
 export default {
   data() {
     return {
-      dataset: null,
-      size: [500, 500],
-      theme: 'Spectral',
+      dataset:    null,
+      size:       [500, 500],
+      theme:      'Spectral',
       tileStyles: [d3.treemapBinary, d3.treemapSquarify],
       layoutType: 'treemap'
     }
   },
   props: {
     tileStyle: {
-      type: Number,
+      type:    Number,
       default: 0
     },
     paddingTop: {
-      type: Number,
+      type:    Number,
       default: 45
     }
   },
@@ -112,25 +118,24 @@ export default {
     }
   },
   methods: {
-    generateNodeStyle(leaf, parent = null) {
+    generateNodeStyle(leaf) {
       const x = leaf.x0
       const y = leaf.y0
       const width = leaf.x1 - leaf.x0
       const height = leaf.y1 - leaf.y0
       const c = this.colorScale(leaf.value)
-      const b = chroma(c).luminance()
 
       // const transDelay = this.treemap.
       const options = {
-        left: 0,
-        transform: `translate3d(${x}px, ${y}px, 0)`,
-        width: `${width}px`,
-        height: `${height}px`,
+        left:            0,
+        transform:       `translate3d(${x}px, ${y}px, 0)`,
+        width:           `${width}px`,
+        height:          `${height}px`,
         backgroundColor: c,
-        color: '#000'
+        color:           '#000'
       }
 
-      options.transitionDelay = `${this.dataset.height / leaf.height * 100}ms`
+      options.transitionDelay = `${(this.dataset.height / leaf.height) * 100}ms`
 
       if (Math.sqrt(width * width + height * height) < 400) {
         options.fontSize = '10px'
@@ -153,7 +158,7 @@ export default {
         const bounds = this.$el.getBoundingClientRect()
         this.size = [bounds.width, bounds.height]
         this.dataset = {
-          name: 'root',
+          name:     'root',
           children: res.data
         }
       })

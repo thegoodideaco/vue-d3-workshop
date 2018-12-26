@@ -1,12 +1,8 @@
 <template>
   <div class="fill">
-
     <div id="curveOptions">
       <select v-model="selectedCurve">
-        <option v-for="item in curveOptions"
-                :key="item">
-          {{item}}
-        </option>
+        <option v-for="item in curveOptions" :key="item">{{ item }}</option>
       </select>
     </div>
 
@@ -21,46 +17,43 @@
               stroke="#fff"
               :stroke-width="item.target.height + 1"></line> -->
 
-        <path v-for="(link, i) in linkPaths"
-              :key="i"
-              :d="link"
-              stroke="#fff"
-              stroke-width="2" />
+        <path
+          v-for="(link, i) in linkPaths"
+          :key="i"
+          :d="link"
+          stroke="#fff"
+          stroke-width="2"
+        />
       </g>
       <g class="nodes">
-        <d3-hierarchy-node v-for="(item, index) in descendants"
-                           :key="index + 'g'"
-                           :node-data="item"
-                           layout-type="partition">
-          <circle :cx="item.y"
-                  :cy="item.x"
-                  r="10"
-                  stroke="#fff"
-                  stroke-width="2"
-                  fill="green">
-            <title>{{item.data.name}} - {{item.value}}</title>
+        <D3HierarchyNode
+          v-for="(item, index) in descendants"
+          :key="index + 'g'"
+          :node-data="item"
+          layout-type="partition"
+        >
+          <circle
+            :cx="item.y"
+            :cy="item.x"
+            r="10"
+            stroke="#fff"
+            stroke-width="2"
+            fill="green"
+          >
+            <title>{{ item.data.name }} - {{ item.value }}</title>
           </circle>
-        </d3-hierarchy-node>
+        </D3HierarchyNode>
 
-        <path v-if="myPath"
-              :d="myPath._"
-              stroke="#fff"
-              stroke-width="3" />
+        <path v-if="myPath" :d="myPath._" stroke="#fff" stroke-width="3" />
       </g>
-
     </svg>
   </div>
-
 </template>
 
 <script>
 import * as d3 from 'd3-hierarchy'
 import * as shapes from 'd3-shape'
-import * as scale from 'd3-scale'
-import * as collection from 'd3-array'
 import { path } from 'd3-path'
-import chroma from 'chroma-js'
-import _ from 'lodash'
 
 import D3HierarchyNode from '@/components/d3/finished/D3HierarchyNode'
 
@@ -72,12 +65,12 @@ export default {
   },
   data() {
     return {
-      dataset: null,
-      size: [500, 500],
-      theme: 'Spectral',
-      root: null,
-      myPath: new path(),
-      curveOptions: Object.keys(shapes).filter(v => v.startsWith('curve')),
+      dataset:       null,
+      size:          [500, 500],
+      theme:         'Spectral',
+      root:          null,
+      myPath:        new path(),
+      curveOptions:  Object.keys(shapes).filter(v => v.startsWith('curve')),
       selectedCurve: 'curveStep'
     }
   },

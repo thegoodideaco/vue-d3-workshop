@@ -1,30 +1,21 @@
 <template>
-  <base-page>
-
-    <div slot="readme"
-         ref="readme"
-         v-html="readme"></div>
-    <div slot="example"
-         ref="example"
-         class="demo-inner">
-
+  <BasePage>
+    <div slot="readme" ref="readme" v-html="readme"></div>
+    <div slot="example" ref="example" class="demo-inner">
       <div class="svg-inner">
-        <demo-component ref="layout">
-
-          <template slot-scope="{item,index, size}">
-            <div is="TreemapSection"
-                 class="fill"
-                 v-bind="{item, index, size}"
-                 @click="randomizeStyle($event, item)">
-
-            </div>
-
+        <DemoComponent ref="layout">
+          <template slot-scope="{ item, index, size }">
+            <div
+              is="TreemapSection"
+              class="fill"
+              v-bind="{ item, index, size }"
+              @click="randomizeStyle($event, item)"
+            ></div>
           </template>
-        </demo-component>
+        </DemoComponent>
       </div>
     </div>
-  </base-page>
-
+  </BasePage>
 </template>
 
 <script>

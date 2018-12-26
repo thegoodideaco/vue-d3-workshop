@@ -1,17 +1,15 @@
 <template>
-  <base-page>
-    <div slot="readme"
-         ref="readme"
-         v-html="readme"></div>
-    <div slot="example"
-         ref="example">
-      <word-cloud :value="cloudText"
-                  :size="svgSize"
-                  :rotate="seansRadius"
-                  :immediate="true" />
+  <BasePage>
+    <div slot="readme" ref="readme" v-html="readme"></div>
+    <div slot="example" ref="example">
+      <WordCloud
+        :value="cloudText"
+        :size="svgSize"
+        :rotate="seansRadius"
+        :immediate="true"
+      />
     </div>
-  </base-page>
-
+  </BasePage>
 </template>
 
 <script>
@@ -24,10 +22,10 @@ export default Vue.extend({
   data() {
     return {
       readme,
-      cloudText: null,
-      svgSize: [1000, 1000],
-      rotations: [0, 360],
-      seansRadius: (v) => (Math.random() > 0.5 ? 0 : 90 * Math.PI / 180)
+      cloudText:   null,
+      svgSize:     [1000, 1000],
+      rotations:   [0, 360],
+      seansRadius: () => (Math.random() > 0.5 ? 0 : (90 * Math.PI) / 180)
     }
   },
   components: {

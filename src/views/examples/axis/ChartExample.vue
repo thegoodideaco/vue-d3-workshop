@@ -1,29 +1,13 @@
 <template>
-  <svg :viewBox="viewBox"
-       ref="chart">
-
+  <svg :viewBox="viewBox" ref="chart">
     <g v-if="dataset">
       <!-- <d3-axis class="tickerx" /> -->
 
-      <g class="yAxis"
-         transform="translate(-10,0)"
-         text-anchor="end">
-
-        <g v-for="(item, index) in yTicks"
-           :key="index">
-          <slot name="yAxis"
-                :value="item">
-            <text>Slot Goes Here</text>
-          </slot>
+      <g class="yAxis" transform="translate(-10,0)" text-anchor="end">
+        <g v-for="(item, index) in yTicks" :key="index">
+          <slot name="yAxis" :value="item"><text>Slot Goes Here</text></slot>
         </g>
-
       </g>
-
-      <d3-line v-if="false"
-               v-for="(item, index) in browserNames"
-               :class="item | normalize"
-               :key="index"
-               :dataset="getPositionPoints(item)" />
     </g>
     <!-- <circle v-for="(item, index) in points"
               :key="index"
@@ -38,12 +22,12 @@ import _ from 'lodash'
 export default {
   data() {
     return {
-      size: [300, 300],
-      offsetSize: [300, 300],
-      offsetPosition: [0, 0],
-      chartBounds: null,
+      size:            [300, 300],
+      offsetSize:      [300, 300],
+      offsetPosition:  [0, 0],
+      chartBounds:     null,
       containerBounds: null,
-      tickAmount: 10
+      tickAmount:      10
     }
   },
   props: {
@@ -66,9 +50,7 @@ export default {
     }
   },
 
-  components: {
-    D3Line: () => import('@d3/D3Line')
-  },
+  components: {},
   mounted() {
     this.$nextTick(() => {
       const bounds = this.$el.getBoundingClientRect().toJSON()

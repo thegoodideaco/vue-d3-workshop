@@ -1,26 +1,27 @@
 <template>
-  <svg class="svg"
-       @click="cloudLayout.start()"
-       x="0px"
-       y="0px"
-       width="100%"
-       height="100%"
-       _viewBox="0 0 auto auto"
-       _style="enable-background:new 0 0 100 100;"
-       xml:space="preserve"
-       preserveAspectRatio="xMaxYMax meet">
-
-    <g v-for="(item, index) in dataset"
-       :key="index"
-       :style="item.groupStyle">
-      <text :width="item.width"
-            :height="item.height"
-            :style="item.style"
-            _x="item.x"
-            _y="item.y"
-            _angle="n.rotate"
-            _transform="`rotate(${item.rotate})`">
-        {{item.text}}
+  <svg
+    class="svg"
+    @click="cloudLayout.start()"
+    x="0px"
+    y="0px"
+    width="100%"
+    height="100%"
+    _viewBox="0 0 auto auto"
+    _style="enable-background:new 0 0 100 100;"
+    xml:space="preserve"
+    preserveAspectRatio="xMaxYMax meet"
+  >
+    <g v-for="(item, index) in dataset" :key="index" :style="item.groupStyle">
+      <text
+        :width="item.width"
+        :height="item.height"
+        :style="item.style"
+        _x="item.x"
+        _y="item.y"
+        _angle="n.rotate"
+        _transform="`rotate(${item.rotate})`"
+      >
+        {{ item.text }}
       </text>
     </g>
   </svg>
@@ -41,11 +42,11 @@ const co = chroma.scale(chroma.brewer.Greens)
 export default Vue.extend({
   data() {
     return {
-      dataset: [],
-      ch: chroma,
-      scaleRange: [10, 120],
+      dataset:     [],
+      ch:          chroma,
+      scaleRange:  [10, 120],
       scaleDomain: [1, 100],
-      color: d3
+      color:       d3
         .scaleLinear()
         .domain([0, 9])
         .range(co.colors(3)),
@@ -55,12 +56,12 @@ export default Vue.extend({
             return {
               ...n,
               style: {
-                fill: this.$data.color(n.value),
+                fill:      this.$data.color(n.value),
                 // transform: `translate3d(${n.x}px, ${n.y}px, 0) rotateZ(${
                 //   n.rotate
                 // }rad)`,
                 // rotate: n.rotate + 'deg',
-                fontSize: `${n.size}px`,
+                fontSize:  `${n.size}px`,
                 textAlign: 'center'
               },
               groupStyle: {
@@ -78,7 +79,7 @@ export default Vue.extend({
   },
   props: {
     value: {
-      type: String,
+      type:    String,
       default:
         // tslint:disable-next-line:max-line-length
         'Design creates stories, and stories create memorable experiences, and great experiences change the way in which we view our world.'
@@ -93,15 +94,15 @@ export default Vue.extend({
       type: [Number, Function],
       default() {
         // return 0
-        return v => (Math.random() > 0.5 ? 0 : (90 * Math.PI) / 180)
+        return () => (Math.random() > 0.5 ? 0 : (90 * Math.PI) / 180)
       }
     },
     padding: {
-      type: Number,
+      type:    Number,
       default: 20
     },
     immediate: {
-      type: Boolean,
+      type:    Boolean,
       default: true
     }
   },
@@ -132,7 +133,7 @@ export default Vue.extend({
           // convert it to a dataset that the cloud will write to
           ds = ds.map(v => {
             return {
-              text: v[0],
+              text:  v[0],
               value: v[1]
             }
           })

@@ -1,10 +1,12 @@
 <template>
   <g>
-    <d3-arc v-for="(item, index) in paths"
-            :key="index"
-            :fill="colors(paths.length)[index]"
-            :start-angle="item.startAngle"
-            :end-angle="item.endAngle" />
+    <D3Arc
+      v-for="(item, index) in paths"
+      :key="index"
+      :fill="colors(paths.length)[index]"
+      :start-angle="item.startAngle"
+      :end-angle="item.endAngle"
+    />
   </g>
 </template>
 
@@ -23,19 +25,19 @@ export default {
       }
     },
     index: {
-      type: Number,
+      type:    Number,
       default: 0
     },
     startAngle: {
-      type: Number,
+      type:    Number,
       default: 0
     },
     endAngle: {
-      type: Number,
+      type:    Number,
       default: Math.PI * 2
     },
     padAngle: {
-      type: Number,
+      type:    Number,
       default: 0
     }
   },

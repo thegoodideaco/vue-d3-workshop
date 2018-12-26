@@ -1,16 +1,20 @@
 <template>
   <svg>
-    <path stroke="rgba(255, 255, 255, 0.5)"
-          fill="none"
-          stroke-width="5"
-          :d="d" />
-    <circle r="10"
-            v-for="(item, index) in dataset"
-            :cx="item[0]"
-            :cy="item[1]"
-            :key="index"
-            fill="#fff"
-            @click="onClick(item)" />
+    <path
+      stroke="rgba(255, 255, 255, 0.5)"
+      fill="none"
+      stroke-width="5"
+      :d="d"
+    />
+    <circle
+      r="10"
+      v-for="(item, index) in dataset"
+      :cx="item[0]"
+      :cy="item[1]"
+      :key="index"
+      fill="#fff"
+      @click="onClick(item)"
+    />
   </svg>
 </template>
 
@@ -19,7 +23,7 @@ import * as d3 from 'd3-shape'
 import shuffle from 'lodash/shuffle'
 import dataset from './dataset.json'
 export default {
-  name: 'connecting-dots',
+  name: 'ConnectingDots',
   data() {
     return {
       dataset,

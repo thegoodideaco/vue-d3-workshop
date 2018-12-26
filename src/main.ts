@@ -20,7 +20,7 @@ import 'ag-grid/src/styles/ag-theme-balham-dark.scss'
 import 'ag-grid/src/styles/ag-theme-material.scss'
 
 // TODO: Remove this
-(window as any)._ = _
+;(window as any)._ = _
 
 const debug = process.env.NODE_ENV !== 'production'
 
@@ -36,8 +36,7 @@ Vue.use(Vuebar)
 Vue.mixin({
   data() {
     return {
-      colors: chroma.scale(chroma.brewer.Set3).colors,
-      _debug: debug
+      colors: chroma.scale(chroma.brewer.Set3).colors
     }
   }
 })
@@ -59,5 +58,5 @@ if (debug) {
 new Vue({
   router,
   store,
-  render: (h) => h(App)
+  render: h => h(App)
 }).$mount('#app')

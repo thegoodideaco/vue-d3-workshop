@@ -1,8 +1,5 @@
 <template>
-  <svg class="parallel-coords"
-       :width="width"
-       :height="height">
-
+  <svg class="parallel-coords" :width="width" :height="height">
     <!-- Will contain all of the lines -->
     <!-- <g class="datum-display">
       <path v-for="(item, index) in dataset"
@@ -12,25 +9,26 @@
             stroke-width="1.5"
             :d="line(item)" />
     </g> -->
-    <g class="datum-display"
-       v-if="hugeLine()">
-      <path fill="transparent"
-            stroke="rgba(255,255,255,0.2)"
-            stroke-width="1.5"
-            class="path-render"
-            :d="hugeLine()" />
+    <g class="datum-display" v-if="hugeLine()">
+      <path
+        fill="transparent"
+        stroke="rgba(255,255,255,0.2)"
+        stroke-width="1.5"
+        class="path-render"
+        :d="hugeLine()"
+      />
     </g>
 
     <!-- Contains the dimension columns -->
     <!-- Each dimension will contain it's own brush -->
     <g class="dimensions">
-      <dimension-column v-for="(dim, index) in yValues"
-                        :key="index"
-                        :x="x(index)"
-                        :scale="dim" />
-
+      <DimensionColumn
+        v-for="(dim, index) in yValues"
+        :key="index"
+        :x="x(index)"
+        :scale="dim"
+      />
     </g>
-
   </svg>
 </template>
 
@@ -63,7 +61,7 @@ export default {
       type: Array
     },
     curveName: {
-      type: [String, Function],
+      type:    [String, Function],
       default: bundle
     },
     // Represents the dimensions that will NOT display
@@ -75,11 +73,11 @@ export default {
       }
     },
     width: {
-      type: Number,
+      type:    Number,
       default: 500
     },
     height: {
-      type: Number,
+      type:    Number,
       default: 500
     }
   },
@@ -95,7 +93,7 @@ export default {
     cross() {
       if (this.dataset) {
         const cf = crossfilter(this.dataset)
-        cf.onChange(v => {
+        cf.onChange(() => {
           this.filtered = cf.allFiltered()
           console.log('col')
         })

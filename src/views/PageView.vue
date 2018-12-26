@@ -1,11 +1,8 @@
 <template>
   <div class="page-container">
-    <transition name="page-fade"
-                mode="out-in">
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
-    </transition>
+    <Transition name="page-fade" mode="out-in">
+      <KeepAlive><RouterView></RouterView></KeepAlive>
+    </Transition>
   </div>
 </template>
 

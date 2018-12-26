@@ -1,10 +1,8 @@
 <template>
   <g>
-    <g v-for="(item, index) in ticks"
-       :key="index"
-       :transform="transform(item)">
+    <g v-for="(item, index) in ticks" :key="index" :transform="transform(item)">
       <slot :value="item">
-        <text text-anchor="end" dominant-baseline="central">{{item}}</text>
+        <text text-anchor="end" dominant-baseline="central">{{ item }}</text>
       </slot>
     </g>
   </g>
@@ -14,19 +12,11 @@
 import * as scale from 'd3-scale'
 
 // Default Imports of D3-Axis
-const slice = Array.prototype.slice
-const identity = x => x
-
-const top = 1
-const right = 2
-const bottom = 3
-const left = 4
-const epsilon = 1e-6
 
 export default {
   props: {
     scale: {
-      type: Function,
+      type:    Function,
       default: scale
         .scaleLinear()
         // .tickFormat(this.tickAmount)
@@ -34,7 +24,7 @@ export default {
         .domain([0, 100])
     },
     tickAmount: {
-      type: Number,
+      type:    Number,
       default: 10
     }
   },
@@ -51,5 +41,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

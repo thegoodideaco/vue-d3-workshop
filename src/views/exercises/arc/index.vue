@@ -1,40 +1,29 @@
 <template>
-  <base-page v-cloak>
-
+  <BasePage v-cloak>
     <!-- Readme -->
-    <div slot="readme"
-         ref="readme"
-         v-html="readme" />
+    <div slot="readme" ref="readme" v-html="readme" />
 
     <!-- Example -->
-    <div slot="example"
-         class="example"
-         ref="example">
-
+    <div slot="example" class="example" ref="example">
       <div>
         <!-- SVG -->
-        <svg>
-          <d3-arc v-bind="arcProps" ref="demo" />
-        </svg>
+        <svg><D3Arc v-bind="arcProps" ref="demo" /></svg>
 
         <!-- Example Controls -->
         <div class="controls">
-          <div v-for="(item, index) in arcProps"
-               :key="index">
-
-            <value-slider :name="index"
-                          :min="arcRanges[index][0]"
-                          :max="arcRanges[index][1]"
-                          :step="0.000000000000001"
-                          v-model.number="arcProps[index]" />
+          <div v-for="(item, index) in arcProps" :key="index">
+            <ValueSlider
+              :name="index"
+              :min="arcRanges[index][0]"
+              :max="arcRanges[index][1]"
+              :step="0.000000000000001"
+              v-model.number="arcProps[index]"
+            />
           </div>
-
         </div>
       </div>
-
     </div>
-  </base-page>
-
+  </BasePage>
 </template>
 
 <script>
@@ -47,18 +36,18 @@ export default {
     return {
       readme,
       arcProps: {
-        startAngle: 0,
-        endAngle: 2,
-        innerRadius: 0,
-        outerRadius: 300,
+        startAngle:   0,
+        endAngle:     2,
+        innerRadius:  0,
+        outerRadius:  300,
         cornerRadius: 0
       },
       arcRanges: {
         cornerRadius: [0, 50],
-        endAngle: [0, 6.283185307179586],
-        innerRadius: [0, 300],
-        outerRadius: [0, 500],
-        startAngle: [0, 6.283185307179586]
+        endAngle:     [0, 6.283185307179586],
+        innerRadius:  [0, 300],
+        outerRadius:  [0, 500],
+        startAngle:   [0, 6.283185307179586]
       }
     }
   },

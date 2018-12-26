@@ -1,5 +1,5 @@
 <template>
-  <div :style="textStyle">{{size}}</div>
+  <div :style="textStyle">{{ size }}</div>
 </template>
 
 <script>
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  div {
-    color: #000;
-  }
+div {
+  color: #000;
+}
 </style>

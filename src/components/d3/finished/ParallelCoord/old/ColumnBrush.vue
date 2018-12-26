@@ -1,12 +1,9 @@
 <template>
   <rect class="column__brush"
-        v-bind="sizing">
-
-  </rect>
+        v-bind="sizing"></rect>
 </template>
 
 <script>
-import * as d3 from 'd3-brush'
 export default {
   data() {
     return {
@@ -50,4 +47,3 @@ export default {
   fill: #fff;
 }
 </style>
-

@@ -1,15 +1,11 @@
 <template>
   <g>
     <!-- Arc -->
-    <path class='arc-path'
-          :fill='fillColor'
-          :d='d' />
+    <path class="arc-path" :fill="fillColor" :d="d" />
 
     <!-- Centroid -->
-    <g :transform='trans'>
-      <slot :centroid="centroid">
-        <text>hello</text>
-      </slot>
+    <g :transform="trans">
+      <slot :centroid="centroid"><text>hello</text></slot>
     </g>
   </g>
 </template>
@@ -19,31 +15,31 @@ import * as d3 from 'd3-shape'
 export default {
   props: {
     fillColor: {
-      type: String,
+      type:    String,
       default: '#fff'
     },
     innerRadius: {
-      type: Number,
+      type:    Number,
       default: 200
     },
     outerRadius: {
-      type: Number,
+      type:    Number,
       default: 300
     },
     cornerRadius: {
-      type: Number,
+      type:    Number,
       default: 0
     },
     startAngle: {
-      type: Number,
+      type:    Number,
       default: 0
     },
     endAngle: {
-      type: Number,
+      type:    Number,
       default: 2
     },
     padAngle: {
-      type: Number,
+      type:    Number,
       default: 0
     }
   },
@@ -64,13 +60,14 @@ export default {
     centroid() {
       if (this.arcGenerator) {
         const cen = this.arcGenerator.centroid()
-        const radians = this.startAngle + ((this.endAngle - this.startAngle) * 0.5)
+        const radians =
+          this.startAngle + (this.endAngle - this.startAngle) * 0.5
 
         return {
-          x: cen[0],
-          y: cen[1],
+          x:       cen[0],
+          y:       cen[1],
           radians,
-          degrees: radians / Math.PI * 180
+          degrees: (radians / Math.PI) * 180
         }
       }
     },
@@ -85,7 +82,7 @@ export default {
 }
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .arc-path {
   &:hover {
     stroke: #fff;

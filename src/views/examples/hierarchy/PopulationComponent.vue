@@ -1,7 +1,5 @@
 <template>
-  <div class="fill">
-    Hey There
-  </div>
+  <div class="fill">Hey There</div>
 </template>
 
 <script>

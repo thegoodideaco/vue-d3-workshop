@@ -2,28 +2,31 @@
   <div class="fill">
     <svg ref="svg">
       <g class="edges">
-        <line v-for="(item, index) in links"
-              :key="index"
-              :x1="item.source.y"
-              :y1="item.source.x"
-              :x2="item.target.y"
-              :y2="item.target.x"
-              stroke="#000"
-              :stroke-width="item.target.height + 2"></line>
+        <line
+          v-for="(item, index) in links"
+          :key="index"
+          :x1="item.source.y"
+          :y1="item.source.x"
+          :x2="item.target.y"
+          :y2="item.target.x"
+          stroke="#000"
+          :stroke-width="item.target.height + 2"
+        ></line>
       </g>
       <g class="nodes">
-        <g v-for="(item, index) in descendants"
-           :key="index">
-          <circle :cx="item.y"
-                  :cy="item.x"
-                  r="10"
-                  stroke="#000"
-                  stroke-width="4"
-                  :fill="depthFill(item)">
-            <title>{{item.data.name}} - {{item.depth}}</title>
+        <g v-for="(item, index) in descendants" :key="index">
+          <circle
+            :cx="item.y"
+            :cy="item.x"
+            r="10"
+            stroke="#000"
+            stroke-width="4"
+            :fill="depthFill(item)"
+          >
+            <title>{{ item.data.name }} - {{ item.depth }}</title>
           </circle>
 
-          <!-- <foreignObject 
+          <!-- <foreignObject
                          fill="#fff"
                          :x="!item.children ? item.y - 50 : item.y"
                          :y="item.x - 40">
@@ -34,7 +37,6 @@
           </foreignObject> -->
         </g>
       </g>
-
     </svg>
   </div>
 </template>
@@ -42,16 +44,15 @@
 <script>
 import * as d3 from 'd3-hierarchy'
 import * as scale from 'd3-scale'
-import * as collection from 'd3-array'
 import chroma from 'chroma-js'
 
 export default {
   data() {
     return {
       dataset: null,
-      size: [500, 500],
-      theme: 'Spectral',
-      root: null
+      size:    [500, 500],
+      theme:   'Spectral',
+      root:    null
     }
   },
   props: {
@@ -125,8 +126,6 @@ svg {
   padding: 5px;
   width: 480px;
   height: 210px;
-
-
 }
 .text-overlay {
   white-space: nowrap;

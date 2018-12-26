@@ -1,14 +1,13 @@
 <template>
   <div id="app">
-    <side-bar/>
+    <SideBar />
     <div class="content-container">
-      <transition name="page-fade"
-                  mode="out-in">
+      <Transition name="page-fade" mode="out-in">
         <!-- <keep-alive> -->
-          <!-- Give router a unique key for force render -->
-          <router-view :key="$route.fullPath"></router-view>
+        <!-- Give router a unique key for force render -->
+        <RouterView :key="$route.fullPath"></RouterView>
         <!-- </keep-alive> -->
-      </transition>
+      </Transition>
     </div>
   </div>
 </template>
@@ -17,7 +16,7 @@
 import SideBar from '@/components/navigation/SideBar.vue'
 
 export default {
-  name: 'App',
+  name:       'App',
   components: {
     SideBar
   },

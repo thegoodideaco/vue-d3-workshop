@@ -9,7 +9,6 @@ declare module '*.md' {
   export default String
 }
 
-
 declare module '*.json' {
   export default Object
 }

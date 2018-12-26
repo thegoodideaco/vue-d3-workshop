@@ -1,6 +1,5 @@
 <template>
-  <g class="hierarchy-node"
-     :style="styles">
+  <g class="hierarchy-node" :style="styles">
     <slot v-bind="$props">
       <!-- <circle r="10"
               fill="#fff">
@@ -14,12 +13,12 @@
 export default {
   props: {
     nodeData: {
-      type: Object,
+      type:     Object,
       required: true
     },
     layoutType: {
-      type: String,
-      default: 'treemap',
+      type:      String,
+      default:   'treemap',
       validator: v => {
         return v === 'treemap' || v === 'partition'
       }
@@ -52,14 +51,14 @@ export default {
       // If this is a treemap or partition assign width and height
       if (this.layoutType === 'treemap' || this.layoutType === 'partition') {
         Object.assign(props, {
-          width: `${this.nodeData.x1 - this.nodeData.x0}px`,
+          width:  `${this.nodeData.x1 - this.nodeData.x0}px`,
           height: `${this.nodeData.y1 - this.nodeData.y0}px`
         })
       }
 
       if (this.layoutType === 'pack') {
         Object.assign(props, {
-          width: `${this.nodeData.r * 2}px`,
+          width:  `${this.nodeData.r * 2}px`,
           height: `${this.nodeData.r * 2}px`
         })
       }

@@ -1,7 +1,5 @@
 <template>
-  <div class="demos">
-    <router-view />
-  </div>
+  <div class="demos"><RouterView /></div>
 </template>
 
 <script>
@@ -10,8 +8,8 @@ export default {}
 
 <style>
 .demos {
-    height: 100%;
-    width: 100%;
-    display: flex;
+  height: 100%;
+  width: 100%;
+  display: flex;
 }
 </style>

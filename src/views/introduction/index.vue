@@ -1,14 +1,8 @@
 <template>
-  <base-page>
-    <div slot="readme"
-         ref="readme"
-         v-html="readme"></div>
-    <div slot="example"
-         ref="example">
-      <word-cloud v-bind="cloudOptions" />
-    </div>
-  </base-page>
-
+  <BasePage>
+    <div slot="readme" ref="readme" v-html="readme"></div>
+    <div slot="example" ref="example"><WordCloud v-bind="cloudOptions" /></div>
+  </BasePage>
 </template>
 
 <script>
@@ -20,9 +14,9 @@ export default {
     return {
       readme,
       cloudOptions: {
-        value: null,
-        size: [1000, 1000],
-        rotate: v => (Math.random() > 0.5 ? 0 : 90 * Math.PI / 180),
+        value:     null,
+        size:      [1000, 1000],
+        rotate:    () => (Math.random() > 0.5 ? 0 : (90 * Math.PI) / 180),
         immediate: true
       }
     }

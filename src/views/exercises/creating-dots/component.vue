@@ -1,19 +1,21 @@
 <template>
   <svg>
-    <circle v-for="(item, index) in dataset"
-            :key="index"
-            :cx="item[0]"
-            :cy="item[1]"
-            r="10"
-            fill="#fff"
-            @click="onClick(item)" />
+    <circle
+      v-for="(item, index) in dataset"
+      :key="index"
+      :cx="item[0]"
+      :cy="item[1]"
+      r="10"
+      fill="#fff"
+      @click="onClick(item)"
+    />
   </svg>
 </template>
 
 <script>
 import dataset from './dataset.json'
 export default {
-  name: 'creating-dots',
+  name: 'CreatingDots',
   data() {
     return {
       dataset

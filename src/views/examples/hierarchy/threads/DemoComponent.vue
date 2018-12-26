@@ -1,55 +1,42 @@
 <template>
   <div ref="svg"
        class="fill">
-    <recursive-tree v-if="root"
-                    :tree-node="root">
-      did it work
-    </recursive-tree>
+    <RecursiveTree v-if="root"
+                   :tree-node="root">did it work</RecursiveTree>
 
     <svg>
-      <thread-arc v-for="(item, index) in descendants"
-                  :key="index"
-                  :tree-node="item"
-                  :root-node="root">
+      <ThreadArc v-for="(item, index) in descendants"
+                 :key="index"
+                 :tree-node="item"
+                 :root-node="root">
+        <title slot="circle">{{ item.data.name }} {{ item.value }}</title>
 
-        <title slot="circle">{{item.data.name}} {{item.value}}</title>
-
-        <text>{{item.data.name}} - {{item.depth ? item.depth : 0}} -
-          {{item.value}}</text>
-
-      </thread-arc>
-
+        <text>
+          {{ item.data.name }} - {{ item.depth ? item.depth : 0 }} -
+          {{ item.value }}
+        </text>
+      </ThreadArc>
     </svg>
   </div>
-
 </template>
 
 <script>
 import * as d3 from 'd3-hierarchy'
-import * as shapes from 'd3-shape'
-import * as scale from 'd3-scale'
-import * as collection from 'd3-array'
-import { path } from 'd3-path'
-import chroma from 'chroma-js'
-import _ from 'lodash'
 import ThreadArc from './ThreadArc'
 import RecursiveTree from './RecursiveTree'
-
-import D3HierarchyNode from '@/components/d3/finished/D3HierarchyNode'
 
 // window.d3 = d3
 
 export default {
   components: {
-    D3HierarchyNode,
     ThreadArc,
     RecursiveTree
   },
   data() {
     return {
       dataset: null,
-      size: [500, 500],
-      root: null
+      size:    [500, 500],
+      root:    null
     }
   },
   props: {

@@ -9,5 +9,4 @@ export default {
 
     this.readme = div.innerHTML
   }
-
 }

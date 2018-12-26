@@ -18,15 +18,15 @@ export default {
       }
     },
     xGetter: {
-      type: Function,
+      type:    Function,
       default: v => v[0]
     },
     yGetter: {
-      type: Function,
+      type:    Function,
       default: v => v[1]
     },
     curve: {
-      type: Function,
+      type:    Function,
       default: d3.curveLinear
     }
   },

@@ -1,25 +1,17 @@
 <template>
-  <base-page>
-    <div slot="readme"
-         ref="readme"
-         v-html="readme"></div>
-    <div slot="example"
-         ref="example"
-         class="demo-inner">
+  <BasePage>
+    <div slot="readme" ref="readme" v-html="readme"></div>
+    <div slot="example" ref="example" class="demo-inner">
       <!-- Options -->
-      <select name="projections"
-      ref="dropdown"
-              v-model="geoType">
-        <option v-for="(item, index) in options"
-                :key="index">{{item}}</option>
+      <select name="projections" ref="dropdown" v-model="geoType">
+        <option v-for="(item, index) in options" :key="index">
+          {{ item }}
+        </option>
       </select>
 
-      <div class="svg-inner">
-        <demo-component :projector-type="geoType" />
-      </div>
+      <div class="svg-inner"><DemoComponent :projector-type="geoType" /></div>
     </div>
-  </base-page>
-
+  </BasePage>
 </template>
 
 <script>

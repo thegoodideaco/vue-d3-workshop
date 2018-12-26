@@ -1,19 +1,17 @@
 <template>
   <li>
-    <slot v-bind="{treeNode}">
-      <span>{{treeNode.data.name}}</span>
+    <slot v-bind="{ treeNode }">
+      <span>{{ treeNode.data.name }}</span>
     </slot>
 
     <ul v-if="children">
-
-      <li is="RecursiveTree"
-          v-bind="$slots"
-          v-for="(item, index) in children"
-          :key="index"
-          :tree-node="item">
-
-      </li>
-
+      <li
+        is="RecursiveTree"
+        v-bind="$slots"
+        v-for="(item, index) in children"
+        :key="index"
+        :tree-node="item"
+      ></li>
     </ul>
   </li>
 </template>
@@ -30,7 +28,7 @@ export default {
   },
   props: {
     treeNode: {
-      type: Object,
+      type:     Object,
       required: true
     }
   },
@@ -44,5 +42,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

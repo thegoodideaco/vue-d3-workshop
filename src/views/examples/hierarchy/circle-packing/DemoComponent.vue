@@ -1,15 +1,15 @@
 <template>
   <div class="fill">
-    <div class="box"
-         v-for="(item, index) in descendants"
-         :key="index"
-         :style="generateNodeStyle(item)">
-
-      <slot v-bind="{item, size: hierarchy.value}">
-        <small>{{item.data.name}}</small>
-        <small>{{item.data.size}}</small>
+    <div
+      class="box"
+      v-for="(item, index) in descendants"
+      :key="index"
+      :style="generateNodeStyle(item)"
+    >
+      <slot v-bind="{ item, size: hierarchy.value }">
+        <small>{{ item.data.name }}</small>
+        <small>{{ item.data.size }}</small>
       </slot>
-
     </div>
   </div>
 </template>
@@ -23,21 +23,21 @@ import chroma from 'chroma-js'
 export default {
   data() {
     return {
-      dataset: null,
-      size: [500, 500],
-      theme: 'Spectral',
-      t: null,
+      dataset:    null,
+      size:       [500, 500],
+      theme:      'Spectral',
+      t:          null,
       tileStyles: [d3.treemapBinary, d3.treemapSquarify],
-      asCircle: true
+      asCircle:   true
     }
   },
   props: {
     tileStyle: {
-      type: Number,
+      type:    Number,
       default: 0
     },
     paddingTop: {
-      type: Number,
+      type:    Number,
       default: 45
     }
   },
@@ -102,7 +102,7 @@ export default {
     }
   },
   methods: {
-    generateNodeStyle(leaf, parent = null) {
+    generateNodeStyle(leaf) {
       let x = leaf.x0
       let y = leaf.y0
       let width = leaf.x1 - leaf.x0
@@ -115,17 +115,16 @@ export default {
       }
 
       const c = this.colorScale(leaf.value)
-      const b = chroma(c).luminance()
 
       // const transDelay = this.treemap.
       const options = {
-        left: 0,
-        transform: `translate3d(${x}px, ${y}px, 0)`,
-        width: `${width}px`,
-        height: `${height}px`,
+        left:            0,
+        transform:       `translate3d(${x}px, ${y}px, 0)`,
+        width:           `${width}px`,
+        height:          `${height}px`,
         backgroundColor: c,
-        color: '#000',
-        borderRadius: this.asCircle ? '50%' : '0'
+        color:           '#000',
+        borderRadius:    this.asCircle ? '50%' : '0'
       }
 
       options.transitionDelay = `${(this.dataset.height / leaf.height) * 100}ms`

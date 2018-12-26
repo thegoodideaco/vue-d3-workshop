@@ -1,14 +1,8 @@
 <template>
-  <base-page>
-    <div slot="readme"
-         ref="readme"
-         v-html="readme"></div>
-    <div slot="example"
-         ref="example">
-      Hello
-    </div>
-  </base-page>
-
+  <BasePage>
+    <div slot="readme" ref="readme" v-html="readme"></div>
+    <div slot="example" ref="example">Hello</div>
+  </BasePage>
 </template>
 
 <script>
