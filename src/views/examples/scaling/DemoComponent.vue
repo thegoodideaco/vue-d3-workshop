@@ -2,25 +2,23 @@
   <div>
     <small>Ill get back to this... {{ output }}</small>
     <ul>
-      <li
-        is="ScaleInput"
-        v-for="item in scaleItems"
-        :scale-item="item"
-        :key="item.name"
-      ></li>
+      <li is="ScaleInput"
+          v-for="item in scaleItems"
+          :scale-item="item"
+          :key="item.name"></li>
     </ul>
 
     <!-- This will be testing d3 brush -->
     <svg>
-      <g is="d3-brush" :scale="myScale" v-model="output" />
+      <g is="d3-brush"
+         :scale="myScale"
+         v-model="output" />
 
-      <BrushInput
-        :width="10"
-        :height="height"
-        :scale="myScale"
-        :value="output"
-        @input="output = $event"
-      />
+      <BrushInput :width="10"
+                  :height="height"
+                  :scale="myScale"
+                  :value="output"
+                  @input="output = $event" />
     </svg>
     <!-- This will be testing d3 brush -->
   </div>
