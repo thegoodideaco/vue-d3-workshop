@@ -1,26 +1,24 @@
 <template>
-  <svg
-    class="svg"
-    @click="cloudLayout.start()"
-    x="0px"
-    y="0px"
-    width="100%"
-    height="100%"
-    _viewBox="0 0 auto auto"
-    _style="enable-background:new 0 0 100 100;"
-    xml:space="preserve"
-    preserveAspectRatio="xMaxYMax meet"
-  >
-    <g v-for="(item, index) in dataset" :key="index" :style="item.groupStyle">
-      <text
-        :width="item.width"
-        :height="item.height"
-        :style="item.style"
-        _x="item.x"
-        _y="item.y"
-        _angle="n.rotate"
-        _transform="`rotate(${item.rotate})`"
-      >
+  <svg class="svg"
+       @click="cloudLayout.start()"
+       x="0px"
+       y="0px"
+       width="100%"
+       height="100%"
+       _viewBox="0 0 auto auto"
+       _style="enable-background:new 0 0 100 100;"
+       xml:space="preserve"
+       preserveAspectRatio="xMaxYMax meet">
+    <g v-for="(item, index) in dataset"
+       :key="index"
+       :style="item.groupStyle">
+      <text :width="item.width"
+            :height="item.height"
+            :style="item.style"
+            _x="item.x"
+            _y="item.y"
+            _angle="n.rotate"
+            _transform="`rotate(${item.rotate})`">
         {{ item.text }}
       </text>
     </g>
@@ -52,22 +50,19 @@ export default Vue.extend({
         .range(co.colors(3)),
       onEnd: v => {
         this.$data.dataset = v
-          .map(n => {
+          .map((n, i) => {
             return {
               ...n,
               style: {
                 fill:      this.$data.color(n.value),
-                // transform: `translate3d(${n.x}px, ${n.y}px, 0) rotateZ(${
-                //   n.rotate
-                // }rad)`,
-                // rotate: n.rotate + 'deg',
                 fontSize:  `${n.size}px`,
                 textAlign: 'center'
               },
               groupStyle: {
                 transform: `translate3d(${n.x}px, ${n.y}px, 0) rotateZ(${
                   n.rotate
-                }rad)`
+                }rad)`,
+                transitionDelay: `${i * 0.0051}s`
               }
             }
           })
@@ -184,7 +179,7 @@ export default Vue.extend({
 
 <style scoped lang="scss">
 g {
-  transition: all 800ms ease;
+  transition: all 500ms cubic-bezier(0.37,-0.31, 0, 1);
 }
 text {
   user-select: none;
