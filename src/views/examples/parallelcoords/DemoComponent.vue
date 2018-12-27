@@ -1,51 +1,43 @@
 <template>
   <div class="fill content">
     Hello
+    <svg v-bind="dimensions">
+      <div is="ColumnBrush"
+           :height="500"
+           v-model="range" />
+    </svg>
   </div>
 </template>
 
 <script>
 import * as d3 from 'd3'
 import bounds from '@/utils/mixins/bounds'
+import ColumnBrushVue from '@/components/d3/finished/ParallelCoord/ColumnBrush.vue'
 export default {
-  name: 'ParallelCoordsDemo',
+  name:       'ParallelCoordsDemo',
+  mixins:     [bounds],
+  components: {
+    ColumnBrush: ColumnBrushVue
+  },
   data() {
     return {
-      dataset: []
+      dataset: [],
+      range:   [0, 10]
     }
   },
   beforeCreate() {
     d3.csv('/static/demo_data/cars.csv').then(d => {
-
       this.dataset = d
     })
-  },
-  mixins: [
-    bounds
-  ]
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-svg.coord {
-  left: 0;
+svg {
   top: 0;
-  width: 100%;
-  height: 100%;
-
-  /deep/ path {
-    // stroke: rgba(#fff, 0.15);
-    stroke-width: 1px;
-    stroke-linecap: round;
-  }
-}
-
-.content {
-  height: 100%;
-  display: grid;
-  grid: 50% 50% / 100%;
-  row-gap: 15px;
-  position: relative;
-  height: 100%;
+  left: 0;
+  fill: #000;
+  background-color: lighten(#000, 10);
 }
 </style>

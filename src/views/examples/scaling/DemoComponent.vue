@@ -14,7 +14,7 @@
          :scale="myScale"
          v-model="output" />
 
-      <BrushInput :width="10"
+      <brush-input :width="10"
                   :height="height"
                   :scale="myScale"
                   :value="output"

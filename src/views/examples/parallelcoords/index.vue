@@ -1,10 +1,21 @@
 <template>
-  <BasePage class="smaller">
-    <div slot="readme" ref="readme" v-html="readme" v-once></div>
-    <div slot="example" ref="example" class="demo-inner">
-      <div class="svg-inner fill"><DemoComponent /></div>
+  <base-page class="smaller">
+
+    <!-- Readme -->
+    <div slot="readme"
+         ref="readme"
+         v-html="readme"
+         v-once />
+
+    <!-- Example Slot -->
+    <div slot="example"
+         ref="example"
+         class="demo-inner">
+      <div class="svg-inner fill">
+        <demo-component />
+      </div>
     </div>
-  </BasePage>
+  </base-page>
 </template>
 
 <script>
