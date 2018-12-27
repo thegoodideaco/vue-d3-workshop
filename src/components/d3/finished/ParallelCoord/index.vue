@@ -3,22 +3,15 @@
        :width="width"
        :height="height"
        fill="#000">
-    <!-- Dimension Columns -->
-    <ColumnBrush v-for="(item, index) in columnData"
-                 :key="index"
-                 :scale="item.yScale"
-                 :transform="`translate(${item.x} 0)`"
-                 :width="30"
-                 :height="height"
-                 :value="item.extent"
-                 @input="updateDimension(item.dimension, $event)" />
+
+
+
   </svg>
 </template>
 
 <script>
 import * as d3 from 'd3'
 import * as crossfilter from 'crossfilter2'
-import ColumnBrushVue from '@/components/d3/finished/ParallelCoord/ColumnBrush.vue'
 
 window.d3 = d3
 
@@ -35,7 +28,6 @@ export default {
     }
   },
   components: {
-    ColumnBrush: ColumnBrushVue
   },
   data() {
     return {
