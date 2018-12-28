@@ -179,7 +179,7 @@ export default Vue.extend({
 
 <style scoped lang="scss">
 g {
-  transition: all 500ms cubic-bezier(0.37,-0.31, 0, 1);
+  transition: all 500ms cubic-bezier(0.37, -0.31, 0, 1);
 }
 text {
   user-select: none;

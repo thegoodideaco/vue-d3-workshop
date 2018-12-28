@@ -26,6 +26,16 @@ export default {
     /** @type [number, number] */
     value: Array,
 
+    x: {
+      type:    Number,
+      default: 0
+    },
+
+    y: {
+      type:    Number,
+      default: 0
+    },
+
     width: {
       type:    Number,
       default: 20
@@ -60,19 +70,16 @@ export default {
 
       const r = range()
 
-      this.brush
-        .extent([[0, Math.min(...r)], [this.width, Math.max(...r)]])
+      this.brush = brushY()
+        .extent([
+          [this.x, Math.min(...r)],
+          [this.x + this.width, Math.max(...r)]
+        ])
+
         .on('start', () => {
-          if (this.moving) {
-            return
-          }
           this.brushing = true
         })
         .on('brush', () => {
-          if (this.moving) {
-            return
-          }
-
           /**
            * Gives us the extent
            * @type [number, number] | undefined
@@ -96,11 +103,6 @@ export default {
           }
         })
         .on('end', () => {
-          if (this.moving) {
-            this.moving = false
-            return
-          }
-
           /**
            * Gives us the extent
            * @type [number, number] | undefined
@@ -128,7 +130,7 @@ export default {
     scale() {
       return scaleLinear()
         .domain(this.domain)
-        .range([this.height, 0])
+        .range([this.height, this.y])
     }
   },
   watch: {
@@ -137,10 +139,22 @@ export default {
        * @param {[number, number] | null} val
        */
       handler(val) {
+        // this.moving = val != null
         if (this.brushing || val == null) {
           return
         }
         this.moving = true
+      },
+      deep: true
+    },
+    height: {
+      handler() {
+        this.brush.extent([[0, 0], [this.width, this.height]])
+        d3.select(this.$el).call(this.brush)
+        this.brush.move(
+          this.selection,
+          this.value ? this.value.map(v => this.scale(v)) : null
+        )
       }
     }
   }

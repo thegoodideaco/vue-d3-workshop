@@ -1,28 +1,26 @@
 <template>
   <g class="dimension-column">
     <!-- Red Line -->
-    <line ref="line" v-bind="lineAttr" />
+    <line ref="line"
+          v-bind="lineAttr" />
 
     <!-- Filter Selector -->
-    <rect v-bind="rectAttr" @mousedown="startDrag" />
+    <rect v-bind="rectAttr"
+          @mousedown="startDrag" />
 
     <!-- TODO: replace with values and tick -->
-    <circle
-      v-for="(step, index) in steps"
-      :key="index"
-      :cx="x"
-      :cy="scale(step)"
-      r="5"
-    />
+    <circle v-for="(step, index) in steps"
+            :key="index"
+            :cx="x"
+            :cy="scale(step)"
+            r="5" />
 
     <!-- Represents the extent of this column -->
-    <ColumnBrush
-      v-if="brushPos"
-      :scale="scale"
-      :x="x - 10"
-      :width="20"
-      :extent="brushExtent"
-    />
+    <ColumnBrush v-if="brushPos"
+                 :scale="scale"
+                 :x="x - 10"
+                 :width="20"
+                 :extent="brushExtent" />
   </g>
 </template>
 
@@ -99,7 +97,7 @@ export default {
       window.addEventListener('mouseup', this.endDrag)
     },
     updateDrag(mouseEvent) {
-      const { top} = this.$refs.line.getBoundingClientRect()
+      const { top } = this.$refs.line.getBoundingClientRect()
       const { pageY } = mouseEvent
       this.brushPos = [pageY - top, this.brushPos[1]]
     },

@@ -1,5 +1,6 @@
 <template>
-  <g class="d3-brush" :class="{ brushing: brushing }"></g>
+  <g class="d3-brush"
+     :class="{ brushing: brushing }"></g>
 </template>
 
 <script>

@@ -1,10 +1,18 @@
 <template>
   <div class="fill content">
-    Hello
+    <small v-if="range">{{range}}</small>
+    <small v-else>No range selected</small>
+
+    <!-- Brush Display -->
     <svg v-bind="dimensions">
-      <div is="ColumnBrush"
-           :height="500"
-           v-model="range" />
+
+      <!-- Column brush -->
+      <g is="ColumnBrush"
+         v-if="dimensions.height"
+         :height="dimensions.height"
+         :x="100"
+         :domain="[1,200]"
+         v-model="range" />
     </svg>
   </div>
 </template>
@@ -14,7 +22,6 @@ import * as d3 from 'd3'
 import bounds from '@/utils/mixins/bounds'
 import ColumnBrushVue from '@/components/d3/finished/ParallelCoord/ColumnBrush.vue'
 export default {
-  name:       'ParallelCoordsDemo',
   mixins:     [bounds],
   components: {
     ColumnBrush: ColumnBrushVue
@@ -22,7 +29,8 @@ export default {
   data() {
     return {
       dataset: [],
-      range:   [0, 10]
+      range:   null,
+      test:    200
     }
   },
   beforeCreate() {
