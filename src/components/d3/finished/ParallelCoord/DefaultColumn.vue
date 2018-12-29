@@ -82,7 +82,7 @@ export default {
   filters: {
     rounded(val) {
       if (!val) return null
-      return val.map(v => Math.round(v))
+      return val.map(v => Math.floor(v))
     }
   },
   model: {

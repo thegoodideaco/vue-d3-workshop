@@ -30,13 +30,14 @@
     <!-- Column Brushes -->
     <g class="column-container"
        v-if="dimensions.height">
-      <default-column v-for="(item,key) in columnObjects"
-                      :key="key"
-                      :dimension-key="key"
-                      :x="xScale(key)"
-                      :height="dimensions.height"
-                      :cf-dimension="item.dimension"
-                      v-model="inputs[key]" />
+      <g is="DefaultColumn"
+         v-for="(item,key) in columnObjects"
+         :key="key"
+         :dimension-key="key"
+         :x="xScale(key)"
+         :height="dimensions.height"
+         :cf-dimension="item.dimension"
+         v-model="inputs[key]" />
     </g>
 
   </svg>
@@ -45,6 +46,7 @@
 <script>
 import bounds from '@/utils/mixins/bounds.js'
 import { scalePoint, scaleLinear, line } from 'd3'
+import * as shape from 'd3-shape'
 import Crossfilter from 'crossfilter2'
 import DefaultColumnVue from './DefaultColumn.vue'
 // import _ from 'lodash'
@@ -113,6 +115,7 @@ export default {
           const yScale = this.columnObjects[entry[0]].yScale
           return yScale(entry[1])
         })
+        .curve(shape.curveCardinal.tension(0.4))
     }
   },
   methods: {
@@ -170,14 +173,23 @@ export default {
     inputs: {
       handler(val) {
         console.log(val)
-        if (this.columnObjects == null) return
+        if (this.columnObjects == null || val == null) return
         const entries = Object.entries(val)
 
         // Filter every dimension
         entries.forEach(v => {
-          const { dimension } = this.columnObjects[v[0]]
+          const { dimension, extent } = this.columnObjects[v[0]]
           if (dimension) {
-            dimension.filter(v[1])
+            let r = v[1]
+            if (r) {
+              r = [...v[1]]
+              if (r[1] === extent[1]) {
+                r[1]++
+              }
+              dimension.filterRange(r)
+            } else {
+              dimension.filter(null)
+            }
           }
         })
 
@@ -202,6 +214,12 @@ svg {
 
   .back-line {
     opacity: 0.5;
+  }
+
+  .line-container {
+    path {
+      opacity: 0.25;
+    }
   }
 }
 </style>
