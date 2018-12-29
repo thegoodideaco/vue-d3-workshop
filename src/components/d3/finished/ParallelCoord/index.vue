@@ -1,123 +1,207 @@
 <template>
   <svg class="parallel-coords"
-       :width="width"
-       :height="height"
-       fill="#000">
+       ref="svg"
+       :width="dimensions.width"
+       :height="dimensions.height">
 
+    <!-- All Lines -->
+    <g class="line-container back">
 
+      <!-- <path v-for="(item, index) in dataset"
+            :key="index"
+            :d="generateLine(item)"
+            fill="none"
+            stroke="#fff"
+            stroke-width="1" /> -->
+    </g>
+
+    <!-- Filtered Lines -->
+    <g class="line-container">
+
+      <!-- Filtered -->
+      <path v-for="(item, index) in filtered"
+            :key="index"
+            :d="generateLine(item)"
+            fill="none"
+            stroke="#fff"
+            stroke-width="1" />
+    </g>
+
+    <!-- Column Brushes -->
+    <g class="column-container"
+       v-if="dimensions.height">
+      <default-column v-for="(item,key) in columnObjects"
+                      :key="key"
+                      :dimension-key="key"
+                      :x="xScale(key)"
+                      :height="dimensions.height"
+                      :cf-dimension="item.dimension"
+                      v-model="inputs[key]" />
+    </g>
 
   </svg>
 </template>
 
 <script>
-import * as d3 from 'd3'
-import * as crossfilter from 'crossfilter2'
-
-window.d3 = d3
+import bounds from '@/utils/mixins/bounds.js'
+import { scalePoint, scaleLinear, line } from 'd3'
+import Crossfilter from 'crossfilter2'
+import DefaultColumnVue from './DefaultColumn.vue'
+// import _ from 'lodash'
 
 export default {
-  name:  'ParallelCoord',
+  name: 'ParallelCoords',
+
   props: {
-    dataset: {
+    filtered: Array,
+    /**
+     * The raw data that will be passed
+     * to crossfilter
+     */
+    dataset:  {
       type:     Array,
       required: true
     },
-    includeKeys: {
-      type:     Array,
-      required: true
-    }
-  },
-  components: {
-  },
-  data() {
-    return {
-      width:    500,
-      height:   500,
-      filtered: null,
-      onChange: cb => {
-        console.log(cb)
-        if (cb === 'filtered') {
-          // update filtered stuff?
-          this.filtered = this.cross.allFiltered()
-        }
+
+    /**
+     * Data object representing each dimension column
+     */
+    columnData: {
+      type: Array,
+      default() {
+        return [
+          {
+            name: null
+          }
+        ]
       }
     }
   },
-  computed: {
-    cross() {
-      const val = new crossfilter(this.dataset)
-      val.onChange(this.onChange)
-
-      return val
-    },
-    dimensions() {
-      return this.includeKeys.reduce((prev, v) => {
-        const dimension = this.cross.dimension(v)
-        prev[v] = dimension
-        return prev
-      }, {})
-    },
-    xScale() {
-      return d3
-        .scalePoint()
-        .domain(this.includeKeys)
-        .rangeRound([0, this.width])
-        .padding(0.1)
-    },
-    columnData() {
-      return this.includeKeys.reduce((prev, v) => {
-        const dimension = this.dimensions[v]
-
-        /** @type [number, number] */
-        const extent = d3.extent(this.dataset, vv => {
-          return +vv[v]
-        })
-
-        // debugger
-
-        const yScale = d3
-          .scaleLinear()
-          .domain(extent.reverse())
-          .range([0, this.height])
-
-        prev[v] = {
-          dimension,
-          extent,
-          x: this.xScale(v),
-          yScale
-        }
-
-        return prev
-      }, {})
+  mixins:     [bounds],
+  components: {
+    DefaultColumn: DefaultColumnVue
+  },
+  data() {
+    return {
+      // Watch this value to filter all dimensions
+      inputs:        {},
+      allFiltered:   null,
+      columnObjects: null
     }
   },
-  mounted() {
-    this.filtered = this.dataset
+  computed: {
+    xScale() {
+      return scalePoint()
+        .domain(this.columnData.map(v => v.name))
+        .range([0, this.dimensions.width])
+    },
+    crossFilter() {
+      if (this.dataset && this.dimensions.height !== 0) {
+        return Crossfilter(this.dataset)
+      }
+    },
 
-    this.$nextTick(() => {
-      // debugger
-
-      // ? Height is not beig calculated correctly.. bBox maybe?
-      const { width, height } = this.$el.getBoundingClientRect()
-
-      // debugger
-
-      this.width = width
-      this.height = height
-    })
-  },
-  watch: {
-    filtered(val) {
-      this.$emit('filtered', val)
+    /**
+     * Pass in the entries of an item
+     */
+    lineGenerator() {
+      return line()
+        .x(entry => {
+          return this.xScale(entry[0])
+        })
+        .y(entry => {
+          const yScale = this.columnObjects[entry[0]].yScale
+          return yScale(entry[1])
+        })
     }
   },
   methods: {
-    updateDimension(dim, val) {
-      dim.filterAll(null)
-      this.$nextTick(() => {
-        dim.filterRange([val[1], val[0]])
+    updateFiltered() {
+      this.allFiltered = Object.freeze(this.crossFilter.allFiltered())
+    },
+    generateLine(item) {
+      const keys = Object.keys(this.columnObjects)
+      const filtered = keys.map(v => {
+        const key = v
+        const val = item[key]
+
+        return [key, val]
       })
+
+      return this.lineGenerator(filtered)
+    }
+  },
+
+  watch: {
+    // Create the dimensions
+    crossFilter: {
+      handler(val) {
+        if (val != null) {
+          this.columnObjects = this.columnData.reduce((prev, cur) => {
+            const key = cur.name
+            const dimension = this.crossFilter.dimension(key)
+            const filter = dimension.filter
+            const x = this.xScale(key)
+
+            const top = dimension.top(1)[0][key]
+            const bottom = dimension.bottom(1)[0][key]
+
+            const extent = [bottom, top]
+
+            const yScale = scaleLinear()
+              .domain(extent)
+              .range([this.dimensions.height, 0])
+
+            prev[key] = {
+              name: key,
+              dimension,
+              filter,
+              x,
+              extent,
+              yScale
+            }
+
+            return prev
+          }, {})
+        }
+      },
+      immediate: true
+    },
+    inputs: {
+      handler(val) {
+        console.log(val)
+        if (this.columnObjects == null) return
+        const entries = Object.entries(val)
+
+        // Filter every dimension
+        entries.forEach(v => {
+          const { dimension } = this.columnObjects[v[0]]
+          if (dimension) {
+            dimension.filter(v[1])
+          }
+        })
+
+        this.updateFiltered()
+      },
+      deep: true
+    },
+    allFiltered: {
+      handler(val) {
+        this.$emit('update:filtered', val)
+      }
     }
   }
 }
 </script>
+
+<style scoped lang="scss">
+svg {
+  text {
+    fill: #fff;
+  }
+
+  .back-line {
+    opacity: 0.5;
+  }
+}
+</style>
