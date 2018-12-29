@@ -12,7 +12,7 @@ export default {
     updateDimensions() {
       // _.debounce(() => {
       this.$nextTick(() => {
-        const bounds = this.$el.getBoundingClientRect()
+        const bounds = (this.$refs.svg || this.$el).getBoundingClientRect()
         this.dimensions.width = bounds.width
         this.dimensions.height = bounds.height
       })

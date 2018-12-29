@@ -14,7 +14,7 @@ module.exports = {
     'vue/return-in-computed-property':            'off',
     'vue/no-side-effects-in-computed-properties': 'off',
     'vue/attribute-hyphenation':                  'error',
-    'vue/valid-v-model':                          'off',
+    'vue/valid-v-model':                          'warning',
     'func-call-spacing':                          2,
     'no-multi-spaces':                            [
       'error',
