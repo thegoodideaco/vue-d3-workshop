@@ -1,11 +1,14 @@
 <template>
   <div class="fill content">
 
-    <div>
-      <h2>total filtered: {{allFiltered.length}}</h2>
-      <small v-if="tempNames">
-        {{tempNames}}
-      </small>
+    <div class="filter-info">
+      <ul v-if="tempNames"
+          class="name-list">
+        <li v-for="(item,index) in tempNames"
+            :key="index">
+          {{item}}
+        </li>
+      </ul>
     </div>
 
     <div class="content__container"
@@ -63,7 +66,7 @@ export default {
      * TODO: remove this
      */
     tempNames() {
-      if (this.allFiltered.length <= 10) {
+      if (this.allFiltered.length <= 300) {
         return this.allFiltered.map(v => v.name)
       }
     }
@@ -115,12 +118,19 @@ export default {
 <style lang="scss" scoped>
 .content {
   display: grid;
-  grid: 100px 1fr / 100%;
+  grid: 1fr / minmax(230px, 1fr) 4fr;
+  column-gap: 50px;
 
   &__container {
     padding: 20px;
   }
 }
+
+.filter-info {
+  max-height: 100%;
+  overflow: auto;
+}
+
 svg {
   top: 0;
   left: 0;
@@ -143,6 +153,16 @@ svg {
     > * {
       margin: 0;
     }
+  }
+}
+
+.name-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+
+  > li {
   }
 }
 </style>

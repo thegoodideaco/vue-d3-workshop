@@ -143,7 +143,7 @@ export default {
       dominant-baseline: text-after-edge;
     }
     &:last-child {
-      dominant-baseline: text-before-edge;
+      dominant-baseline: hanging;
       font-weight: bold;
       fill: #00ff8d;
     }
