@@ -5,8 +5,10 @@
       <ul v-if="tempNames"
           class="name-list">
         <li v-for="(item,index) in tempNames"
-            :key="index">
-          {{item}}
+            :key="index"
+            :title="item | asString"
+            @click="findImage(item.name)">
+          {{item.name}}
         </li>
       </ul>
     </div>
@@ -24,16 +26,27 @@
 </template>
 
 <script>
-import * as d3 from 'd3'
 import ParallelCoords from '@/components/d3/finished/ParallelCoord/index.vue'
+import _ from 'lodash'
+import { csv } from 'd3'
+import * as ar from 'd3-array'
 export default {
   components: {
     ParallelCoords
   },
+  filters: {
+    asString(object) {
+      return Object.entries(object)
+        .map(v => {
+          return `${v[0]}: ${v[1]}`
+        })
+        .join('\n')
+    }
+  },
   data() {
     return {
       dataset:           null,
-      ignoredDimensions: ['name'],
+      ignoredDimensions: ['name', 'id', 'group'],
       allFiltered:       []
     }
   },
@@ -66,13 +79,11 @@ export default {
      * TODO: remove this
      */
     tempNames() {
-      if (this.allFiltered.length <= 300) {
-        return this.allFiltered.map(v => v.name)
-      }
+      return _.sampleSize(this.allFiltered, 50)
     }
   },
   beforeCreate() {
-    d3.csv('/static/demo_data/cars.csv').then(d => {
+    csv('/static/demo_data/nutrients.csv').then(d => {
       // filter and set numbers
       const cleaned = d.reduce((prev, cur) => {
         // return entries forced to numbers
@@ -111,6 +122,12 @@ export default {
       // Apply cleaned / formatted data
       this.dataset = cleaned
     })
+  },
+  methods: {
+    findImage(str) {
+      const url = encodeURIComponent(str)
+      open(`https://www.google.com/search?q=${url}&source=lnms&tbm=isch`, '_blank')
+    }
   }
 }
 </script>
@@ -161,5 +178,15 @@ svg {
   padding: 0;
   margin: 0;
   font-size: 12px;
+
+  > li {
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: #0dffa1;
+    }
+  }
 }
 </style>

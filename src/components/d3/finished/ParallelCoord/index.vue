@@ -19,7 +19,7 @@
     <g class="line-container">
 
       <!-- Filtered -->
-      <path v-for="(item, index) in filtered"
+      <path v-for="(item, index) in filteredSample"
             :key="index"
             :d="generateLine(item)"
             fill="none"
@@ -49,7 +49,7 @@ import { scalePoint, scaleLinear, line } from 'd3'
 import * as shape from 'd3-shape'
 import Crossfilter from 'crossfilter2'
 import DefaultColumnVue from './DefaultColumn.vue'
-// import _ from 'lodash'
+import {sampleSize} from 'lodash'
 
 export default {
   name: 'ParallelCoords',
@@ -100,6 +100,11 @@ export default {
     crossFilter() {
       if (this.dataset && this.dimensions.height !== 0) {
         return Crossfilter(this.dataset)
+      }
+    },
+    filteredSample() {
+      if(this.filtered) {
+        return sampleSize(this.filtered, 300)
       }
     },
 
