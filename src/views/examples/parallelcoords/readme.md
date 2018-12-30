@@ -12,7 +12,7 @@ against each other. This gives the viewer a flexible way to navigate the data.
 The `Parallel Coord Component` needs two main things.
 
 - The dataset
-- List of property names to filter
+- List of dimension keys to generate columns
 
 Other additional options are available
 
