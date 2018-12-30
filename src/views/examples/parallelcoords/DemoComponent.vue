@@ -2,7 +2,10 @@
   <div class="fill content">
 
     <div>
-      total filtered: {{allFiltered.length}}
+      <h2>total filtered: {{allFiltered.length}}</h2>
+      <small v-if="tempNames">
+        {{tempNames}}
+      </small>
     </div>
 
     <div class="content__container"
@@ -19,36 +22,50 @@
 
 <script>
 import * as d3 from 'd3'
-import bounds from '@/utils/mixins/bounds'
-// import ColumnBrushVue from '@/components/d3/finished/ParallelCoord/ColumnBrush.vue'
-import CrossFilter from 'crossfilter2'
-// import DefaultColumnVue from '@/components/d3/finished/ParallelCoord/DefaultColumn.vue'
 import ParallelCoords from '@/components/d3/finished/ParallelCoord/index.vue'
-import _ from 'lodash'
-import { scalePoint } from 'd3'
 export default {
-  mixins:  [bounds],
-  filters: {
-    /** @param {number[]} val */
-    rounded(val) {
-      if (!val) return null
-      return val.map(v => Math.round(v))
-    }
-  },
   components: {
-    // DefaultColumn: DefaultColumnVue,
     ParallelCoords
   },
   data() {
     return {
-      dataset: null,
-
-      /** @type {CrossFilter.Crossfilter} */
-      crossfilter:       null,
-      cfDimensions:      null,
+      dataset:           null,
       ignoredDimensions: ['name'],
-      rangeValues:       {},
       allFiltered:       []
+    }
+  },
+  computed: {
+    /**
+     * An array of dimension key names
+     */
+    columnKeys() {
+      if (this.dataset) {
+        return Object.keys(this.dataset[0]).filter(v => {
+          return !this.ignoredDimensions.includes(v)
+        })
+      }
+    },
+
+    /**
+     * Creates columns to pass to the parallel coord
+     */
+    columnData() {
+      if (this.columnKeys) {
+        return this.columnKeys.map(v => {
+          return {
+            name: v
+          }
+        })
+      }
+    },
+
+    /**
+     * TODO: remove this
+     */
+    tempNames() {
+      if (this.allFiltered.length <= 10) {
+        return this.allFiltered.map(v => v.name)
+      }
     }
   },
   beforeCreate() {
@@ -57,6 +74,11 @@ export default {
       const cleaned = d.reduce((prev, cur) => {
         // return entries forced to numbers
         const entries = Object.entries(cur).map(v => {
+          // change date to a date object
+          // if (v[0] === 'date') {
+          //   return [v[0], new Date(v[1])]
+          // }
+
           const f = parseFloat(v[1])
           const isNumber = !isNaN(f)
           return [v[0], isNumber ? f : v[1]]
@@ -86,127 +108,6 @@ export default {
       // Apply cleaned / formatted data
       this.dataset = cleaned
     })
-  },
-  watch: {
-    dataset: {
-      handler(val) {
-        if (val) {
-          this.crossfilter = CrossFilter(val)
-
-          const unignoredKeys = Object.keys(val[0]).filter(v => {
-            return !this.ignoredDimensions.includes(v)
-          })
-
-          const keys = unignoredKeys.map(v => {
-            return {
-              k: v,
-
-              v: this.crossfilter.dimension(v)
-            }
-          })
-
-          this.cfDimensions = keys
-        }
-      }
-    },
-
-    rangeValues: {
-      handler() {
-        _.debounce(this.updateFiltered, 100)()
-      },
-      deep: true
-    }
-  },
-  methods: {
-    updateFiltered() {
-      if (!this.crossfilter) return
-
-      // Loop thru all dimensions, filter the range
-
-      Object.entries(this.rangeValues).forEach((item, index) => {
-        const [
-          // eslint-disable-next-line no-unused-vars
-          key,
-          val
-        ] = item
-
-        const dim = this.cfDimensions[index].v
-        if (dim) {
-          dim.filter(val)
-        }
-      })
-
-      // ? At this point, all filter caluclations should be finished
-
-      this.allFiltered = Object.freeze(this.crossfilter.allFiltered())
-    }
-  },
-  computed: {
-    /**
-     * An array of dimension key names
-     */
-    columnKeys() {
-      if (this.dataset) {
-        return Object.keys(this.dataset[0]).filter(v => {
-          return !this.ignoredDimensions.includes(v)
-        })
-      }
-    },
-
-    /**
-     * Creates columns to pass to the parallel coord
-     */
-    columnData() {
-      if (this.columnKeys) {
-        return this.columnKeys.map(v => {
-          return {
-            name: v
-          }
-        })
-      }
-    },
-
-    /**
-     * Scale used for horizontal alignment
-     */
-    xScale() {
-      if (this.dataset) {
-        // Set of column keys
-        const keys = this.columnKeys
-
-        return scalePoint()
-          .domain(keys)
-          .range([0, this.dimensions.width])
-      }
-    },
-
-    /**
-     * Computed line data for objects
-     * TODO: put all of this logic into a container component
-     * ! Currently do not have an easy way to access an iterable y scale
-     */
-    lineData() {
-      const sample =
-        this.allFiltered.length > 50
-          ? _.sampleSize(this.allFiltered, 50)
-          : this.allFiltered
-
-      // Convert items to line coordinates
-      return sample.map(() => {
-        return this.columnKeys.reduce((prev, cur) => {
-          // const kVal = v[cur]
-          const x = this.xScale(cur)
-          const y = 0
-
-          prev[cur] = {
-            x,
-            y
-          }
-
-          return prev
-        }, {})
-      })
-    }
   }
 }
 </script>
@@ -214,10 +115,10 @@ export default {
 <style lang="scss" scoped>
 .content {
   display: grid;
-  grid: max-content 1fr / 100%;
+  grid: 100px 1fr / 100%;
 
   &__container {
-    padding: 50px;
+    padding: 20px;
   }
 }
 svg {

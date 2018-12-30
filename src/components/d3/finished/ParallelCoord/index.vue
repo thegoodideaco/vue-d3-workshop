@@ -115,7 +115,7 @@ export default {
           const yScale = this.columnObjects[entry[0]].yScale
           return yScale(entry[1])
         })
-        .curve(shape.curveCardinal.tension(0.4))
+        .curve(shape.curveLinear)
     }
   },
   methods: {
