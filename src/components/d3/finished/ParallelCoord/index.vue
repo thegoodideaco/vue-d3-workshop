@@ -103,6 +103,7 @@ export default {
   computed: {
     xScale() {
       return scalePoint()
+        .align(0)
         .domain(this.columnData.map(v => v.name))
         .range([0, this.dimensions.width])
     },

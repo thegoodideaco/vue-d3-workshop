@@ -8,8 +8,13 @@
       <text fill="#fff">{{value | rounded}}</text>
     </g>
 
+    <!-- Line -->
+    <line :x1="0" :y1="0" :x2="0" :y2="height" fill="none" stroke="#fff" />
+
     <!-- Tick Group -->
     <g class="ticks">
+
+
 
       <!-- Tick Item -->
       <g v-for="(item, index) in ticks"
@@ -35,7 +40,7 @@
 
     <column-brush :domain="extent"
                   :value="value"
-                  v-bind="{width,height}"
+                  v-bind="{x: -10, width,height}"
                   @input="$emit('input', $event)" />
   </g>
 </template>
@@ -106,13 +111,12 @@ export default {
     scale() {
       if (!this.extent) return
       return scaleLinear()
-        .nice()
         .domain(this.extent)
         .range([this.height, 0])
     },
     ticks() {
       if (this.scale) {
-        const values = this.scale.ticks(10)
+        const values = this.scale.ticks()
         return values.map(v => {
           return {
             y:         this.scale(v),

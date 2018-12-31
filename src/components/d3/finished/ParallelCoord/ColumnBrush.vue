@@ -5,7 +5,7 @@
 
 <script>
 import { brushY } from 'd3-brush'
-import * as d3 from 'd3-selection'
+import * as dSelection from 'd3-selection'
 import { scaleLinear } from 'd3-scale'
 import _ from 'lodash'
 export default {
@@ -63,13 +63,10 @@ export default {
     }
   },
   mounted() {
-    if (process.env.NODE_ENV === 'development') {
-      window.d3 = d3
-    }
     // Wait until element is rendered
     this.$nextTick(() => {
       // Set selection for brush
-      this.selection = d3.select(this.$el).call(this.aBrush)
+      this.selection = dSelection.select(this.$el).call(this.aBrush)
       // move brush to match inital value
       this.aBrush.move(
         this.selection,
@@ -80,7 +77,7 @@ export default {
   methods: {
     brushHandler() {
       // eslint-disable-next-line no-unused-vars
-      const { selection, type, sourceEvent, brush } = d3.event
+      const { selection, type, sourceEvent, brush } = dSelection.event
       // console.log(sourceEvent, type)
 
       const userInvoked = sourceEvent != null
@@ -116,7 +113,7 @@ export default {
   },
   beforeDestroy() {
     this.selection.remove()
-    d3.select(this.$el).remove()
+    dSelection.select(this.$el).remove()
   },
   computed: {
     scale() {
@@ -153,9 +150,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/deep/ rect.overlay {
-  fill: rgba(#fff, 0.25);
-}
 /deep/ rect.selection {
   fill: rgba(#fff, 0.5);
   fill-opacity: 1;

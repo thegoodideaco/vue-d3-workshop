@@ -9,15 +9,20 @@
                     :max="500"
                     v-model="$data.$sampleAmount" />
 
-      <ul class="name-list gpu">
-        <li v-for="(item,index) in filteredSample"
-            :key="index"
-            @mouseover="activeItem = item"
-            @mouseleave="activeItem = null"
-            @click="findImage(item.name)">
-          {{item.name}}
-        </li>
-      </ul>
+      <div class="item-container"
+           v-bar>
+        <div>
+          <ul class="name-list gpu">
+            <li v-for="(item,index) in filteredSample"
+                :key="index"
+                @mouseover="activeItem = item"
+                @mouseleave="activeItem = null"
+                @click="findImage(item.name)">
+              {{item.name}}
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <div class="content__container"
@@ -155,21 +160,22 @@ export default {
   > .slider {
   }
 
-  > .name-list {
+  .name-list {
     list-style: none;
     padding: 10px;
     padding-left: 0;
+    padding-right: 25px;
     margin: 0;
     font-size: 12px;
     max-height: 100%;
-    overflow: auto;
+    // overflow: auto;
     position: relative;
     will-change: contents;
 
     > li {
       cursor: pointer;
 
-      margin-bottom: 20px;
+      margin-bottom: 8px;
 
       &:last-child {
         margin-bottom: 0;
