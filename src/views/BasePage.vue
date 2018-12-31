@@ -1,12 +1,17 @@
 <template>
-  <div class="page-container" v-cloak>
+  <div class="page-container"
+       v-cloak>
     <!-- Readme -->
-    <article class="readme" v-bar>
+    <article class="readme"
+             v-bar>
       <section ref="cloudContent">
         <div>
           <div class="section-content">
-            <div class="section-inner sectionLayout--insetColumn gpu" ref="readme">
-              <slot name="readme"><h2>Put Readme Content Here</h2></slot>
+            <div class="section-inner sectionLayout--insetColumn gpu"
+                 ref="readme">
+              <slot name="readme">
+                <h2>Put Readme Content Here</h2>
+              </slot>
             </div>
           </div>
         </div>
@@ -16,15 +21,21 @@
     <!-- Top Controls -->
     <div class="top-controls animated faster slideInDown">
       <h4>{{ componentName | titleCased }}</h4>
-      <button @click="openComponent">
+
+      <!-- Only display if dev mode -->
+      <button v-if="debug"
+              @click="openComponent">
         <span class="fa fa-fw fa-external-link"></span>
         Open in editor
       </button>
     </div>
 
     <!-- Demo Content -->
-    <div class="example-content" ref="sectionContent">
-      <slot name="example"><h2>Hello There</h2></slot>
+    <div class="example-content"
+         ref="sectionContent">
+      <slot name="example">
+        <h2>Hello There</h2>
+      </slot>
     </div>
   </div>
 </template>
@@ -35,7 +46,8 @@ const _ = { startCase }
 export default {
   data() {
     return {
-      demoComponent: null
+      demoComponent: null,
+      debug:         process.env.NODE_ENV === 'development'
     }
   },
   props:   {},

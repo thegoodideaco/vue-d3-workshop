@@ -5,6 +5,7 @@
        :height="dimensions.height">
 
     <!-- All Lines -->
+    <!-- TODO: Add Logic -->
     <g class="line-container back">
 
       <!-- <path v-for="(item, index) in dataset"
@@ -20,11 +21,10 @@
 
       <!-- Filtered -->
       <path v-for="(item, index) in filteredSample"
-            :key="index"
+            :key="item.id || index"
             :d="generateLine(item)"
             fill="none"
-            stroke="#fff"
-            stroke-width="1" />
+            :style="getLineStyle(item)" />
     </g>
 
     <!-- Column Brushes -->
@@ -55,12 +55,13 @@ export default {
   name: 'ParallelCoords',
 
   props: {
-    filtered: Array,
+    activeItem: Object,
+    filtered:   Array,
     /**
      * The raw data that will be passed
      * to crossfilter
      */
-    dataset:  {
+    dataset:    {
       type:     Array,
       required: true
     },
@@ -77,6 +78,14 @@ export default {
           }
         ]
       }
+    },
+
+    /**
+     * Limits the amount of filtered items to draw
+     */
+    renderCount: {
+      type:    Number,
+      default: 100
     }
   },
   mixins:     [bounds],
@@ -102,9 +111,13 @@ export default {
         return Crossfilter(this.dataset)
       }
     },
+
+    /**
+     * @returns a sample of the filtered data based on renderCount
+     */
     filteredSample() {
       if (this.filtered) {
-        return sampleSize(this.filtered, 300)
+        return sampleSize(this.filtered, this.renderCount)
       }
     },
 
@@ -137,6 +150,18 @@ export default {
       })
 
       return this.lineGenerator(filtered)
+    },
+    getLineStyle(item) {
+      const active = this.activeItem && this.activeItem === item
+
+      const stroke = active ? '#0dffa1' : '#fff'
+      const strokeWidth = active ? 5 : 1
+
+      return {
+        stroke,
+        strokeWidth,
+        opacity: active ? 1 : 0.25
+      }
     }
   },
 
@@ -177,7 +202,6 @@ export default {
     },
     inputs: {
       handler(val) {
-        console.log(val)
         if (this.columnObjects == null || val == null) return
         const entries = Object.entries(val)
 
@@ -206,6 +230,11 @@ export default {
       handler(val) {
         this.$emit('update:filtered', val)
       }
+    },
+    filteredSample: {
+      handler(sample) {
+        this.$emit('update:filteredSample', sample)
+      }
     }
   }
 }
@@ -224,6 +253,17 @@ svg {
   .line-container {
     path {
       opacity: 0.25;
+    }
+  }
+
+  // Transform the titles on even columns so they don't overlap
+  .column-container {
+    /deep/ .default-column {
+      &:nth-child(even) {
+        .title {
+          transform: translateY(-40px);
+        }
+      }
     }
   }
 }

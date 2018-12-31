@@ -1,6 +1,8 @@
 // const Config = require('webpack-chain')
 const path = require('path')
 
+const debug = process.env.NODE_ENV !== 'production'
+
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -10,7 +12,10 @@ module.exports = {
   productionSourceMap: false,
 
   css: {
-    sourceMap: true
+    sourceMap: debug,
+
+    // Always false in dev, make false for production
+    extract: false
   },
 
   pwa: {
@@ -28,27 +33,24 @@ module.exports = {
     // if (process.env.NODE_ENV === 'production') {
     const CopyWebpackPlugin = require('copy-webpack-plugin')
     config.plugins.push(
-      new CopyWebpackPlugin([
-        {
-          from:   resolve('static'),
-          ignore: ['.*'],
-          to:     'static'
-        }
-      ])
+      new CopyWebpackPlugin([{
+        from:   resolve('static'),
+        ignore: ['.*'],
+        to:     'static'
+      }])
     )
 
     config.module.rules.push({
       test: /\.md$/,
-      use:  [
-        {
-          loader: 'html-loader'
-        },
-        {
-          loader:  'markdown-loader',
-          options: {
-            /* your options here */
-          }
+      use:  [{
+        loader: 'html-loader'
+      },
+      {
+        loader:  'markdown-loader',
+        options: {
+          /* your options here */
         }
+      }
       ]
     })
   },

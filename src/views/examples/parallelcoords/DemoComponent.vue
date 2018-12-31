@@ -2,11 +2,18 @@
   <div class="fill content">
 
     <div class="filter-info">
-      <ul v-if="tempNames"
-          class="name-list">
-        <li v-for="(item,index) in tempNames"
+
+      <value-slider name="Threshold"
+                    class="slider"
+                    :min="20"
+                    :max="500"
+                    v-model="$data.$sampleAmount" />
+
+      <ul class="name-list gpu">
+        <li v-for="(item,index) in filteredSample"
             :key="index"
-            :title="item | asString"
+            @mouseover="activeItem = item"
+            @mouseleave="activeItem = null"
             @click="findImage(item.name)">
           {{item.name}}
         </li>
@@ -19,7 +26,10 @@
       <!-- SVG Entry -->
       <parallel-coords :dataset="dataset"
                        :column-data="columnData"
-                       :filtered.sync="allFiltered" />
+                       :filtered.sync="allFiltered"
+                       :filtered-sample.sync="filteredSample"
+                       :render-count="$data.$sampleAmount"
+                       :active-item="activeItem" />
 
     </div>
   </div>
@@ -27,61 +37,25 @@
 
 <script>
 import ParallelCoords from '@/components/d3/finished/ParallelCoord/index.vue'
-import _ from 'lodash'
+// import _ from 'lodash'
 import { csv } from 'd3'
-import * as ar from 'd3-array'
+import ValueSliderVue from '@/components/base/ValueSlider.vue'
 export default {
-  components: {
-    ParallelCoords
-  },
-  filters: {
-    asString(object) {
-      return Object.entries(object)
-        .map(v => {
-          return `${v[0]}: ${v[1]}`
-        })
-        .join('\n')
-    }
-  },
   data() {
     return {
+      $sampleAmount:     100,
       dataset:           null,
       ignoredDimensions: ['name', 'id', 'group'],
-      allFiltered:       []
+      allFiltered:       [],
+      filteredSample:    null,
+      activeItem:        null
     }
   },
-  computed: {
-    /**
-     * An array of dimension key names
-     */
-    columnKeys() {
-      if (this.dataset) {
-        return Object.keys(this.dataset[0]).filter(v => {
-          return !this.ignoredDimensions.includes(v)
-        })
-      }
-    },
 
-    /**
-     * Creates columns to pass to the parallel coord
-     */
-    columnData() {
-      if (this.columnKeys) {
-        return this.columnKeys.map(v => {
-          return {
-            name: v
-          }
-        })
-      }
-    },
-
-    /**
-     * TODO: remove this
-     */
-    tempNames() {
-      return _.sampleSize(this.allFiltered, 50)
-    }
-  },
+  /**
+   * Load the csv data,
+   * clean the data, apply to dataset
+   */
   beforeCreate() {
     csv('/static/demo_data/nutrients.csv').then(d => {
       // filter and set numbers
@@ -123,10 +97,38 @@ export default {
       this.dataset = cleaned
     })
   },
+  components: {
+    ParallelCoords,
+    ValueSlider: ValueSliderVue
+  },
+  computed: {
+    /** An array of dimension key names */
+    columnKeys() {
+      if (this.dataset) {
+        return Object.keys(this.dataset[0]).filter(v => {
+          return !this.ignoredDimensions.includes(v)
+        })
+      }
+    },
+
+    /** Creates columns to pass to the parallel coord */
+    columnData() {
+      if (this.columnKeys) {
+        return this.columnKeys.map(v => {
+          return {
+            name: v
+          }
+        })
+      }
+    }
+  },
   methods: {
     findImage(str) {
       const url = encodeURIComponent(str)
-      open(`https://www.google.com/search?q=${url}&source=lnms&tbm=isch`, '_blank')
+      open(
+        `https://www.google.com/search?q=${url}&source=lnms&tbm=isch`,
+        '_blank'
+      )
     }
   }
 }
@@ -145,7 +147,41 @@ export default {
 
 .filter-info {
   max-height: 100%;
-  overflow: auto;
+  overflow: hidden;
+  display: grid;
+  grid: auto 1fr / 100%;
+  row-gap: 10px;
+
+  > .slider {
+  }
+
+  > .name-list {
+    list-style: none;
+    padding: 10px;
+    padding-left: 0;
+    margin: 0;
+    font-size: 12px;
+    max-height: 100%;
+    overflow: auto;
+    position: relative;
+    will-change: contents;
+
+    > li {
+      cursor: pointer;
+
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: #0dffa1;
+      }
+    }
+  }
 }
 
 svg {
@@ -169,23 +205,6 @@ svg {
 
     > * {
       margin: 0;
-    }
-  }
-}
-
-.name-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 12px;
-
-  > li {
-    cursor: pointer;
-
-    &:hover,
-    &:active,
-    &:focus {
-      color: #0dffa1;
     }
   }
 }

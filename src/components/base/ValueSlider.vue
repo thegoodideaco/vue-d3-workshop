@@ -12,7 +12,7 @@
       :max="max"
       :step="step"
       :value="value"
-      @input="$emit('input', $event.target.value)"
+      @input="$emit('input', +$event.target.value)"
     />
   </fieldset>
 </template>
