@@ -49,7 +49,7 @@ import { scalePoint, scaleLinear, line } from 'd3'
 import * as shape from 'd3-shape'
 import Crossfilter from 'crossfilter2'
 import DefaultColumnVue from './DefaultColumn.vue'
-import {sampleSize} from 'lodash'
+import { sampleSize } from 'lodash'
 
 export default {
   name: 'ParallelCoords',
@@ -103,7 +103,7 @@ export default {
       }
     },
     filteredSample() {
-      if(this.filtered) {
+      if (this.filtered) {
         return sampleSize(this.filtered, 300)
       }
     },
