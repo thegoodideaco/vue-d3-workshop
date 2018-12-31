@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import ColumnBrushVue from '@/components/d3/finished/ParallelCoord/ColumnBrush.vue'
+import ColumnBrushVue from './ColumnBrush.vue'
 // eslint-disable-next-line no-unused-vars
 import { Dimension } from 'crossfilter2'
 import { scaleLinear } from 'd3'
