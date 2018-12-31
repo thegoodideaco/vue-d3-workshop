@@ -13,7 +13,7 @@
            v-bar>
         <div>
           <ul class="name-list gpu">
-            <li v-for="(item,index) in filteredSample"
+            <li v-for="(item,index) in orderedSamples"
                 :key="index"
                 @mouseover="activeItem = item"
                 @mouseleave="activeItem = null"
@@ -124,6 +124,16 @@ export default {
             name: v
           }
         })
+      }
+    },
+
+    orderedSamples() {
+      if (this.filteredSample && this.filteredSample.length > 0) {
+        return [...this.filteredSample].sort((a, b) => {
+          return a.name < b.name ? -1 : 1
+        })
+      } else {
+        return []
       }
     }
   },
