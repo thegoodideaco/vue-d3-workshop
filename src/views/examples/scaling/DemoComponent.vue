@@ -1,97 +1,119 @@
 <template>
   <div>
-    <small>Ill get back to this... {{ output }}</small>
-    <ul>
-      <li is="ScaleInput"
-          v-for="item in scaleItems"
-          :scale-item="item"
-          :key="item.name"></li>
-    </ul>
 
-    <!-- This will be testing d3 brush -->
-    <svg>
-      <g is="d3-brush"
-         :scale="myScale"
-         v-model="output" />
+    <!-- Continous Scales -->
+    <div>
+      <h2>Continuous</h2>
+      <div>
+        <!-- ScaleLinear -->
+        <scale-display :scale-class="scales.scaleLinear"
+                       :domain="[1, 2, 25, 10, 95]" />
+      </div>
+    </div>
 
-      <brush-input :width="10"
-                  :height="height"
-                  :scale="myScale"
-                  :value="output"
-                  @input="output = $event" />
-    </svg>
-    <!-- This will be testing d3 brush -->
+    <!-- Sequential -->
+    <div>
+      <h2>Sequential</h2>
+      <div>
+        <div>
+          Scale
+        </div>
+      </div>
+    </div>
+
+    <!-- Diverging -->
+    <div>
+      <h2>Diverging</h2>
+      <div>
+        <div>
+          Scale
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2>Quantize</h2>
+      <div>
+        <div>
+          Scale
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2>Quantile</h2>
+      <div>
+        <div>
+          Scale
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2>Threshold</h2>
+      <div>
+        <div>
+          Scale
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2>Ordinal</h2>
+      <div>
+        <div>
+          Scale
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
 // import all scales
+// * happy new years! 🍾
+
+import ScaleDisplay from './ScaleDisplay.vue'
 import {
-  scalePoint,
+  scaleLinear,
+  scaleTime,
+  scaleLog,
+  scaleIdentity,
+  scalePow,
   scaleSequential,
+  scaleDiverging,
   scaleQuantize,
   scaleQuantile,
-  scaleTime,
   scaleThreshold,
-  scaleOrdinal,
-  scaleLinear
+  scaleBand,
+  scalePoint
 } from 'd3-scale'
-import ScaleInputVue from '@/views/examples/scaling/ScaleInput.vue'
-import D3BrushVue from '@/views/examples/scaling/D3Brush.vue'
-
-const scaleCollection = {
-  scalePoint,
-  scaleSequential,
-  scaleQuantize,
-  scaleQuantile,
-  scaleTime,
-  scaleThreshold,
-  scaleOrdinal
-}
-
 export default {
   name: 'D3ScaleDemos',
   data() {
     return {
-      /** @type {ScaleIdentity} */
-      scaleItems: Object.keys(scaleCollection).map(v => {
-        return {
-          scale:  scaleCollection[v],
-          name:   v,
-          domain: [0, 1],
-          range:  [0, 1]
-        }
-      }),
-
-      output: [386, 0],
-      height: 300
+      scales: {
+        scaleLinear,
+        scaleTime,
+        scaleLog,
+        scaleIdentity,
+        scalePow,
+        scaleSequential,
+        scaleDiverging,
+        scaleQuantize,
+        scaleQuantile,
+        scaleThreshold,
+        scaleBand,
+        scalePoint
+      }
     }
+  },
+  provide: {
+    dataset: [1, 4, 50, 100, 900]
   },
   components: {
-    ScaleInput: ScaleInputVue,
-    BrushInput: D3BrushVue
-  },
-  watch: {
-    myScale: {
-      handler() {
-        console.log('changed')
-      },
-      deep: true
-    }
-  },
-  computed: {
-    myScale() {
-      return scaleLinear()
-        .domain([0, 1000])
-        .range([this.height, 0])
-    }
+    ScaleDisplay
   }
 }
 </script>
-
-<style scoped lang="scss">
-svg {
-  top: unset;
-  left: unset;
-}
-</style>

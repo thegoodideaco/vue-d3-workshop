@@ -3,17 +3,15 @@
     <label :for="name">
       {{ name }}
       <br />
-      {{ value }}
+      {{ roundedValue || value }}
     </label>
-    <input
-      type="range"
-      :name="name"
-      :min="min"
-      :max="max"
-      :step="step"
-      :value="value"
-      @input="$emit('input', +$event.target.value)"
-    />
+    <input type="range"
+           :name="name"
+           :min="min"
+           :max="max"
+           :step="step"
+           :value="value"
+           @input="$emit('input', +$event.target.value)" />
   </fieldset>
 </template>
 
@@ -43,6 +41,15 @@ export default {
     value: {
       type:    Number,
       default: 50
+    },
+    round: [Boolean, String]
+  },
+  computed: {
+
+    roundedValue() {
+      if (this.round) {
+        return Math.floor(this.value)
+      }
     }
   }
 }
