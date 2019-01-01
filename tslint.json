@@ -36,7 +36,6 @@
     }],
     "curly": false,
     "no-bitwise":false,
-    
     "arrow-parens": false,
     "no-console": false,
     "no-unused-expression":true,
