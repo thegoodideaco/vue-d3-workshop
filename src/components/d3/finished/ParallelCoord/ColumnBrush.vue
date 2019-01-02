@@ -92,6 +92,9 @@ export default {
       }
 
       switch (type) {
+      case 'start':
+        this.$emit('filter:start')
+        break
       case 'brush':
         if (this.brushing) {
           this.$emit(

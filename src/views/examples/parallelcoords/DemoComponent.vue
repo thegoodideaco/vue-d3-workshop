@@ -33,7 +33,8 @@
                        :filtered.sync="allFiltered"
                        :filtered-sample.sync="filteredSample"
                        :render-count="$data.$sampleAmount"
-                       :active-item="activeItem" />
+                       :active-item="activeItem"
+                       :active-dimension.sync="activeDimension" />
 
     </div>
   </div>
@@ -52,7 +53,8 @@ export default {
       ignoredDimensions: ['Name', 'Platform', 'Genre', 'Publisher'],
       allFiltered:       [],
       filteredSample:    null,
-      activeItem:        null
+      activeItem:        null,
+      activeDimension:   null
     }
   },
 
@@ -66,14 +68,11 @@ export default {
       const cleaned = d.reduce((prev, cur) => {
         // return entries forced to numbers
         const entries = Object.entries(cur).map(v => {
-          // change date to a date object
-          // if (v[0] === 'date') {
-          //   return [v[0], new Date(v[1])]
-          // }
-
-          const f = parseFloat(v[1] === 'N/A' ? '0' : v[1])
+          const val = v[1]
+          if (val === 'N/A') return [v[0], null]
+          const f = parseFloat(val)
           const isNumber = !isNaN(f)
-          return [v[0], isNumber ? f : v[1]]
+          return [v[0], isNumber ? f : val]
         })
 
         const hasAllValues = entries.every(v => {
@@ -129,7 +128,8 @@ export default {
     orderedSamples() {
       if (this.filteredSample && this.filteredSample.length > 0) {
         return [...this.filteredSample].sort((a, b) => {
-          return b.Global_Sales - a.Global_Sales
+          const key = this.activeDimension || 'Rank'
+          return b[key] - a[key]
         })
       } else {
         return []
@@ -165,10 +165,6 @@ export default {
   display: grid;
   grid: auto 1fr / 100%;
   row-gap: 10px;
-
-  > .slider {
-  }
-
   .name-list {
     list-style: none;
     padding: 10px;

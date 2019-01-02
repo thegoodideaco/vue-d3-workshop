@@ -37,6 +37,7 @@
          :x="xScale(key)"
          :height="dimensions.height"
          :cf-dimension="item.dimension"
+         @filter:start="$emit('update:activeDimension', key)"
          v-model="inputs[key]" />
     </g>
 
@@ -229,6 +230,7 @@ export default {
     },
     allFiltered: {
       handler(val) {
+        // if(this.$attrs.filter == null) return
         this.$emit('update:filtered', val)
       }
     },

@@ -41,6 +41,7 @@
     <column-brush :domain="extent"
                   :value="value"
                   v-bind="{x: -10, width,height}"
+                  @filter:start="$emit('filter:start')"
                   @input="$emit('input', $event)" />
   </g>
 </template>
