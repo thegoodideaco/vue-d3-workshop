@@ -245,6 +245,7 @@ export default {
 svg {
   text {
     fill: #fff;
+
   }
 
   .back-line {
@@ -259,6 +260,7 @@ svg {
 
   // Transform the titles on even columns so they don't overlap
   .column-container {
+     user-select: none;
     /deep/ .default-column {
       &:nth-child(even) {
         .title {

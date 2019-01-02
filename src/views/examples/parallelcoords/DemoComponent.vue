@@ -16,9 +16,8 @@
             <li v-for="(item,index) in orderedSamples"
                 :key="index"
                 @mouseover="activeItem = item"
-                @mouseleave="activeItem = null"
-                @click="findImage(item.name)">
-              {{item.name}}
+                @mouseleave="activeItem = null">
+              {{item.Name}}
             </li>
           </ul>
         </div>
@@ -50,7 +49,7 @@ export default {
     return {
       $sampleAmount:     100,
       dataset:           null,
-      ignoredDimensions: ['name', 'id', 'group'],
+      ignoredDimensions: ['Name', 'Platform', 'Genre', 'Publisher'],
       allFiltered:       [],
       filteredSample:    null,
       activeItem:        null
@@ -62,7 +61,7 @@ export default {
    * clean the data, apply to dataset
    */
   beforeCreate() {
-    csv('/static/demo_data/nutrients.csv').then(d => {
+    csv('/static/demo_data/vgsales.csv').then(d => {
       // filter and set numbers
       const cleaned = d.reduce((prev, cur) => {
         // return entries forced to numbers
@@ -72,7 +71,7 @@ export default {
           //   return [v[0], new Date(v[1])]
           // }
 
-          const f = parseFloat(v[1])
+          const f = parseFloat(v[1] === 'N/A' ? '0' : v[1])
           const isNumber = !isNaN(f)
           return [v[0], isNumber ? f : v[1]]
         })
@@ -130,7 +129,7 @@ export default {
     orderedSamples() {
       if (this.filteredSample && this.filteredSample.length > 0) {
         return [...this.filteredSample].sort((a, b) => {
-          return a.name < b.name ? -1 : 1
+          return b.Global_Sales - a.Global_Sales
         })
       } else {
         return []
