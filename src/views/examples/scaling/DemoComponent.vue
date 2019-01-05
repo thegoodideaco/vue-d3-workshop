@@ -87,7 +87,8 @@ import {
   scaleQuantile,
   scaleThreshold,
   scaleBand,
-  scalePoint
+  scalePoint,
+  scaleOrdinal
 } from 'd3-scale'
 export default {
   name: 'D3ScaleDemos',
@@ -105,7 +106,8 @@ export default {
         scaleQuantile,
         scaleThreshold,
         scaleBand,
-        scalePoint
+        scalePoint,
+        scaleOrdinal
       }
     }
   },
@@ -114,6 +116,9 @@ export default {
   },
   components: {
     ScaleDisplay
+  },
+  mounted() {
+    // const t = scaleOrdinal().domain(this.group).range(['#fff', '#000'])
   }
 }
 </script>
