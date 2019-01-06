@@ -21,7 +21,7 @@
 
       <!-- Filtered -->
       <path v-for="(item, index) in filteredSample"
-            :key="item.id || index"
+            :key="index"
             :d="generateLine(item)"
             fill="none"
             :style="getLineStyle(item)" />

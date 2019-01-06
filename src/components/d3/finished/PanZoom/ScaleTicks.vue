@@ -13,11 +13,11 @@
             stroke-width="2" />
 
       <!-- Text -->
-      <text v-bind="item.textTransform">
+      <g v-bind="item.textTransform">
         <slot v-bind="item">
-          {{item.value}}
+          <text>{{item.value}}</text>
         </slot>
-      </text>
+      </g>
     </g>
   </g>
 </template>
@@ -86,6 +86,7 @@ export default {
 <style scoped lang="scss">
 .scale-ticks {
   // clip-path: inset(0 0 0 20px);
+  user-select: none;
 }
 
 text {

@@ -10,7 +10,7 @@
                     v-model="$data.$sampleAmount" />
 
       <div class="item-container"
-           v-bar>
+           >
         <div>
           <ul class="name-list gpu">
             <li v-for="(item,index) in orderedSamples"
@@ -127,7 +127,7 @@ export default {
 
     orderedSamples() {
       if (this.filteredSample && this.filteredSample.length > 0) {
-        return [...this.filteredSample].sort((a, b) => {
+        return this.filteredSample.sort((a, b) => {
           const key = this.activeDimension || 'Rank'
           return b[key] - a[key]
         })
