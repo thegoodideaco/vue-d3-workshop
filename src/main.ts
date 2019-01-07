@@ -9,6 +9,8 @@ import store from './store'
 import '@/assets/sass/style.scss'
 import 'animate.css'
 import 'normalize.css'
+import 'vue-resize/dist/vue-resize.css'
+import VueResize from 'vue-resize'
 
 import chroma from 'chroma-js'
 import Vuebar from 'vuebar'
@@ -32,6 +34,8 @@ Vue.use(VueAxios, Axios)
 
 // Add custom scrollbar so it doesn't make things look ewwie
 Vue.use(Vuebar)
+
+Vue.use(VueResize)
 
 // These are globally added to ALL components, beware
 Vue.mixin({

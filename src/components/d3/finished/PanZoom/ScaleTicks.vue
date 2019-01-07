@@ -65,7 +65,7 @@ export default {
         }
 
         const tx = p === 'left' ? -10 : p === 'right' ? 10 : 0
-        const ty = p === 'top' ? -10 : p === 'bottom' ? 10 : 0
+        const ty = p === 'top' ? -10 : p === 'bottom' ? 1 : 0
 
         const textTransform = {
           transform: `translate(${tx} ${ty})`

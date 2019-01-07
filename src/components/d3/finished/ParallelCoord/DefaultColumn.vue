@@ -117,7 +117,7 @@ export default {
     },
     ticks() {
       if (this.scale) {
-        const values = this.scale.ticks()
+        const values = this.scale.nice(5).ticks(5)
         return values.map(v => {
           return {
             y:         this.scale(v),

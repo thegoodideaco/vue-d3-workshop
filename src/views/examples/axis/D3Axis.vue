@@ -1,7 +1,7 @@
 <template>
   <g>
     <g v-for="(item, index) in ticks" :key="index" :transform="transform(item)">
-      <slot :value="item">
+      <slot v-bind="item">
         <text text-anchor="end" dominant-baseline="central">{{ item }}</text>
       </slot>
     </g>
@@ -10,6 +10,7 @@
 
 <script>
 import * as scale from 'd3-scale'
+import {format} from 'd3'
 
 // Default Imports of D3-Axis
 
@@ -18,19 +19,19 @@ export default {
     scale: {
       type:    Function,
       default: scale
-        .scaleLinear()
-        // .tickFormat(this.tickAmount)
+        .scaleLinear().nice()
+        .tickFormat(this.tickAmount, 's')
         .range([0, 100])
         .domain([0, 100])
     },
     tickAmount: {
       type:    Number,
-      default: 10
+      default: 5
     }
   },
   computed: {
     ticks() {
-      return this.scale.ticks(this.tickAmount)
+      return this.scale.nice().ticks(this.tickAmount)
     }
   },
   methods: {

@@ -116,9 +116,6 @@ export default {
   },
   components: {
     ScaleDisplay
-  },
-  mounted() {
-    // const t = scaleOrdinal().domain(this.group).range(['#fff', '#000'])
   }
 }
 </script>
