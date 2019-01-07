@@ -19,11 +19,11 @@
     </article>
 
     <!-- Top Controls -->
-    <div class="top-controls animated faster slideInDown">
-      <h4>{{ componentName | titleCased }}</h4>
+    <div v-show="debug" class="top-controls animated faster slideInDown">
+      <h4>{{ componentName | titleCased }} - {{debug}}</h4>
 
-      <!-- Only display if dev mode -->
-      <button v-if="debug"
+      <!-- Only enable if dev mode -->
+      <button :disabled="!debug"
               @click="openComponent">
         <span class="fa fa-fw fa-external-link"></span>
         Open in editor
@@ -137,6 +137,11 @@ $btn-color: #41b883;
     &:active {
       border-color: darken($btn-color, 10);
       transform: translateY(2px);
+    }
+
+    &[disabled] {
+      pointer-events: none;
+      color: rgba($btn-color, 0.5);
     }
   }
 }

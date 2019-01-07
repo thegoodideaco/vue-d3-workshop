@@ -21,6 +21,7 @@ export default {
   mounted() {
     window.addEventListener('resize', this.updateDimensions)
     this.updateDimensions()
+
   },
   activated() {
     window.addEventListener('resize', this.updateDimensions)

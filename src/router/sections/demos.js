@@ -23,6 +23,11 @@ const config = {
       component: () => import('@/views/examples/axis/index.vue')
     },
     {
+      path:      'pan-zoom',
+      name:      'Pan and Zoom',
+      component: () => import('@/views/examples/panzoom/index.vue')
+    },
+    {
       path:      'versor',
       name:      'Versor Dragging',
       component: () => import('@/views/examples/versor-dragging/index.vue')
