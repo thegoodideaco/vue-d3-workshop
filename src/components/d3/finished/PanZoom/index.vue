@@ -158,8 +158,8 @@ export default {
         }
       )
     })
-
     this.zoom(this.selection)
+
   },
   beforeDestroy() {
     if (this.watcher) this.watcher()
@@ -190,9 +190,6 @@ export default {
     updateZoom() {
       console.log('shoulve updates')
       this.onZoom()
-    },
-    onResize(e) {
-      console.log(e)
     }
   }
 }

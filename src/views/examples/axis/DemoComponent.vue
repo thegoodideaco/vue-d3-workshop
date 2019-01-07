@@ -1,131 +1,175 @@
 <template>
-  <div class="main-demo fill"
-       ref="container">
+  <div class="main fill">
 
-    <div class="controls">
-      Controls
-
-      <button @click="reset">Reset</button>
+    <div class="axis-display">
+      <label>Linear Axis Component</label>
+      <svg class="fill"
+           ref="svg">
+        <d3-axis :scale="axisScale"
+                 position="bottom" />
+      </svg>
     </div>
 
-    <div class="svg">
-      <!-- SVG Entry -->
-      <pan-zoom class="panner"
-                ref="panzoom"
-                :zoom-transform.sync="transform"
-                :h-domain="domain[0]"
-                :v-domain="domain[1]"
-                :scale-content="true"
-                :tick-amount="tickAmount"
-                :axis-display="['bottom', 'left']">
+    <div class="axis-display">
+      <label>Time Axis Component</label>
+      <svg class="fill"
+           ref="svg">
+        <d3-axis :scale="tScale"
+                 position="bottom"
+                 :count="10">
 
-        <!-- Display a custom tick value -->
-        <template slot="tick"
-                  slot-scope="d">
-          <text>
-            {{d.value | formatted}}
-          </text>
-        </template>
+          <template slot-scope="item">
+            <text>{{item.value | timeFormat}}</text>
+          </template>
 
-        <circle cx="25"
-                cy="25"
-                r="20"
-                fill="#fff"></circle>
-
-      </pan-zoom>
+        </d3-axis>
+      </svg>
     </div>
 
+    <div class="axis-display">
+      <label>Logarithmic Axis Component (Base 10)</label>
+      <svg class="fill"
+           ref="svg">
+        <d3-axis :scale="lScale"
+                 position="bottom"
+                 :count="10">
+
+          <template slot-scope="item">
+            <text>{{item.value}}</text>
+          </template>
+
+        </d3-axis>
+      </svg>
+    </div>
+
+    <div class="axis-display">
+      <label>Pow Axis Component (Exp .25)</label>
+      <svg class="fill"
+           ref="svg">
+        <d3-axis :scale="pScale"
+                 position="bottom"
+                 :count="10">
+
+          <template slot-scope="item">
+            <text>{{item.value}}</text>
+          </template>
+
+        </d3-axis>
+      </svg>
+    </div>
   </div>
 </template>
 
 <script>
-import indexVue from '@/components/d3/finished/PanZoom/index.vue'
-import { format } from 'd3'
 import bounds from '@/utils/mixins/bounds.js'
-import * as gsap from 'gsap'
-const formatter = format('.3s')
+import D3AxisVue from '@/components/d3/finished/D3Axis.vue'
+import {
+  scaleLinear,
+  scaleTime,
+  timeFormat,
+  scaleLog,
+  scaleSqrt,
+  scaleQuantize,
+  scaleQuantile,
+  scalePow
+} from 'd3'
 export default {
-  mixins: [bounds],
-  data() {
-    return {
-      // range:  [[0, 100], [0, 500]],
-      domain:    [[0, 1000], [0, 1000]],
-      transform: {
-        k: 1,
-        x: 0,
-        y: 0
-      }
+  mixins:  [bounds],
+  filters: {
+    timeFormat(val) {
+      return timeFormat('%b %y')(val)
     }
   },
-  computed: {
-    tickAmount() {
-      return Math.max(3, Math.floor(this.dimensions.width / 100))
+  data() {
+    return {
+      dimensions: {
+        width:  0,
+        height: 0
+      }
     }
   },
   components: {
-    PanZoom: indexVue
+    D3Axis: D3AxisVue
   },
-  filters: {
-    formatted(num) {
-      return formatter(+num)
-    }
-  },
-  methods: {
-    reset() {
-      if (gsap.TweenMax.isTweening(this.transform)) {
-        return
-      }
-      gsap.TweenMax.to(this.transform, 1.25, {
-        ease: gsap.Power3.easeInOut,
-        k:    1
-      })
-      gsap.TweenMax.to(this.transform, 1.25, {
-        ease: gsap.Power3.easeInOut,
-        x:    0
-      })
-      gsap.TweenMax.to(this.transform, 1.25, {
-        ease: gsap.Power4.easeInOut,
-        y:    0
-      })
-      // this.$refs.panzoom.reset()
+  computed: {
+    axisScale() {
+      return scaleLinear()
+        .domain([0, 100])
+        .range([0, this.dimensions.width || 500])
+    },
+    tScale() {
+      return scaleTime()
+        .domain([new Date('9/2/1985'), Date.now()])
+        .nice(10)
+        .range([0, this.dimensions.width || 500])
+    },
+    lScale() {
+      return scaleLog()
+        .domain([1, 10])
+        .range([0, this.dimensions.width || 500])
+        .nice(10)
+        .base(10)
+    },
+    pScale() {
+      return scalePow()
+        .domain([1, 100])
+        .range([0, this.dimensions.width || 500])
+        .nice(10)
+        .exponent(0.25)
+    },
+    qzScale() {
+      return scaleQuantize()
+        .range([0, 6, 50, 90, 100, 20, 10, 100, 200, 90, 20, this.dimensions.width || 500])
+        .domain([1, 10])
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-div.main-demo {
+.main {
+  height: 100%;
+  width: 100%;
   display: grid;
-  grid: auto 1fr / 100%;
+  position: relative;
   row-gap: 20px;
-  position: absolute;
-  top: 0;
-  left: 50px;
-  bottom: 50px;
-  right: 10px;
-  width: auto;
-  height: auto;
-
-  .controls {
-    padding: 10px;
-    background-color: rgba(#000, 0.25);
-  }
-
-  > .svg {
-    width: 100%;
-    height: 100%;
-    // overflow: hidden;
-    position: relative;
-    .panner {
-      border: 1px solid rgba(#fff, 0.5);
-    }
-  }
+  grid: 100px / 100%;
+  grid-auto-rows: 100px;
 }
 
-svg {
-  left: auto;
+svg.fill {
+  position: relative;
   top: auto;
+  left: auto;
+}
+
+.axis-display {
+  // border: 1px solid #fff;
+  background: darken(#fff, 3);
+  color: lighten(#000, 5);
+  padding: 20px 40px;
+  position: relative;
   width: 100%;
-  height: 100%;
+
+  > label {
+    text-align: center;
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  > svg {
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid #000;
+
+    /deep/ text {
+      fill: lighten(#000, 5);
+      font-weight: bold;
+    }
+
+    /deep/ line {
+      stroke: #000;
+    }
+  }
 }
 </style>
