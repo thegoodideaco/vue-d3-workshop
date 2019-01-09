@@ -4,7 +4,7 @@
        width="100%"
        height="100%">
 
-    <!-- Left -->
+    <!-- Tick Axis -->
     <scale-ticks v-for="item in tickObjects"
                  :key="item.position"
                  v-bind="item">
@@ -16,6 +16,18 @@
 
     </scale-ticks>
 
+    <g v-if="showGrid">
+      <line v-for="(item, index) in gridLines"
+            :key="'line_' + index"
+            v-bind="item"
+            fill="none"
+            stroke="#fff"
+            opacity=".25" />
+    </g>
+
+    <!-- Grid display -->
+
+    <!-- Inner Content -->
     <svg v-if="$slots.default"
          style="overflow: hidden;"
          width="100%"
@@ -77,7 +89,8 @@ export default {
           y: 0
         }
       }
-    }
+    },
+    showGrid: Boolean
   },
   data() {
     return {
@@ -128,6 +141,37 @@ export default {
           transform
         }
       })
+    },
+    gridLines() {
+      const prev = []
+      this.tickObjects.forEach(v => {
+        const { scale: s, count: c } = v
+
+        const tickValues = s.ticks(c).map(vv => s(vv))
+
+        // debugger
+        const val = tickValues.map(vvv => {
+          const params = {
+            x1: 0,
+            x2: this.dimensions.width,
+            y1: vvv,
+            y2: vvv
+          }
+
+          if (v.position === 'bottom' || v.position === 'top') {
+            params.x1 = vvv
+            params.x2 = vvv
+            params.y1 = 0
+            params.y2 = this.dimensions.height
+          }
+
+          return params
+        })
+
+        prev.push(...val)
+      })
+
+      return prev
     }
   },
   components: {
@@ -159,7 +203,6 @@ export default {
       )
     })
     this.zoom(this.selection)
-
   },
   beforeDestroy() {
     if (this.watcher) this.watcher()

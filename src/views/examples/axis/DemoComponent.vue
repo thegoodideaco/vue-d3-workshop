@@ -3,8 +3,7 @@
 
     <div class="axis-display">
       <label>Linear Axis Component</label>
-      <svg class="fill"
-           ref="svg">
+      <svg class="fill" ref="svg">
         <d3-axis :scale="axisScale"
                  position="bottom" />
       </svg>
@@ -12,8 +11,7 @@
 
     <div class="axis-display">
       <label>Time Axis Component</label>
-      <svg class="fill"
-           ref="svg">
+      <svg class="fill">
         <d3-axis :scale="tScale"
                  position="bottom"
                  :count="10">
@@ -28,8 +26,7 @@
 
     <div class="axis-display">
       <label>Logarithmic Axis Component (Base 10)</label>
-      <svg class="fill"
-           ref="svg">
+      <svg class="fill">
         <d3-axis :scale="lScale"
                  position="bottom"
                  :count="10">
@@ -44,8 +41,7 @@
 
     <div class="axis-display">
       <label>Pow Axis Component (Exp .25)</label>
-      <svg class="fill"
-           ref="svg">
+      <svg class="fill">
         <d3-axis :scale="pScale"
                  position="bottom"
                  :count="10">
@@ -68,9 +64,9 @@ import {
   scaleTime,
   timeFormat,
   scaleLog,
-  scaleSqrt,
+  // scaleSqrt,
   scaleQuantize,
-  scaleQuantile,
+  // scaleQuantile,
   scalePow
 } from 'd3'
 export default {
@@ -117,9 +113,23 @@ export default {
         .nice(10)
         .exponent(0.25)
     },
+    // ! COFFEE BRB
     qzScale() {
       return scaleQuantize()
-        .range([0, 6, 50, 90, 100, 20, 10, 100, 200, 90, 20, this.dimensions.width || 500])
+        .range([
+          0,
+          6,
+          50,
+          90,
+          100,
+          20,
+          10,
+          100,
+          200,
+          90,
+          20,
+          this.dimensions.width || 500
+        ])
         .domain([1, 10])
     }
   }
@@ -133,8 +143,7 @@ export default {
   display: grid;
   position: relative;
   row-gap: 20px;
-  grid: 100px / 100%;
-  grid-auto-rows: 100px;
+  grid: repeat(4, 100px) 1fr / repeat(2, 1fr);
 }
 
 svg.fill {
@@ -150,6 +159,7 @@ svg.fill {
   padding: 20px 40px;
   position: relative;
   width: 100%;
+  height: 100%;
 
   > label {
     text-align: center;

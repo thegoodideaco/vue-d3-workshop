@@ -128,6 +128,11 @@ module.exports = {
   },
 
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
+    sourceType:   'module',
+    ecmaVersion:  6,
+    ecmaFeatures: {
+      jsx: true
+    }
   }
 }

@@ -17,10 +17,6 @@ import Vuebar from 'vuebar'
 
 import _ from 'lodash'
 
-import 'ag-grid/src/styles/ag-grid.scss'
-import 'ag-grid/src/styles/ag-theme-balham-dark.scss'
-import 'ag-grid/src/styles/ag-theme-material.scss'
-
 // TODO: Remove this
 const w = window as any
 w._ = _

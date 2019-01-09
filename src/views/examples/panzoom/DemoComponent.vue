@@ -3,9 +3,22 @@
        ref="container">
 
     <div class="controls">
-      Controls
+      <h3>Controls</h3>
+      <div class="controls__inner">
 
-      <button @click="reset">Reset</button>
+        <!-- Grid Toggle -->
+        <check-box v-model="displayGrid">
+          Grid: {{displayGrid ? 'ON' : 'OFF'}}
+        </check-box>
+
+        <!-- Zoom Information -->
+        <div>
+          <h4>Transformation</h4>
+          <small>Zoom: {{transform.k | formatted}}</small>
+          <small>Pan: {{transform.x | formatted}} x {{transform.y | formatted}}</small>
+        </div>
+        <button @click="reset">Reset</button>
+      </div>
     </div>
 
     <div class="svg">
@@ -17,7 +30,8 @@
                 :v-domain="domain[1]"
                 :scale-content="true"
                 :tick-amount="tickAmount"
-                :axis-display="['bottom', 'left']">
+                :axis-display="['bottom', 'left']"
+                :show-grid="displayGrid">
 
         <!-- Display a custom tick value -->
         <template slot="tick"
@@ -43,27 +57,30 @@ import indexVue from '@/components/d3/finished/PanZoom/index.vue'
 import { format } from 'd3'
 import bounds from '@/utils/mixins/bounds.js'
 import * as gsap from 'gsap'
-const formatter = format('.3s')
+import CheckBoxVue from '@/components/base/CheckBox.vue'
+const formatter = format('~s')
 export default {
   mixins: [bounds],
   data() {
     return {
       // range:  [[0, 100], [0, 500]],
-      domain:    [[0, 1000], [0, 1000]],
+      domain:    [[0, 1000], [0, 800]],
       transform: {
         k: 1,
         x: 0,
         y: 0
-      }
+      },
+      displayGrid: false
     }
   },
   computed: {
     tickAmount() {
-      return Math.max(3, Math.floor(this.dimensions.width / 100))
+      return Math.max(3, Math.floor(this.dimensions.width / 60))
     }
   },
   components: {
-    PanZoom: indexVue
+    PanZoom:  indexVue,
+    CheckBox: CheckBoxVue
   },
   filters: {
     formatted(num) {
@@ -75,19 +92,14 @@ export default {
       if (gsap.TweenMax.isTweening(this.transform)) {
         return
       }
+
       gsap.TweenMax.to(this.transform, 1.25, {
-        ease: gsap.Power3.easeInOut,
-        k:    1
-      })
-      gsap.TweenMax.to(this.transform, 1.25, {
-        ease: gsap.Power3.easeInOut,
-        x:    0
-      })
-      gsap.TweenMax.to(this.transform, 1.25, {
-        ease: gsap.Power4.easeInOut,
-        y:    0
-      })
-      // this.$refs.panzoom.reset()
+        k: 1,
+        x: 0,
+        y: 0
+      }).eventCallback = type => {
+        console.log('type', type)
+      }
     }
   }
 }
@@ -107,8 +119,32 @@ div.main-demo {
   height: auto;
 
   .controls {
-    padding: 10px;
+    padding: 20px 40px;
     background-color: rgba(#000, 0.25);
+
+    display: grid;
+    grid: auto / 150px 1fr;
+    column-gap: 20px;
+    align-items: center;
+
+    > h3 {
+      padding: 10px 25px;
+    }
+
+    &__inner {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      > * {
+        margin-right: 20px;
+
+        &:last-child {
+          margin-right: 0;
+          margin-left: auto;
+        }
+      }
+    }
   }
 
   > .svg {

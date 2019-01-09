@@ -3,13 +3,12 @@
     <input v-model.number="forceStrength" />
     <svg>
       <circle
-        v-for="(node, index) in nodes"
+        v-for="(node, index) in nodePositions"
         :key="index"
         :cx="node.x"
         :cy="node.y"
         :fill="fillColor(node.value)"
         :r="node.radius"
-        @click="showYears = !showYears"
       ></circle>
     </svg>
   </div>
@@ -20,10 +19,12 @@ import * as d3 from 'd3'
 import chroma from 'chroma-js'
 // Nice looking colors - no reason to buck the trend
 // @v4 scales now have a flattened naming scheme
+
+window.d3 = d3
 const fillColor = d3
-  .scaleOrdinal()
+  .scaleQuantile()
   .domain(['low', 'medium', 'high'])
-  .range(chroma.scale(chroma.brewer.Set2).colors(8))
+  .range(chroma.scale(chroma.brewer.RdYlBu.reverse()).colors(3))
 
 export default {
   name: 'ClusteredBubbleCharts',
@@ -33,8 +34,10 @@ export default {
       center:        { x: 0, y: 0 },
       forceStrength: 0.03,
       rawData:       null,
-      simulation:    null,
-      yearCenters:   {
+
+      /** @type {d3.Simulation} */
+      simulation:  null,
+      yearCenters: {
         2008: {
           x: -200,
           y: 0
@@ -60,8 +63,9 @@ export default {
           y: -500
         }
       },
-      showYears: false,
-      orgNames:  []
+      showYears:     false,
+      orgNames:      [],
+      nodePositions: []
     }
   },
   computed: {
@@ -119,8 +123,12 @@ export default {
       return -this.forceStrength * Math.pow(d.radius + 1, 2)
     },
     ticked() {
-      this.$forceUpdate()
-      // this.nodes = this.nodes
+      this.nodePositions = Object.freeze(this.simulation.nodes().map(v => ({
+        x:      v.x,
+        y:      v.y,
+        radius: v.radius,
+        value:  v.value
+      })))
     }
   },
   mounted() {
@@ -148,11 +156,14 @@ export default {
             .strength(this.forceStrength)
             .y(this.center.y)
         )
-        .force('charge', d3.forceManyBody().strength(this.charge))
+        .force('center', d3.forceManyBody().strength(this.charge))
         .on('tick', this.ticked)
+
+      this.$nextTick(() => {
+        d3.drag(this.nodePositions)(d3.selectAll('circle'))
+      })
     },
     showYears(val) {
-      console.log('change it wtf')
       const r = Math.random() > 0.5
       if (this.simulation) {
         this.simulation.force(

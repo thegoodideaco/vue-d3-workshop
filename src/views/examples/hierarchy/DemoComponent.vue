@@ -1,35 +1,27 @@
 <template>
-  <div
-    class="fill"
-    @click="layoutType = layoutType !== 'partition' ? 'partition' : 'treemap'"
-  >
-    <D3HierarchyLayout
-      :dataset="dataset"
-      :layout-size="size"
-      class="reset-position"
-      :layout-type="layoutType"
-    >
+  <div class="fill"
+       @click="layoutType = layoutType !== 'partition' ? 'partition' : 'treemap'">
+    <D3HierarchyLayout :dataset="dataset"
+                       :layout-size="size"
+                       class="reset-position"
+                       :layout-type="layoutType">
       <template slot-scope="node">
-        <rect
-          v-if="layoutType === 'partition' || layoutType == 'treemap'"
-          :width="node.x1 - node.x0"
-          :height="node.y1 - node.y0"
-          :x="node.x0"
-          :y="node.y0"
-          :class="{ leaf: !node.data.children }"
-          :style="{ transitionDelay: `${node.depth * 90}ms` }"
-        >
+        <rect v-if="layoutType === 'partition' || layoutType == 'treemap'"
+              :width="node.x1 - node.x0"
+              :height="node.y1 - node.y0"
+              :x="node.x0"
+              :y="node.y0"
+              :class="{ leaf: !node.data.children }"
+              :style="{ transitionDelay: `${node.depth * 90}ms` }">
           <title>{{ node.data.name }}</title>
         </rect>
 
-        <circle
-          v-else-if="layoutType === 'pack'"
-          :r="node.r"
-          :cx="node.x"
-          :cy="node.y"
-          :class="{ leaf: !node.data.children }"
-          :style="{ transitionDelay: `${node.depth * 90}ms` }"
-        />
+        <circle v-else-if="layoutType === 'pack'"
+                :r="node.r"
+                :cx="node.x"
+                :cy="node.y"
+                :class="{ leaf: !node.data.children }"
+                :style="{ transitionDelay: `${node.depth * 90}ms` }" />
         <!-- <text>.
           <title>{{data.name}}</title>
         </text> -->
