@@ -2,14 +2,12 @@
   <div class="fill">
     <input v-model.number="forceStrength" />
     <svg>
-      <circle
-        v-for="(node, index) in nodePositions"
-        :key="index"
-        :cx="node.x"
-        :cy="node.y"
-        :fill="fillColor(node.value)"
-        :r="node.radius"
-      ></circle>
+      <circle v-for="(node, index) in nodePositions"
+              :key="index"
+              :cx="node.x"
+              :cy="node.y"
+              :fill="fillColor(node.value)"
+              :r="node.radius"></circle>
     </svg>
   </div>
 </template>
@@ -120,15 +118,17 @@ export default {
   },
   methods: {
     charge(d) {
-      return -this.forceStrength * Math.pow(d.radius + 1, 2)
+      return -this.forceStrength * Math.pow(d.radius, 2)
     },
     ticked() {
-      this.nodePositions = Object.freeze(this.simulation.nodes().map(v => ({
-        x:      v.x,
-        y:      v.y,
-        radius: v.radius,
-        value:  v.value
-      })))
+      this.nodePositions = Object.freeze(
+        this.simulation.nodes().map(v => ({
+          x:      v.x,
+          y:      v.y,
+          radius: v.radius,
+          value:  v.value
+        }))
+      )
     }
   },
   mounted() {
