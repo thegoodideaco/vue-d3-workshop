@@ -75,7 +75,7 @@ export default {
   },
   computed: {
     tickAmount() {
-      return Math.max(3, Math.floor(this.dimensions.width / 60))
+      return Math.max(3, Math.floor(this.dimensions.width / 90))
     }
   },
   components: {
