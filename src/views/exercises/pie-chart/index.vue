@@ -1,23 +1,36 @@
 <template>
   <BasePage>
-    <div slot="readme" ref="readme" v-html="readme" />
+    <div slot="readme"
+         ref="readme"
+         v-html="readme" />
 
-    <div slot="example" ref="example">
+    <div slot="example"
+         ref="example">
+
       <div class="example__inner">
         <div class="pie-container">
-          <D3Pie class="pie-svg" v-bind="arcProps" />
+          <D3Pie class="pie-svg"
+                 v-bind="arcProps">
+
+            <!-- <template slot-scope="d"> -->
+            <text slot-scope="d"
+                  :style="{ transform: `rotate(${d.centroid.degrees}deg) translateY(-70px)` }">
+              {{d.item.data}}
+            </text>
+            <!-- </template> -->
+
+          </D3Pie>
         </div>
 
         <!-- Example Controls -->
         <div class="controls">
-          <div v-for="(item, index) in arcProps" :key="index">
-            <ValueSlider
-              :name="index"
-              :min="arcRanges[index][0]"
-              :max="arcRanges[index][1]"
-              :step="0.000000000001"
-              v-model.number="arcProps[index]"
-            />
+          <div v-for="(item, index) in arcProps"
+               :key="index">
+            <ValueSlider :name="index"
+                         :min="arcRanges[index][0]"
+                         :max="arcRanges[index][1]"
+                         :step="0.000000000001"
+                         v-model.number="arcProps[index]" />
           </div>
         </div>
       </div>
@@ -29,7 +42,7 @@
 import readme from './readme.md'
 import BasePage from '@/views/BasePage.vue'
 import D3Pie from '@/components/d3/finished/D3Pie.vue'
-import ValueSliderVue from '@/components/base/ValueSlider.vue'
+import ValueSlider from '@/components/base/ValueSlider.vue'
 // import WordCloud from '@/components/d3/finished/WordCloud.vue'
 export default {
   data() {
@@ -56,7 +69,20 @@ export default {
   components: {
     BasePage,
     D3Pie,
-    ValueSlider: ValueSliderVue
+    ValueSlider
+  },
+  methods: {
+    computeStyle(d) {
+      console.log(d)
+      const deg = `${d}deg`
+
+      const val = {
+        transform: `rotate(${deg});`
+      }
+
+      console.log(val)
+      return val
+    }
   }
 }
 </script>
@@ -80,6 +106,19 @@ export default {
   svg.pie-svg {
     stroke-width: 2px;
     stroke: #fff;
+
+    text {
+      text-anchor: middle;
+      dominant-baseline: middle;
+      stroke: rgba(0, 0, 0, 0.61);
+      stroke-width: 4px;
+      fill: #fff;
+      paint-order: stroke;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      font-weight: bold;
+      pointer-events: none;
+    }
   }
 }
 .controls {

@@ -1,11 +1,16 @@
 <template>
   <g>
     <!-- Arc -->
-    <path class="arc-path" :fill="fillColor" :d="d" />
+    <path class="arc-path"
+          :fill="fillColor"
+          :d="d" />
 
     <!-- Centroid -->
-    <g :transform="trans">
-      <slot :centroid="centroid"><text>hello</text></slot>
+    <g class="centroid"
+       :transform="trans">
+      <slot v-bind="{centroid}">
+        <text>centroid</text>
+      </slot>
     </g>
   </g>
 </template>
@@ -78,6 +83,14 @@ export default {
         return `translate(${centroid[0]}, ${centroid[1]})`
       }
     }
+  },
+  watch: {
+    centroid: {
+      handler(val) {
+        this.$emit('update:centroid', val)
+      },
+      immediate: true
+    }
   }
 }
 </script>
@@ -87,6 +100,7 @@ export default {
   &:hover {
     stroke: #fff;
     stroke-width: 5;
+    cursor: pointer;
   }
 }
 </style>

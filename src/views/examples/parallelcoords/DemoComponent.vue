@@ -9,8 +9,7 @@
                     :max="500"
                     v-model="$data.$sampleAmount" />
 
-      <div class="item-container"
-           >
+      <div class="item-container">
         <div>
           <ul class="name-list gpu">
             <li v-for="(item,index) in orderedSamples"
@@ -34,7 +33,8 @@
                        :filtered-sample.sync="filteredSample"
                        :render-count="$data.$sampleAmount"
                        :active-item="activeItem"
-                       :active-dimension.sync="activeDimension" />
+                       :active-dimension.sync="activeDimension"
+                       @hook:mounted="$emit('coord:mount', $event)" />
 
     </div>
   </div>

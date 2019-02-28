@@ -9,9 +9,11 @@
            :inner-radius="innerRadius"
            :outer-radius="outerRadius"
            :corner-radius="cornerRadius">
-      <template slot-scope="{ centroid }">
-        <slot v-bind="{ item, key, centroid, color: colors(paths.length)[key] }"></slot>
-      </template>
+      <g slot-scope="{centroid}">
+        <slot v-bind="{centroid, item, key, color: colors(paths.length)[key] }">
+              {{item.centroid}}
+        </slot>
+      </g>
     </D3Arc>
   </svg>
 </template>
@@ -30,7 +32,7 @@ export default Vue.extend({
     inputDatum: {
       type: Array,
       default() {
-        return [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        return [1, 2, 3, 4, 15, 6, 7, 8, 9]
       }
     },
     index: {
@@ -68,10 +70,18 @@ export default Vue.extend({
         .startAngle(this.startAngle)
         .endAngle(this.endAngle)
         .padAngle(this.padAngle)
+
     },
     paths() {
       if (this.inputDatum) {
-        return this.pieGenerator(this.inputDatum)
+        return this.pieGenerator(this.inputDatum).map(v => {
+          return {
+            ...v,
+            centroid: {
+              degrees: 0
+            }
+          }
+        })
       } else {
         return []
       }
