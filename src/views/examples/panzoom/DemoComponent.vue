@@ -70,7 +70,7 @@ export default {
         x: 0,
         y: 0
       },
-      displayGrid: false
+      displayGrid: true
     }
   },
   computed: {

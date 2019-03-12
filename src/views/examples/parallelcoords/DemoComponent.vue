@@ -44,17 +44,26 @@
 import ParallelCoords from '@/components/d3/finished/ParallelCoord/index.vue'
 // import _ from 'lodash'
 import { csv } from 'd3'
-import ValueSliderVue from '@/components/base/ValueSlider.vue'
+import ValueSlider from '@/components/base/ValueSlider.vue'
 export default {
   data() {
     return {
       $sampleAmount:     100,
       dataset:           null,
-      ignoredDimensions: ['Name', 'Platform', 'Genre', 'Publisher'],
-      allFiltered:       [],
-      filteredSample:    null,
-      activeItem:        null,
-      activeDimension:   null
+      ignoredDimensions: [
+        'Name',
+        'Platform',
+        'Genre',
+        'Publisher',
+        'NA_Sales',
+        'EU_Sales',
+        'JP_Sales',
+        'Other_Sales'
+      ],
+      allFiltered:     [],
+      filteredSample:  null,
+      activeItem:      null,
+      activeDimension: null
     }
   },
 
@@ -75,10 +84,12 @@ export default {
           return [v[0], isNumber ? f : val]
         })
 
+        // Checks if all cell values are not nil
         const hasAllValues = entries.every(v => {
           return v[1] != null
         })
 
+        // If all cells are valid, populate entries
         if (hasAllValues) {
           prev.push(
             entries.reduce((p, curv) => {
@@ -102,7 +113,7 @@ export default {
   },
   components: {
     ParallelCoords,
-    ValueSlider: ValueSliderVue
+    ValueSlider
   },
   computed: {
     /** An array of dimension key names */

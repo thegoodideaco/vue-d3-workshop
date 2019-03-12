@@ -3,7 +3,8 @@
 
     <div class="axis-display">
       <label>Linear Axis Component</label>
-      <svg class="fill" ref="svg">
+      <svg class="fill"
+           ref="svg">
         <d3-axis :scale="axisScale"
                  position="bottom" />
       </svg>
@@ -59,16 +60,16 @@
 <script>
 import bounds from '@/utils/mixins/bounds.js'
 import D3AxisVue from '@/components/d3/finished/D3Axis.vue'
+import { timeFormat } from 'd3-time-format'
+
 import {
   scaleLinear,
   scaleTime,
-  timeFormat,
   scaleLog,
-  // scaleSqrt,
   scaleQuantize,
-  // scaleQuantile,
   scalePow
-} from 'd3'
+} from 'd3-scale'
+
 export default {
   mixins:  [bounds],
   filters: {

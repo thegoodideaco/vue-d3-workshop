@@ -7,6 +7,7 @@
 
     <!-- Centroid -->
     <g class="centroid"
+       v-if="$slots.default"
        :transform="trans">
       <slot v-bind="{centroid}">
         <text>centroid</text>
