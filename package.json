@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "animate.css": "^3.7.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "chroma-js": "^2.0.3",
     "crossfilter2": "^1.4.6",
     "d3": "^5.9.1",
